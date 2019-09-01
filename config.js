@@ -2,7 +2,7 @@
  * @type {{wordPressUrl: string}}
  */
 const config = {
-  wordPressUrl: `http://localhost/gaiman`,
+  wordPressUrl: `http://alexandraspalato.com/gaiman`,
 }
 
 module.exports = config
