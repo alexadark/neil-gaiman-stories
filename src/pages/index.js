@@ -14,7 +14,8 @@ const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
 const IndexPage = ({ data }) => {
   const { stories } = data.wpgraphql
-  const [state, setStories] = useState({ state: stories.nodes })
+  const [results, setStories] = useState(stories.nodes)
+  console.log(results.results)
 
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
@@ -22,7 +23,7 @@ const IndexPage = ({ data }) => {
       flatString(story.title).includes(flatQuery)
     )
 
-    return setStories({ results })
+    return setStories(results)
   }
 
   return (
@@ -50,8 +51,8 @@ const IndexPage = ({ data }) => {
         ))}
       </Flex>
       <Flex sx={{ flexWrap: `wrap` }}>
-        {state.results !== [] &&
-          state.results.map(story => (
+        {results !== [] &&
+          results.map(story => (
             <Box sx={{ width: [`50%`, `50%`, `25%`], px: 2, my: 2 }}>
               <article
                 key={story.id}
