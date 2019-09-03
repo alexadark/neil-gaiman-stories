@@ -15,7 +15,6 @@ const flatString = text => text.toLowerCase().replace(/\s/g, "")
 const IndexPage = ({ data }) => {
   const { stories } = data.wpgraphql
   const [results, setStories] = useState(stories.nodes)
-  console.log(results.results)
 
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
@@ -38,15 +37,25 @@ const IndexPage = ({ data }) => {
             pr: 5,
             pl: 2,
             fontSize: 2,
+            cursor: `pointer`,
           },
         }}
       >
-        <Box key="all" data-category="all">
-          <Styled.h5>All</Styled.h5>
+        <Box key="all" onClick={() => setStories(stories.nodes)}>
+          <Styled.h5 data-category="all">All</Styled.h5>
         </Box>
         {data.wpgraphql.categories.nodes.map(cat => (
-          <Box key={cat.slug} data-category={cat.slug}>
-            <Styled.h5>{cat.name}</Styled.h5>
+          <Box
+            key={cat.slug}
+            onClick={e => {
+              const results = stories.nodes.filter(
+                story =>
+                  story.categories.nodes[0].slug === e.target.dataset.category
+              )
+              setStories(results)
+            }}
+          >
+            <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>
           </Box>
         ))}
       </Flex>
@@ -106,6 +115,7 @@ export const pageQuery = graphql`
       categories {
         nodes {
           name
+          slug
         }
       }
     }
