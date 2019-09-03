@@ -15,7 +15,6 @@ const flatString = text => text.toLowerCase().replace(/\s/g, "")
 const IndexPage = ({ data }) => {
   const { stories } = data.wpgraphql
   const [state, setStories] = useState({ state: stories.nodes })
-  console.log(results.results)
 
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
