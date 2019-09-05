@@ -1,7 +1,7 @@
-import React from "react"
 import config from "../../config"
 import ApolloClient from "apollo-boost"
 import fetch from "isomorphic-fetch"
+import React from "react"
 import { ApolloProvider } from "react-apollo"
 
 const client = new ApolloClient({

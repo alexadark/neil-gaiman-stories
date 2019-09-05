@@ -29,7 +29,7 @@ const IndexPage = ({ data }) => {
 
   const addPick = story =>
     picks.length < 3
-      ? setPicks(picks.concat([story.storyId]))
+      ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
   return (
@@ -99,7 +99,12 @@ const IndexPage = ({ data }) => {
           ))}
       </Flex>
       <div>
-        <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
+        <>
+          <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
+          <Flex>
+            {picks.length > 0 && picks.map(pick => <h3>{pick.title}</h3>)}
+          </Flex>
+        </>
       </div>
       <VoteForm />
     </Layout>
