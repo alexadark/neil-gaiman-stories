@@ -3,13 +3,12 @@ import React from "react"
 import { jsx, Styled, Flex, Box } from "theme-ui"
 import { useState } from "react"
 import { Link, graphql } from "gatsby"
-import Img from "gatsby-image"
 import Search from "../components/Search"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import VoteForm from "../components/VoteForm"
-import Tooltip from "rc-tooltip"
-import "rc-tooltip/assets/bootstrap.css"
+import Story from "../components/Story"
+import Img from "gatsby-image"
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -31,6 +30,9 @@ const IndexPage = ({ data }) => {
     picks.length < 3
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
+
+  const removePick = currentPick =>
+    setPicks(picks.filter(pick => pick !== currentPick))
 
   return (
     <Layout>
@@ -70,39 +72,40 @@ const IndexPage = ({ data }) => {
       <Flex sx={{ flexWrap: `wrap` }}>
         {results !== [] &&
           results.map(story => (
-            <Box sx={{ width: [`50%`, `50%`, `25%`], px: 2, my: 2 }}>
-              <article
-                key={story.storyId}
-                data-category={story.categories.nodes[0].slug}
-              >
-                <Tooltip overlay="Vote For me" placement="top">
-                  <Box onClick={() => addPick(story)}>
-                    <Img
-                      fluid={
-                        story.featuredImage.imageFile.childImageSharp.fluid
-                      }
-                      alt={story.altText}
-                      sx={{ cursor: `pointer` }}
-                    />
-                  </Box>
-                </Tooltip>
-
-                <Styled.h5 sx={{ texAlign: `center` }}>{story.title}</Styled.h5>
-                <button
-                  onClick={() => addPick(story)}
-                  sx={{ display: [`block`, `none`] }}
-                >
-                  Vote For Me!
-                </button>
-              </article>
-            </Box>
+            <Story story={story} location="stories" onClickPicture={addPick} />
           ))}
       </Flex>
       <div>
         <>
           <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
           <Flex>
-            {picks.length > 0 && picks.map(pick => <h3>{pick.title}</h3>)}
+            {picks.length > 0 &&
+              picks.map(story => (
+                <Box sx={{ width: [`50%`, `50%`, `33%`], px: 2, my: 2 }}>
+                  <Img
+                    fluid={story.featuredImage.imageFile.childImageSharp.fluid}
+                    alt={story.altText}
+                    sx={{ cursor: `pointer` }}
+                  />
+                  <Box sx={{ textAlign: `center` }}>
+                    <Styled.h5 sx={{ texAlign: `center` }}>
+                      {story.title}
+                    </Styled.h5>
+                    <div
+                      sx={{ cursor: `pointer` }}
+                      onClick={story => {
+                        const newPicks = picks.filter(
+                          pick => pick.storyId !== story.storyId
+                        )
+                        setPicks(newPicks)
+                        console.log(newPicks)
+                      }}
+                    >
+                      Remove
+                    </div>
+                  </Box>
+                </Box>
+              ))}
           </Flex>
         </>
       </div>
