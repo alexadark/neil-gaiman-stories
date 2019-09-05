@@ -16,6 +16,7 @@ const flatString = text => text.toLowerCase().replace(/\s/g, "")
 const IndexPage = ({ data }) => {
   const { stories } = data.wpgraphql
   const [results, setStories] = useState(stories.nodes)
+  const [picks, setPicks] = useState([])
 
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
@@ -25,6 +26,11 @@ const IndexPage = ({ data }) => {
 
     return setStories(results)
   }
+
+  const addPick = story =>
+    picks.length < 3
+      ? setPicks(picks.concat([story.storyId]))
+      : alert("You cannot have more than 3 votes")
 
   return (
     <Layout>
@@ -66,11 +72,11 @@ const IndexPage = ({ data }) => {
           results.map(story => (
             <Box sx={{ width: [`50%`, `50%`, `25%`], px: 2, my: 2 }}>
               <article
-                key={story.id}
+                key={story.storyId}
                 data-category={story.categories.nodes[0].slug}
               >
                 <Tooltip overlay="Vote For me" placement="top">
-                  <Box>
+                  <Box onClick={() => addPick(story)}>
                     <Img
                       fluid={
                         story.featuredImage.imageFile.childImageSharp.fluid
@@ -82,6 +88,12 @@ const IndexPage = ({ data }) => {
                 </Tooltip>
 
                 <Styled.h5 sx={{ texAlign: `center` }}>{story.title}</Styled.h5>
+                <button
+                  onClick={() => addPick(story)}
+                  sx={{ display: [`block`, `none`] }}
+                >
+                  Vote For Me!
+                </button>
               </article>
             </Box>
           ))}
@@ -101,7 +113,7 @@ export const pageQuery = graphql`
     wpgraphql {
       stories(first: 1000) {
         nodes {
-          id
+          storyId
           title
           featuredImage {
             altText
