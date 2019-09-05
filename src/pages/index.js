@@ -31,9 +31,6 @@ const IndexPage = ({ data }) => {
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
-  const removePick = currentPick =>
-    setPicks(picks.filter(pick => pick !== currentPick))
-
   return (
     <Layout>
       <SEO title="Home" />
@@ -93,13 +90,9 @@ const IndexPage = ({ data }) => {
                     </Styled.h5>
                     <div
                       sx={{ cursor: `pointer` }}
-                      onClick={story => {
-                        const newPicks = picks.filter(
-                          pick => pick.storyId !== story.storyId
-                        )
-                        setPicks(newPicks)
-                        console.log(newPicks)
-                      }}
+                      onClick={() =>
+                        setPicks(picks.filter(pick => pick !== story))
+                      }
                     >
                       Remove
                     </div>
