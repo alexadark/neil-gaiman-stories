@@ -5,10 +5,9 @@ import { useState } from "react"
 import { Link, graphql } from "gatsby"
 import Img from "gatsby-image"
 import Search from "../components/Search"
-
 import Layout from "../components/layout"
-
 import SEO from "../components/seo"
+import VoteForm from "../components/VoteForm"
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -29,6 +28,7 @@ const IndexPage = ({ data }) => {
     <Layout>
       <SEO title="Home" />
       <Search onSearchStories={findStories} stories={stories} />
+      {/* TODO: separate in component, add active class */}
       <Flex
         sx={{
           flexWrap: `wrap`,
@@ -76,6 +76,7 @@ const IndexPage = ({ data }) => {
             </Box>
           ))}
       </Flex>
+      <VoteForm />
     </Layout>
   )
 }
@@ -102,7 +103,6 @@ export const pageQuery = graphql`
           }
           StoriesFields {
             originalBookLink
-            originalBookName
           }
           categories {
             nodes {
