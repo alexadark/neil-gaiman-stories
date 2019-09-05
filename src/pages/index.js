@@ -8,6 +8,8 @@ import Search from "../components/Search"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import VoteForm from "../components/VoteForm"
+import Tooltip from "rc-tooltip"
+import "rc-tooltip/assets/bootstrap.css"
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -67,15 +69,26 @@ const IndexPage = ({ data }) => {
                 key={story.id}
                 data-category={story.categories.nodes[0].slug}
               >
-                <Img
-                  fluid={story.featuredImage.imageFile.childImageSharp.fluid}
-                  alt={story.altText}
-                />
+                <Tooltip overlay="Vote For me" placement="top">
+                  <Box>
+                    <Img
+                      fluid={
+                        story.featuredImage.imageFile.childImageSharp.fluid
+                      }
+                      alt={story.altText}
+                      sx={{ cursor: `pointer` }}
+                    />
+                  </Box>
+                </Tooltip>
+
                 <Styled.h5 sx={{ texAlign: `center` }}>{story.title}</Styled.h5>
               </article>
             </Box>
           ))}
       </Flex>
+      <div>
+        <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
+      </div>
       <VoteForm />
     </Layout>
   )
