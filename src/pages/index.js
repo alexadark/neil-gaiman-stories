@@ -10,6 +10,7 @@ import VoteForm from "../components/VoteForm"
 import Story from "../components/Story"
 import Img from "gatsby-image"
 import CategoryFilter from "../components/CategoryFilter"
+// import StoriesGrid from "../components/StoriesGrid"
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -57,6 +58,7 @@ const IndexPage = ({ data }) => {
             <Story story={story} location="stories" onClickPicture={addPick} />
           ))}
       </Flex>
+      {/* <StoriesGrid results={results} addPick={addPick} /> */}
       <div>
         <>
           <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
