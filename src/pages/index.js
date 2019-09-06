@@ -31,9 +31,9 @@ const IndexPage = ({ data }) => {
   const [picks, setPicks] = useState([])
   const [vote, setVote] = useState({
     clientMutationId: "submitVote",
-    emailInput: "testForm@gmail.com",
-    messageInput: "test form",
-    votesInput: [33, 34, 35],
+    emailInput: "",
+    messageInput: "",
+    votesInput: [],
   })
 
   const findStories = (query, stories) => {
@@ -47,7 +47,8 @@ const IndexPage = ({ data }) => {
 
   const addPick = story =>
     picks.length < 3
-      ? setPicks(picks.concat([story]))
+      ? (setPicks(picks.concat([story])),
+        setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) }))
       : alert("You cannot have more than 3 votes")
 
   const filterCategories = (e, stories) =>
@@ -116,6 +117,12 @@ const IndexPage = ({ data }) => {
           <form
             onSubmit={e => {
               e.preventDefault()
+
+              // setVote({
+              //   ...vote,
+              //   votesInput: picks.map(pick => pick.storyId),
+              // })
+
               voteMutation({
                 variables: {
                   input: vote,
@@ -128,9 +135,20 @@ const IndexPage = ({ data }) => {
               <br />
               <span>Lock in your vote</span>
             </Styled.h3>
-            <input type="text" placeholder="e-mail address*" />
+            <input
+              type="text"
+              placeholder="e-mail address*"
+              value={vote.emailInput}
+              onChange={e => setVote({ ...vote, emailInput: e.target.value })}
+            />
             <Styled.p>Tell us the reason for your #1 Pick:</Styled.p>
-            <textarea cols="30" rows="10" placeholder="enter your answer" />
+            <textarea
+              cols="30"
+              rows="10"
+              placeholder="enter your answer"
+              value={vote.messageInput}
+              onChange={e => setVote({ ...vote, messageInput: e.target.value })}
+            />
             <input type="submit" value="submit" />
           </form>
         )}
