@@ -9,6 +9,7 @@ import SEO from "../components/seo"
 import VoteForm from "../components/VoteForm"
 import Story from "../components/Story"
 import Img from "gatsby-image"
+import CategoryFilter from "../components/CategoryFilter"
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -31,41 +32,25 @@ const IndexPage = ({ data }) => {
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
+  const filterCategories = (e, stories) =>
+    setStories(
+      stories.nodes.filter(
+        story => story.categories.nodes[0].slug === e.target.dataset.category
+      )
+    )
+
   return (
     <Layout>
       <SEO title="Home" />
       <Search onSearchStories={findStories} stories={stories} />
-      {/* TODO: separate in component, add active class */}
-      <Flex
-        sx={{
-          flexWrap: `wrap`,
-          mt: 2,
-          div: {
-            pr: 5,
-            pl: 2,
-            fontSize: 2,
-            cursor: `pointer`,
-          },
-        }}
-      >
-        <Box key="all" onClick={() => setStories(stories.nodes)}>
-          <Styled.h5 data-category="all">All</Styled.h5>
-        </Box>
-        {data.wpgraphql.categories.nodes.map(cat => (
-          <Box
-            key={cat.slug}
-            onClick={e => {
-              const results = stories.nodes.filter(
-                story =>
-                  story.categories.nodes[0].slug === e.target.dataset.category
-              )
-              setStories(results)
-            }}
-          >
-            <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>
-          </Box>
-        ))}
-      </Flex>
+      <CategoryFilter
+        stories={stories}
+        handleSetStories={setStories}
+        handleFilterCategories={filterCategories}
+        categories={data.wpgraphql.categories}
+      />
+      {/* TODO:  add active class */}
+
       <Flex sx={{ flexWrap: `wrap` }}>
         {results !== [] &&
           results.map(story => (
