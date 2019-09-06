@@ -10,7 +10,18 @@ import VoteForm from "../components/VoteForm"
 import Story from "../components/Story"
 import Img from "gatsby-image"
 import CategoryFilter from "../components/CategoryFilter"
+import { Mutation } from "react-apollo"
+import { gql } from "apollo-boost"
 // import StoriesGrid from "../components/StoriesGrid"
+// import Picks from "../components/Picks"
+
+const SUBMIT_VOTE_MUTATION = gql`
+  mutation voteMutation($input: VoteMutationInput!) {
+    voteMutation(input: $input) {
+      voteSubmitted
+    }
+  }
+`
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -18,6 +29,12 @@ const IndexPage = ({ data }) => {
   const { stories } = data.wpgraphql
   const [results, setStories] = useState(stories.nodes)
   const [picks, setPicks] = useState([])
+  const [vote, setVote] = useState({
+    clientMutationId: "submitVote",
+    emailInput: "testForm@gmail.com",
+    messageInput: "test form",
+    votesInput: [33, 34, 35],
+  })
 
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
@@ -52,13 +69,17 @@ const IndexPage = ({ data }) => {
       />
       {/* TODO:  add active class */}
 
+      {/* <StoriesGrid results={results} addPick={addPick} /> */}
+
       <Flex sx={{ flexWrap: `wrap` }}>
         {results !== [] &&
           results.map(story => (
             <Story story={story} location="stories" onClickPicture={addPick} />
           ))}
       </Flex>
-      {/* <StoriesGrid results={results} addPick={addPick} /> */}
+
+      {/* <Picks picks={picks} setPicks={setPicks} /> */}
+
       <div>
         <>
           <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
@@ -87,9 +108,33 @@ const IndexPage = ({ data }) => {
                 </Box>
               ))}
           </Flex>
+          <button sx={{ cursor: `pointer` }}>Vote Now</button>
         </>
       </div>
-      <VoteForm />
+      <Mutation mutation={SUBMIT_VOTE_MUTATION}>
+        {(voteMutation, { data, error, loading }) => (
+          <form
+            onSubmit={e => {
+              e.preventDefault()
+              voteMutation({
+                variables: {
+                  input: vote,
+                },
+              })
+            }}
+          >
+            <Styled.h3>
+              Make it official
+              <br />
+              <span>Lock in your vote</span>
+            </Styled.h3>
+            <input type="text" placeholder="e-mail address*" />
+            <Styled.p>Tell us the reason for your #1 Pick:</Styled.p>
+            <textarea cols="30" rows="10" placeholder="enter your answer" />
+            <input type="submit" value="submit" />
+          </form>
+        )}
+      </Mutation>
     </Layout>
   )
 }
