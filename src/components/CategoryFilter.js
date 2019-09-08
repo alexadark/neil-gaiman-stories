@@ -3,9 +3,10 @@ import { jsx, Styled, Flex, Box } from "theme-ui"
 
 const CategoryFilter = ({
   stories,
-  handleSetStories,
-  handleFilterCategories,
+  setStories,
+  filterCategories,
   categories,
+  setActiveCat,
 }) => {
   return (
     <Flex
@@ -20,11 +21,23 @@ const CategoryFilter = ({
         },
       }}
     >
-      <Box key="all" onClick={() => handleSetStories(stories.nodes)}>
+      <Box
+        key="all"
+        onClick={e => {
+          setStories(stories.nodes)
+          setActiveCat(e.target.dataset.category)
+        }}
+      >
         <Styled.h5 data-category="all">All</Styled.h5>
       </Box>
       {categories.nodes.map(cat => (
-        <Box key={cat.slug} onClick={e => handleFilterCategories(e, stories)}>
+        <Box
+          key={cat.slug}
+          onClick={e => {
+            filterCategories(e, stories, setActiveCat)
+            setActiveCat(e.target.dataset.category)
+          }}
+        >
           <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>
         </Box>
       ))}

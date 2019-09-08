@@ -18,7 +18,8 @@ export const VoteContext = createContext()
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
 const IndexPage = ({ data }) => {
-  const { stories } = data.wpgraphql
+  const { stories, categories } = data.wpgraphql
+
   const [results, setStories] = useState(stories.nodes)
   const [picks, setPicks] = useState([])
   const [vote, setVote] = useState({
@@ -33,13 +34,15 @@ const IndexPage = ({ data }) => {
     [picks]
   )
 
+  const [activeCat, setActiveCat] = useState("all")
+
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
     const results = stories.nodes.filter(story =>
       flatString(story.title).includes(flatQuery)
     )
 
-    return setStories(results)
+    setStories(results)
   }
 
   const addPick = story =>
@@ -47,12 +50,13 @@ const IndexPage = ({ data }) => {
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
-  const filterCategories = (e, stories) =>
+  const filterCategories = (e, stories) => {
     setStories(
       stories.nodes.filter(
         story => story.categories.nodes[0].slug === e.target.dataset.category
       )
     )
+  }
 
   return (
     <VoteContext.Provider value={vote}>
@@ -61,9 +65,10 @@ const IndexPage = ({ data }) => {
         <Search onSearchStories={findStories} stories={stories} />
         <CategoryFilter
           stories={stories}
-          handleSetStories={setStories}
-          handleFilterCategories={filterCategories}
-          categories={data.wpgraphql.categories}
+          setStories={setStories}
+          filterCategories={filterCategories}
+          categories={categories}
+          setActiveCat={setActiveCat}
         />
         {/* TODO:  add active class */}
 
