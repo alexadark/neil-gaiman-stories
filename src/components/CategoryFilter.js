@@ -1,15 +1,28 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
+import { useState, useEffect, useRef } from "react"
 
 const CategoryFilter = ({
   stories,
   setStories,
   filterCategories,
   categories,
-  setActiveCat,
 }) => {
+  const [activeCat, setActiveCat] = useState("all")
+
+  const ref = useRef()
+
+  const assignActiveClass = (e, cat) => {
+    const classes = e.target.classList
+    cat.slug === activeCat ? classes.add("active") : classes.remove("active")
+    console.log(cat.slug, activeCat)
+  }
+
+  // useEffect(cat => setActiveCat(cat), [])
+
   return (
     <Flex
+      ref={ref}
       sx={{
         flexWrap: `wrap`,
         mt: 2,
@@ -25,7 +38,7 @@ const CategoryFilter = ({
         key="all"
         onClick={e => {
           setStories(stories.nodes)
-          setActiveCat(e.target.dataset.category)
+          setActiveCat("all")
         }}
       >
         <Styled.h5 data-category="all">All</Styled.h5>
@@ -35,7 +48,9 @@ const CategoryFilter = ({
           key={cat.slug}
           onClick={e => {
             filterCategories(e, stories, setActiveCat)
-            setActiveCat(e.target.dataset.category)
+            setActiveCat(cat.slug)
+            assignActiveClass(e, cat)
+            console.log(cat.slug, activeCat)
           }}
         >
           <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>

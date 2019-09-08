@@ -34,8 +34,6 @@ const IndexPage = ({ data }) => {
     [picks]
   )
 
-  const [activeCat, setActiveCat] = useState("all")
-
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
     const results = stories.nodes.filter(story =>
@@ -68,7 +66,6 @@ const IndexPage = ({ data }) => {
           setStories={setStories}
           filterCategories={filterCategories}
           categories={categories}
-          setActiveCat={setActiveCat}
         />
         {/* TODO:  add active class */}
 
