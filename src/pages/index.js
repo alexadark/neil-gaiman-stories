@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import React from "react"
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import Search from "../components/Search"
 import Layout from "../components/layout"
@@ -36,6 +36,11 @@ const IndexPage = ({ data }) => {
     votesInput: [],
   })
 
+  useEffect(
+    () => setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) }),
+    [picks]
+  )
+
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
     const results = stories.nodes.filter(story =>
@@ -47,8 +52,7 @@ const IndexPage = ({ data }) => {
 
   const addPick = story =>
     picks.length < 3
-      ? (setPicks(picks.concat([story])),
-        setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) }))
+      ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
   const filterCategories = (e, stories) =>
@@ -117,12 +121,6 @@ const IndexPage = ({ data }) => {
           <form
             onSubmit={e => {
               e.preventDefault()
-
-              // setVote({
-              //   ...vote,
-              //   votesInput: picks.map(pick => pick.storyId),
-              // })
-
               voteMutation({
                 variables: {
                   input: vote,
