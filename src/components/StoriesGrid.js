@@ -1,9 +1,8 @@
 /** @jsx jsx */
-import React from "react"
-import { jsx, Styled, Flex, Box } from "theme-ui"
+import { jsx, Flex } from "theme-ui"
 import Story from "./Story"
 
-const StoriesGrid = (results, addPick) => {
+const StoriesGrid = ({ results, addPick }) => {
   return (
     <Flex sx={{ flexWrap: `wrap` }}>
       {results !== [] &&

@@ -12,7 +12,7 @@ import Img from "gatsby-image"
 import CategoryFilter from "../components/CategoryFilter"
 import { Mutation } from "react-apollo"
 import { gql } from "apollo-boost"
-// import StoriesGrid from "../components/StoriesGrid"
+import StoriesGrid from "../components/StoriesGrid"
 // import Picks from "../components/Picks"
 
 const SUBMIT_VOTE_MUTATION = gql`
@@ -74,14 +74,7 @@ const IndexPage = ({ data }) => {
       />
       {/* TODO:  add active class */}
 
-      {/* <StoriesGrid results={results} addPick={addPick} /> */}
-
-      <Flex sx={{ flexWrap: `wrap` }}>
-        {results !== [] &&
-          results.map(story => (
-            <Story story={story} location="stories" onClickPicture={addPick} />
-          ))}
-      </Flex>
+      <StoriesGrid results={results} addPick={addPick} />
 
       {/* <Picks picks={picks} setPicks={setPicks} /> */}
 
