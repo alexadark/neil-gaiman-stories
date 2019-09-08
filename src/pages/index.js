@@ -13,7 +13,7 @@ import CategoryFilter from "../components/CategoryFilter"
 import { Mutation } from "react-apollo"
 import { gql } from "apollo-boost"
 import StoriesGrid from "../components/StoriesGrid"
-// import Picks from "../components/Picks"
+import Picks from "../components/Picks"
 
 const SUBMIT_VOTE_MUTATION = gql`
   mutation voteMutation($input: VoteMutationInput!) {
@@ -76,39 +76,8 @@ const IndexPage = ({ data }) => {
 
       <StoriesGrid results={results} addPick={addPick} />
 
-      {/* <Picks picks={picks} setPicks={setPicks} /> */}
+      <Picks picks={picks} setPicks={setPicks} />
 
-      <div>
-        <>
-          <Styled.h3 sx={{ textAlign: `center` }}>Your Picks</Styled.h3>
-          <Flex>
-            {picks.length > 0 &&
-              picks.map(story => (
-                <Box sx={{ width: [`50%`, `50%`, `33%`], px: 2, my: 2 }}>
-                  <Img
-                    fluid={story.featuredImage.imageFile.childImageSharp.fluid}
-                    alt={story.altText}
-                    sx={{ cursor: `pointer` }}
-                  />
-                  <Box sx={{ textAlign: `center` }}>
-                    <Styled.h5 sx={{ texAlign: `center` }}>
-                      {story.title}
-                    </Styled.h5>
-                    <div
-                      sx={{ cursor: `pointer` }}
-                      onClick={() =>
-                        setPicks(picks.filter(pick => pick !== story))
-                      }
-                    >
-                      Remove
-                    </div>
-                  </Box>
-                </Box>
-              ))}
-          </Flex>
-          <button sx={{ cursor: `pointer` }}>Vote Now</button>
-        </>
-      </div>
       <Mutation mutation={SUBMIT_VOTE_MUTATION}>
         {(voteMutation, { data, error, loading }) => (
           <form
