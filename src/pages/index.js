@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React from "react"
+import React, { createContext } from "react"
 import { jsx, Styled, Flex, Box } from "theme-ui"
 import { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
@@ -7,21 +7,13 @@ import Search from "../components/Search"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import VoteForm from "../components/VoteForm"
-import Story from "../components/Story"
-import Img from "gatsby-image"
+
 import CategoryFilter from "../components/CategoryFilter"
-import { Mutation } from "react-apollo"
-import { gql } from "apollo-boost"
+
 import StoriesGrid from "../components/StoriesGrid"
 import Picks from "../components/Picks"
 
-const SUBMIT_VOTE_MUTATION = gql`
-  mutation voteMutation($input: VoteMutationInput!) {
-    voteMutation(input: $input) {
-      voteSubmitted
-    }
-  }
-`
+export const VoteContext = createContext()
 
 const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
@@ -63,57 +55,23 @@ const IndexPage = ({ data }) => {
     )
 
   return (
-    <Layout>
-      <SEO title="Home" />
-      <Search onSearchStories={findStories} stories={stories} />
-      <CategoryFilter
-        stories={stories}
-        handleSetStories={setStories}
-        handleFilterCategories={filterCategories}
-        categories={data.wpgraphql.categories}
-      />
-      {/* TODO:  add active class */}
+    <VoteContext.Provider value={vote}>
+      <Layout>
+        <SEO title="Home" />
+        <Search onSearchStories={findStories} stories={stories} />
+        <CategoryFilter
+          stories={stories}
+          handleSetStories={setStories}
+          handleFilterCategories={filterCategories}
+          categories={data.wpgraphql.categories}
+        />
+        {/* TODO:  add active class */}
 
-      <StoriesGrid results={results} addPick={addPick} />
-
-      <Picks picks={picks} setPicks={setPicks} />
-
-      <Mutation mutation={SUBMIT_VOTE_MUTATION}>
-        {(voteMutation, { data, error, loading }) => (
-          <form
-            onSubmit={e => {
-              e.preventDefault()
-              voteMutation({
-                variables: {
-                  input: vote,
-                },
-              })
-            }}
-          >
-            <Styled.h3>
-              Make it official
-              <br />
-              <span>Lock in your vote</span>
-            </Styled.h3>
-            <input
-              type="text"
-              placeholder="e-mail address*"
-              value={vote.emailInput}
-              onChange={e => setVote({ ...vote, emailInput: e.target.value })}
-            />
-            <Styled.p>Tell us the reason for your #1 Pick:</Styled.p>
-            <textarea
-              cols="30"
-              rows="10"
-              placeholder="enter your answer"
-              value={vote.messageInput}
-              onChange={e => setVote({ ...vote, messageInput: e.target.value })}
-            />
-            <input type="submit" value="submit" />
-          </form>
-        )}
-      </Mutation>
-    </Layout>
+        <StoriesGrid results={results} addPick={addPick} />
+        <Picks picks={picks} setPicks={setPicks} />
+        <VoteForm setVote={setVote} />
+      </Layout>
+    </VoteContext.Provider>
   )
 }
 
