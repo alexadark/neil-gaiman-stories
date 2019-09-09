@@ -4,7 +4,7 @@ import Img from "gatsby-image"
 
 const Story = ({ story, onClickPicture }) => {
   return (
-    <Box sx={{ width: [`50%`, `50%`, `25%`], my: 5 }}>
+    <Box sx={{ width: [`50%`, `33%`, `20%`], my: 5 }}>
       <Flex
         as="article"
         onClick={() => onClickPicture(story)}
@@ -20,12 +20,23 @@ const Story = ({ story, onClickPicture }) => {
 
           ":hover": {
             ".gatsby-image-wrapper": {
-              boxShadow: ` 0 0 54px rgba(255, 255, 255, 0.35)`,
+              boxShadow: ` 0 0 70px rgba(255, 255, 255, 0.55)`,
             },
           },
         }}
       >
-        <div sx={{ color: `black` }}>Choose me</div>
+        <div
+          sx={{
+            color: `black`,
+            fontFamily: `heading`,
+            fontSize: `1.8rem`,
+            fontWeight: `bold`,
+            my: `5px`,
+            zIndex: 10,
+          }}
+        >
+          Choose me
+        </div>
         <Img
           fixed={story.featuredImage.imageFile.childImageSharp.fixed}
           alt={story.altText}

@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, creatRef } from "react"
 
 const CategoryFilter = ({
   stories,
@@ -10,19 +10,30 @@ const CategoryFilter = ({
 }) => {
   const [activeCat, setActiveCat] = useState("all")
 
+  const [cats, setCats] = useState(["all"])
+
+  useEffect(
+    () => setCats(cats.concat(categories.nodes.map(cat => cat.slug))),
+    []
+  )
+
   const ref = useRef()
 
   const assignActiveClass = (e, cat) => {
     const classes = e.target.classList
     cat.slug === activeCat ? classes.add("active") : classes.remove("active")
-    console.log(cat.slug, activeCat)
   }
 
-  // useEffect(cat => setActiveCat(cat), [])
+  // const catsArray = Array.of(document.querySelectorAll(".cat"))
+  // catsArray.map(catItem => console.log("classes", catItem.className))
+  // // console.log(catsArray)
 
+  // useEffect(cat => setActiveCat(cat), [])
+  console.log(activeCat)
+  console.log(ref.current)
+  // console.log(document.querySelectorAll(".cat"))
   return (
     <Flex
-      ref={ref}
       sx={{
         flexWrap: `wrap`,
         mt: 2,
@@ -36,6 +47,8 @@ const CategoryFilter = ({
     >
       <Box
         key="all"
+        ref={ref}
+        className="cat"
         onClick={e => {
           setStories(stories.nodes)
           setActiveCat("all")
@@ -46,11 +59,14 @@ const CategoryFilter = ({
       {categories.nodes.map(cat => (
         <Box
           key={cat.slug}
+          ref={ref}
+          className="cat"
           onClick={e => {
             filterCategories(e, stories, setActiveCat)
             setActiveCat(cat.slug)
-            assignActiveClass(e, cat)
-            console.log(cat.slug, activeCat)
+            // assignActiveClass(e, cat)
+            // console.log(cat.slug, activeCat)
+            e.target.classList.add("active")
           }}
         >
           <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>

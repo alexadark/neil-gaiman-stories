@@ -48,10 +48,10 @@ export default {
       width: "90vw",
     },
     Container: {
-      padding: 0,
-      paddingBottom: 3,
-      paddingTop: 3,
       maxWidth: `container`,
+      margin: "0 auto",
+      p: 0,
+      width: "90vw",
     },
     ...base,
 

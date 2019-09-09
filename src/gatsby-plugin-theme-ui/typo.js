@@ -10,14 +10,14 @@ const transition = {
 
 export const fontWeights = {
   body: 300,
-  heading: 700,
+  heading: 400,
   bold: 900,
 }
 
 export const fontSizes = [
   "1.2rem",
   "1.4rem",
-  "1.6rem",
+  "1.8rem",
   "2.4rem",
   "3rem",
   "3.6rem",

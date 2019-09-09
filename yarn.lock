@@ -10282,9 +10282,9 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeface-antonio@^1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/typeface-antonio/-/typeface-antonio-1.0.1.tgz#7da4e2c6eff8936f95934ea67fb1d3049ee11111"
+typeface-antonio-complete@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/typeface-antonio-complete/-/typeface-antonio-complete-1.0.2.tgz#8847d8576bc5ed59188cbbde57c8da6b1550f069"
 
 typeface-roboto@^0.0.75:
   version "0.0.75"

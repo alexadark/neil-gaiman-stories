@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import React, { createContext } from "react"
-import { jsx, Styled, Flex, Box } from "theme-ui"
+import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import { useState, useEffect } from "react"
 import { Link, graphql } from "gatsby"
 import Search from "../components/Search"
@@ -59,17 +59,19 @@ const IndexPage = ({ data }) => {
   return (
     <VoteContext.Provider value={vote}>
       <Layout>
-        <SEO title="Home" />
-        <Search onSearchStories={findStories} stories={stories} />
-        <CategoryFilter
-          stories={stories}
-          setStories={setStories}
-          filterCategories={filterCategories}
-          categories={categories}
-        />
-        {/* TODO:  add active class */}
+        <Container>
+          <SEO title="Home" />
+          <Search onSearchStories={findStories} stories={stories} />
+          <CategoryFilter
+            stories={stories}
+            setStories={setStories}
+            filterCategories={filterCategories}
+            categories={categories}
+          />
+          {/* TODO:  add active class */}
 
-        <StoriesGrid results={results} addPick={addPick} />
+          <StoriesGrid results={results} addPick={addPick} />
+        </Container>
         <Picks picks={picks} setPicks={setPicks} />
         <VoteForm setVote={setVote} />
       </Layout>

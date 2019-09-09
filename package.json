@@ -35,7 +35,7 @@
     "rebass": "^4.0.5",
     "styled-components": "^4.3.2",
     "theme-ui": "^0.2.38",
-    "typeface-antonio": "^1.0.1",
+    "typeface-antonio-complete": "^1.0.2",
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {

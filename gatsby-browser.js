@@ -6,5 +6,5 @@
 
 export { wrapRootElement } from "./src/apollo"
 
-require("typeface-antonio")
+require("typeface-antonio-complete")
 require("typeface-roboto")
