@@ -1,4 +1,4 @@
-import { css } from '@emotion/core'
+import { css } from "@emotion/core"
 
 export const GlobalStyles = css`
   /*! sanitize.css v7.0.3 | CC0 License | github.com/csstools/sanitize.css */
@@ -8,6 +8,7 @@ export const GlobalStyles = css`
 * 1. Remove repeating backgrounds in all browsers (opinionated).
 * 2. Add border box sizing in all browsers (opinionated).
 */
+
   *,
   ::before,
   ::after {
@@ -40,6 +41,7 @@ export const GlobalStyles = css`
     -webkit-text-size-adjust: 100%; /* 5 */
     word-break: break-word; /* 6 */
     font-size: 62.5%;
+    background: black;
   }
   /* Sections
 * ========================================================================== */
@@ -55,7 +57,7 @@ export const GlobalStyles = css`
     overflow-y: scroll;
     overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
-    background: ${({ theme }) => theme.colors.primary};
+    /* background: ${({ theme }) => theme.colors.primary}; */
   }
   /**
 * Correct the font size and margin on h1 elements within section and
@@ -248,9 +250,9 @@ export const GlobalStyles = css`
 * Correct the inability to style clickable types in iOS and Safari.
 */
   button,
-  [type='button'],
-  [type='reset'],
-  [type='submit'] {
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
     -webkit-appearance: button;
   }
   /**
@@ -302,15 +304,15 @@ export const GlobalStyles = css`
   /**
 * Remove the padding in IE 10-.
 */
-  [type='checkbox'],
-  [type='radio'] {
+  [type="checkbox"],
+  [type="radio"] {
     padding: 0;
   }
   /**
 * 1. Correct the odd appearance in Chrome and Safari.
 * 2. Correct the outline style in Safari.
 */
-  [type='search'] {
+  [type="search"] {
     -webkit-appearance: textfield; /* 1 */
     outline-offset: -2px; /* 2 */
   }
@@ -436,7 +438,7 @@ in all browsers (opinionated).
   /**
 * Change the cursor on busy elements in all browsers (opinionated).
 */
-  [aria-busy='true'] {
+  [aria-busy="true"] {
     cursor: progress;
   }
   /*
@@ -457,7 +459,7 @@ in all browsers (opinionated).
 * Change the display on visually hidden accessible elements
 * in all browsers (opinionated).
 */
-  [aria-hidden='false'][hidden]:not(:focus) {
+  [aria-hidden="false"][hidden]:not(:focus) {
     clip: rect(0, 0, 0, 0);
     display: inherit;
     position: absolute;

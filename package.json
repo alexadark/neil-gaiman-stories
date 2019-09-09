@@ -34,7 +34,9 @@
     "react-helmet": "^5.2.1",
     "rebass": "^4.0.5",
     "styled-components": "^4.3.2",
-    "theme-ui": "^0.2.38"
+    "theme-ui": "^0.2.38",
+    "typeface-antonio": "^1.0.1",
+    "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

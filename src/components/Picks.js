@@ -10,11 +10,25 @@ const Picks = ({ picks, setPicks }) => {
       <Flex>
         {picks.length > 0 &&
           picks.map(story => (
-            <Box sx={{ width: [`50%`, `50%`, `33%`], px: 2, my: 2 }}>
+            <Flex
+              sx={{
+                width: [`50%`, `50%`, `33%`],
+                px: 2,
+                my: 2,
+                justifyContent: `center`,
+              }}
+            >
               <Img
-                fluid={story.featuredImage.imageFile.childImageSharp.fluid}
+                fixed={story.featuredImage.imageFile.childImageSharp.fixed}
                 alt={story.altText}
                 sx={{ cursor: `pointer` }}
+                sx={{
+                  cursor: `pointer`,
+                  width: `145px`,
+                  height: `217px`,
+                  borderRadius: `20px`,
+                  m: `0 auto`,
+                }}
               />
               <Box sx={{ textAlign: `center` }}>
                 <Styled.h5 sx={{ texAlign: `center` }}>{story.title}</Styled.h5>
@@ -25,7 +39,7 @@ const Picks = ({ picks, setPicks }) => {
                   Remove
                 </div>
               </Box>
-            </Box>
+            </Flex>
           ))}
       </Flex>
     </>

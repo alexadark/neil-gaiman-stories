@@ -9,7 +9,7 @@ export default {
   fontWeights,
   lineHeights,
   sizes: {
-    container: 1024,
+    container: 960,
   },
   shadows: {
     default: `0px 1px 10px rgba(0,0,0,0.05)`,
@@ -22,7 +22,7 @@ export default {
   },
   styles: {
     Layout: {
-      backgroundColor: "background",
+      backgroundColor: `background`,
       color: "text",
       fontFamily: "body",
       fontSize: 1,

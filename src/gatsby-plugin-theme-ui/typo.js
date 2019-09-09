@@ -1,36 +1,36 @@
-import { tailwind } from '@theme-ui/presets'
+import { tailwind } from "@theme-ui/presets"
 
 export const fonts = {
-  body: 'IBM Plex Mono, monospace',
-  heading: 'IBM Plex Mono, monospace',
+  body: "Roboto",
+  heading: "Antonio",
 }
 const transition = {
-  transition: 'all .4s ease-in-out',
+  transition: "all .4s ease-in-out",
 }
 
 export const fontWeights = {
   body: 300,
-  heading: 600,
-  bold: 700,
+  heading: 700,
+  bold: 900,
 }
 
 export const fontSizes = [
-  '1.2rem',
-  '1.4rem',
-  '1.6rem',
-  '2.4rem',
-  '3rem',
-  '3.6rem',
-  '4.8rem',
-  '6.4rem',
-  '7.2rem',
+  "1.2rem",
+  "1.4rem",
+  "1.6rem",
+  "2.4rem",
+  "3rem",
+  "3.6rem",
+  "4.8rem",
+  "6.4rem",
+  "7.2rem",
 ]
 
 export const baseLineHeights = {
-  none: '1',
-  tight: '1.25',
-  relaxed: '1.625',
-  loose: '2',
+  none: "1",
+  tight: "1.25",
+  relaxed: "1.625",
+  loose: "2",
 }
 
 export const lineHeights = {
@@ -40,22 +40,22 @@ export const lineHeights = {
 }
 
 const heading = {
-  fontFamily: 'heading',
-  lineHeight: 'heading',
-  fontWeight: 'heading',
-  color: 'text',
+  fontFamily: "heading",
+  lineHeight: "heading",
+  fontWeight: "heading",
+  color: "text",
   letterSpacing: 1,
   a: {
-    borderBottom: 'none',
+    borderBottom: "none",
   },
 }
 
 export const a = {
   ...transition,
-  color: 'text',
-  textDecoration: 'none',
-  '&:hover': {
-    color: 'primary',
+  color: "text",
+  textDecoration: "none",
+  "&:hover": {
+    color: "primary",
   },
 }
 
@@ -91,7 +91,7 @@ export const h5 = {
 }
 export const h6 = {
   ...heading,
-  color: 'muted',
+  color: "muted",
   fontSize: 1,
   mb: 2,
 }
