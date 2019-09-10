@@ -31,6 +31,10 @@ const Story = ({ story, onClickPicture, className }) => {
           },
           "&.disabled": {
             opacity: 0.4,
+            ".gatsby-image-wrapper": {
+              cursor: `auto`,
+            },
+
             ":hover": {
               ".gatsby-image-wrapper": {
                 boxShadow: `none`,

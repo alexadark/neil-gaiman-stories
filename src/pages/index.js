@@ -36,6 +36,10 @@ const IndexPage = ({ data }) => {
     [picks]
   )
 
+  useEffect(() => {
+    localStorage.setItem("picks", JSON.stringify(picks))
+  }, [picks])
+
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
     const results = stories.nodes.filter(story =>
@@ -49,10 +53,6 @@ const IndexPage = ({ data }) => {
     picks.length < 3
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
-
-  useEffect(() => {
-    localStorage.setItem("picks", JSON.stringify(picks))
-  }, [picks])
 
   const filterCategories = (e, stories) => {
     setStories(

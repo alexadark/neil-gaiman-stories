@@ -8,6 +8,7 @@ const StoriesGrid = ({ results, addPick, picks }) => {
     <Flex sx={{ flexWrap: `wrap` }}>
       {results !== [] &&
         results.map(story => {
+          console.log("picks", picks, "story", story)
           const className =
             picks.length > 0 ? (picks.includes(story) ? "disabled" : "") : ""
           const onClickPicture =
