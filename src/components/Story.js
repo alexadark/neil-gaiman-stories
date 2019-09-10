@@ -21,12 +21,11 @@ const Story = ({ story, onClickPicture, className }) => {
           flexDirection: `column`,
           alignItems: `center`,
           width: `145px`,
-
           position: `relative`,
 
           ":hover": {
             ".gatsby-image-wrapper": {
-              boxShadow: ` 0 0 70px rgba(255, 255, 255, 0.55)`,
+              boxShadow: ` 0 0 55px rgba(255, 255, 255, 0.55)`,
             },
           },
           "&.disabled": {
@@ -49,7 +48,7 @@ const Story = ({ story, onClickPicture, className }) => {
             fontFamily: `heading`,
             fontSize: `1.8rem`,
             fontWeight: `bold`,
-            my: `5px`,
+            display: [`none`, `block`],
             zIndex: 10,
           }}
         >
@@ -69,6 +68,26 @@ const Story = ({ story, onClickPicture, className }) => {
           dangerouslySetInnerHTML={{ __html: story.title }}
           sx={{ position: `absolute`, top: 3, left: `20px`, right: `20px` }}
         />
+        <Box
+          sx={{
+            textAlign: `center`,
+            fontSize: 1,
+            maxWidth: `125px`,
+            mt: `10px`,
+            lineHeight: `18px`,
+          }}
+        >
+          from
+          <span sx={{ display: `block`, fontWeight: 900 }}>
+            <Styled.a
+              href={story.StoriesFields.originalBookLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {story.StoriesFields.originalBookTitle}
+            </Styled.a>
+          </span>
+        </Box>
 
         <button
           onClick={() => onClickPicture(story)}

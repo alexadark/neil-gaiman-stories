@@ -119,13 +119,14 @@ export const pageQuery = graphql`
             imageFile {
               childImageSharp {
                 fixed(width: 145, quality: 100) {
-                  ...GatsbyImageSharpFixed_withWebp
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
           }
           StoriesFields {
             originalBookLink
+            originalBookTitle
           }
           categories {
             nodes {

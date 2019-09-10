@@ -52,10 +52,10 @@ const heading = {
 
 export const a = {
   ...transition,
-  color: "text",
+  color: `primary`,
   textDecoration: "none",
   "&:hover": {
-    color: "primary",
+    color: `white`,
   },
 }
 

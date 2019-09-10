@@ -12,12 +12,19 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
     transform: `translateY(-400px)`,
     transition: `all .4s ease-in-out`,
     zIndex: 200,
-    bg: `black`,
+
     position: `relative`,
   }
 
   return (
-    <Box sx={picksStyle} css={{ transition: `all .4s ease-in-out` }}>
+    <Box
+      sx={{
+        ...picksStyle,
+        bg: `black`,
+        transition: `all .4s ease-in-out`,
+        height: `500px`,
+      }}
+    >
       <PicksBar
         arePicksOpen={arePicksOpen}
         togglePicks={togglePicks}
@@ -34,12 +41,20 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
           {Array.from({ length: 3 }).map((_, i) => {
             return (
               <Box>
-                {picks[i] ? (
-                  <Pick story={picks[i]} setPicks={setPicks} picks={picks} />
-                ) : (
-                  <PickPlaceHolder />
-                )}
-                <h3>{i + 1}</h3>
+                <Flex sx={{ alignItems: `center` }}>
+                  <Box sx={{ mr: `10px` }}>
+                    {picks[i] ? (
+                      <Pick
+                        story={picks[i]}
+                        setPicks={setPicks}
+                        picks={picks}
+                        i={i}
+                      />
+                    ) : (
+                      <PickPlaceHolder />
+                    )}
+                  </Box>
+                </Flex>
               </Box>
             )
           })}

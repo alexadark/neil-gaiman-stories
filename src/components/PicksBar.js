@@ -33,8 +33,11 @@ const PicksBar = ({ arePicksOpen, togglePicks, picks }) => {
           <Box>
             <img
               src={OpenIcon}
-              css={{ cursor: `pointer`, transition: `all .4s ease-in-out` }}
-              sx={openIconStyle}
+              sx={{
+                ...openIconStyle,
+                cursor: `pointer`,
+                transition: `all .4s ease-in-out`,
+              }}
               onClick={() => togglePicks(!arePicksOpen)}
             />
           </Box>
