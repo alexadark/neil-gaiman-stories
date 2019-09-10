@@ -2,9 +2,10 @@
 import React from "react"
 import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import Img from "gatsby-image"
-import OpenIcon from "../images/open-icon.png"
+
 import PickPlaceHolder from "./PickPlaceHolder"
 import Pick from "./Pick"
+import PicksBar from "./PicksBar"
 
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
   const picksStyle = arePicksOpen && {
@@ -15,46 +16,13 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
     position: `relative`,
   }
 
-  const openIconStyle = arePicksOpen && {
-    transform: `rotate(540deg)`,
-  }
-
   return (
     <Box sx={picksStyle} css={{ transition: `all .4s ease-in-out` }}>
-      <div
-        sx={{
-          bg: `primary`,
-          py: `15px`,
-        }}
-      >
-        <Container>
-          <Flex sx={{ justifyContent: `space-between`, alignItems: `center` }}>
-            <Box>
-              <Styled.h3
-                sx={{
-                  fontSize: [2, 2],
-                  m: 0,
-                  textTransform: `capitalize`,
-                  fontWeight: 700,
-                }}
-              >
-                Your personal Picks
-              </Styled.h3>
-              <div sx={{ color: `black`, fontSize: 1, mt: `5px` }}>
-                {picks.length} out of 3 selected
-              </div>
-            </Box>
-            <Box>
-              <img
-                src={OpenIcon}
-                css={{ cursor: `pointer`, transition: `all .4s ease-in-out` }}
-                sx={openIconStyle}
-                onClick={() => togglePicks(!arePicksOpen)}
-              />
-            </Box>
-          </Flex>
-        </Container>
-      </div>
+      <PicksBar
+        arePicksOpen={arePicksOpen}
+        togglePicks={togglePicks}
+        picks={picks}
+      />
       <Container>
         <Flex
           sx={{
