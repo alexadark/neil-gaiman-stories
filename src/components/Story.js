@@ -2,14 +2,20 @@
 import { jsx, Styled, Box, Flex } from "theme-ui"
 import Img from "gatsby-image"
 
-const Story = ({ story, onClickPicture }) => {
+const Story = ({ story, onClickPicture, className }) => {
   return (
-    <Box sx={{ width: [`50%`, `33%`, `20%`], my: 5 }}>
+    <Box
+      sx={{
+        width: [`50%`, `33%`, `20%`],
+        my: 5,
+      }}
+    >
       <Flex
         as="article"
         onClick={() => onClickPicture(story)}
         key={story.storyId}
         data-category={story.categories.nodes[0].slug}
+        className={className}
         sx={{
           justifyContent: `center`,
           flexDirection: `column`,
@@ -21,6 +27,14 @@ const Story = ({ story, onClickPicture }) => {
           ":hover": {
             ".gatsby-image-wrapper": {
               boxShadow: ` 0 0 70px rgba(255, 255, 255, 0.55)`,
+            },
+          },
+          "&.disabled": {
+            opacity: 0.4,
+            ":hover": {
+              ".gatsby-image-wrapper": {
+                boxShadow: `none`,
+              },
             },
           },
         }}

@@ -70,7 +70,7 @@ const IndexPage = ({ data }) => {
           />
           {/* TODO:  add active class */}
 
-          <StoriesGrid results={results} addPick={addPick} />
+          <StoriesGrid results={results} addPick={addPick} picks={picks} />
         </Container>
         <Picks picks={picks} setPicks={setPicks} />
         <VoteForm setVote={setVote} />
