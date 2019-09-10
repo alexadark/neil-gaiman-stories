@@ -19,10 +19,14 @@ export const VoteContext = createContext()
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
 
+  //Initial storiesgrid = all the stories
   const [results, setStories] = useState(stories.nodes)
+
+  //Initial picks: taking them from localstorage
   const [picks, setPicks] = useState(() =>
     JSON.parse(localStorage.getItem("picks"))
   )
+
   const [vote, setVote] = useState({
     clientMutationId: "submitVote",
     emailInput: "",
@@ -30,17 +34,17 @@ const IndexPage = ({ data }) => {
     votesInput: [],
   })
 
-  useEffect(
-    () => setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) }),
-    [picks]
-  )
-
+  //setVotesInput and add picks to localStorage whenever picks are changing
   useEffect(() => {
+    //getting the votesInput from the picks storyId
+    setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) })
     localStorage.setItem("picks", JSON.stringify(picks))
   }, [picks])
 
+  //Filter stories grid on real time from title
   const findStories = (query, stories) => {
     const flatQuery = flatString(query)
+    //keep only stories where the title includes the query after converting to a flat string without spaces
     const results = stories.nodes.filter(story =>
       flatString(story.title).includes(flatQuery)
     )
@@ -48,13 +52,17 @@ const IndexPage = ({ data }) => {
     setStories(results)
   }
 
+  //add the clicked story from the grid to the picks
   const addPick = story =>
+    //maximun 3 votes
     picks.length < 3
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
 
+  //filter grid stories by category
   const filterCategories = (e, stories) => {
     setStories(
+      //keeping only the categories where the slug = the data-category from the clicked category
       stories.nodes.filter(
         story => story.categories.nodes[0].slug === e.target.dataset.category
       )

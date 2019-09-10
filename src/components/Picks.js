@@ -45,6 +45,7 @@ const Picks = ({ picks, setPicks }) => {
             mt: 5,
           }}
         >
+          {/* mapping around an array of length 3, and depending on if the pick exist on the interation index having the pick or the placeholder */}
           {Array.from({ length: 3 }).map((_, i) => {
             return (
               <Box>
