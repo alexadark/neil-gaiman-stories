@@ -3,7 +3,8 @@ import React from "react"
 import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import Img from "gatsby-image"
 import OpenIcon from "../images/open-icon.png"
-import AddIcon from "../images/add-icon.png"
+import PickPlaceHolder from "./PickPlaceHolder"
+import Pick from "./Pick"
 
 const Picks = ({ picks, setPicks }) => {
   return (
@@ -37,42 +38,27 @@ const Picks = ({ picks, setPicks }) => {
           </Flex>
         </Container>
       </div>
-
-      <Flex>
-        {picks.length > 0 &&
-          picks.map(story => (
-            <Flex
-              sx={{
-                width: [`50%`, `50%`, `33%`],
-                px: 2,
-                my: 2,
-                justifyContent: `center`,
-              }}
-            >
-              <Img
-                fixed={story.featuredImage.imageFile.childImageSharp.fixed}
-                alt={story.altText}
-                sx={{ cursor: `pointer` }}
-                sx={{
-                  cursor: `pointer`,
-                  width: `145px`,
-                  height: `217px`,
-                  borderRadius: `20px`,
-                  m: `0 auto`,
-                }}
-              />
-              <Box sx={{ textAlign: `center` }}>
-                <Styled.h5 sx={{ texAlign: `center` }}>{story.title}</Styled.h5>
-                <div
-                  sx={{ cursor: `pointer` }}
-                  onClick={() => setPicks(picks.filter(pick => pick !== story))}
-                >
-                  Remove
-                </div>
+      <Container>
+        <Flex
+          sx={{
+            justifyContent: `space-around`,
+            mt: 5,
+          }}
+        >
+          {Array.from({ length: 3 }).map((_, i) => {
+            return (
+              <Box>
+                {picks[i] ? (
+                  <Pick story={picks[i]} setPicks={setPicks} picks={picks} />
+                ) : (
+                  <PickPlaceHolder />
+                )}
+                <h3>{i + 1}</h3>
               </Box>
-            </Flex>
-          ))}
-      </Flex>
+            )
+          })}
+        </Flex>
+      </Container>
     </>
   )
 }
