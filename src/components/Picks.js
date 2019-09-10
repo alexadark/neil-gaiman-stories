@@ -6,9 +6,21 @@ import OpenIcon from "../images/open-icon.png"
 import PickPlaceHolder from "./PickPlaceHolder"
 import Pick from "./Pick"
 
-const Picks = ({ picks, setPicks }) => {
+const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
+  const picksStyle = arePicksOpen && {
+    transform: `translateY(-400px)`,
+    transition: `all .4s ease-in-out`,
+    zIndex: 200,
+    bg: `black`,
+    position: `relative`,
+  }
+
+  const openIconStyle = arePicksOpen && {
+    transform: `rotate(540deg)`,
+  }
+
   return (
-    <>
+    <Box sx={picksStyle} css={{ transition: `all .4s ease-in-out` }}>
       <div
         sx={{
           bg: `primary`,
@@ -33,7 +45,12 @@ const Picks = ({ picks, setPicks }) => {
               </div>
             </Box>
             <Box>
-              <img src={OpenIcon} alt="" />
+              <img
+                src={OpenIcon}
+                css={{ cursor: `pointer`, transition: `all .4s ease-in-out` }}
+                sx={openIconStyle}
+                onClick={() => togglePicks(!arePicksOpen)}
+              />
             </Box>
           </Flex>
         </Container>
@@ -60,7 +77,7 @@ const Picks = ({ picks, setPicks }) => {
           })}
         </Flex>
       </Container>
-    </>
+    </Box>
   )
 }
 

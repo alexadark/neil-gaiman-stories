@@ -12,6 +12,7 @@ import CategoryFilter from "../components/CategoryFilter"
 
 import StoriesGrid from "../components/StoriesGrid"
 import Picks from "../components/Picks"
+import Overlay from "../components/Overlay"
 import { flatString } from "../utils"
 
 export const VoteContext = createContext()
@@ -37,6 +38,8 @@ const IndexPage = ({ data }) => {
     votesInput: [],
   })
 
+  const [arePicksOpen, togglePicks] = useState(false)
+
   //setVotesInput and add picks to localStorage whenever picks are changing
   useEffect(() => {
     //getting the votesInput from the picks storyId
@@ -59,7 +62,7 @@ const IndexPage = ({ data }) => {
   const addPick = story =>
     //maximun 3 votes
     picks.length < 3
-      ? setPicks(picks.concat([story]))
+      ? (setPicks(picks.concat([story])), togglePicks(true))
       : alert("You cannot have more than 3 votes")
 
   //filter grid stories by category
@@ -74,6 +77,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <VoteContext.Provider value={vote}>
+      <Overlay arePicksOpen={arePicksOpen} />
       <Layout>
         <Container>
           <SEO title="Home" />
@@ -88,7 +92,12 @@ const IndexPage = ({ data }) => {
 
           <StoriesGrid results={results} addPick={addPick} picks={picks} />
         </Container>
-        <Picks picks={picks} setPicks={setPicks} />
+        <Picks
+          picks={picks}
+          setPicks={setPicks}
+          arePicksOpen={arePicksOpen}
+          togglePicks={togglePicks}
+        />
         <VoteForm setVote={setVote} />
       </Layout>
     </VoteContext.Provider>
