@@ -12,10 +12,9 @@ import CategoryFilter from "../components/CategoryFilter"
 
 import StoriesGrid from "../components/StoriesGrid"
 import Picks from "../components/Picks"
+import { flatString } from "../utils"
 
 export const VoteContext = createContext()
-
-const flatString = text => text.toLowerCase().replace(/\s/g, "")
 
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
