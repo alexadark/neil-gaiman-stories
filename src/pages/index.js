@@ -21,7 +21,9 @@ const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
 
   const [results, setStories] = useState(stories.nodes)
-  const [picks, setPicks] = useState([])
+  const [picks, setPicks] = useState(() =>
+    JSON.parse(localStorage.getItem("picks"))
+  )
   const [vote, setVote] = useState({
     clientMutationId: "submitVote",
     emailInput: "",
@@ -47,6 +49,10 @@ const IndexPage = ({ data }) => {
     picks.length < 3
       ? setPicks(picks.concat([story]))
       : alert("You cannot have more than 3 votes")
+
+  useEffect(() => {
+    localStorage.setItem("picks", JSON.stringify(picks))
+  }, [picks])
 
   const filterCategories = (e, stories) => {
     setStories(
