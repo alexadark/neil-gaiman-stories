@@ -14,6 +14,8 @@ const Pick = ({ story, setPicks, picks, i }) => {
         className="pick"
         sx={{
           position: `relative`,
+          // width: [`100%`, `50%`, `33%`],
+          mb: [`40px`, `40px`, 0],
         }}
       >
         <Flex
@@ -65,6 +67,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
               className="removePick"
               sx={{
                 variant: `links.underlined`,
+                top: `30px`,
               }}
               onClick={() => setPicks(picks.filter(pick => pick !== story))}
             >

@@ -4,9 +4,10 @@ import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import AddIcon from "../images/add-icon.png"
 import PickNumber from "./PickNumber"
 
-const PickPlaceHolder = ({ i }) => {
+const PickPlaceHolder = ({ i, togglePicks }) => {
+  const closePicks = () => togglePicks(false)
   return (
-    <Flex sx={{ justifyContent: `center` }}>
+    <Flex sx={{ alignItems: `center` }}>
       <Box>
         <Flex
           sx={{
@@ -19,17 +20,23 @@ const PickPlaceHolder = ({ i }) => {
           }}
         >
           <Box>
-            <img src={AddIcon} alt="" />
+            <img
+              src={AddIcon}
+              sx={{ cursor: `pointer` }}
+              onClick={closePicks}
+            />
           </Box>
         </Flex>
       </Box>
       <Box>
-        <Flex sx={{ justifyContent: `center` }}>
+        <Flex sx={{ alignItems: `center` }}>
           <PickNumber i={i} />
           <div
+            className="chooseLink"
             sx={{
               variant: `links.underlined`,
             }}
+            onClick={closePicks}
           >
             Choose Now
           </div>

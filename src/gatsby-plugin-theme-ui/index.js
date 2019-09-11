@@ -62,7 +62,7 @@ export default {
     underlined: {
       cursor: `pointer`,
       position: `relative`,
-      top: `30px`,
+
       fontSize: 0,
       fontWeight: 300,
       color: `primary`,

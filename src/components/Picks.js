@@ -35,6 +35,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
           sx={{
             justifyContent: `space-around`,
             mt: 5,
+            flexWrap: `wrap`,
           }}
         >
           {/* mapping around an array of length 3, and depending on if the pick exist on the interation index having the pick or the placeholder */}
@@ -51,7 +52,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
                         i={i}
                       />
                     ) : (
-                      <PickPlaceHolder i={i} />
+                      <PickPlaceHolder i={i} togglePicks={togglePicks} />
                     )}
                   </Box>
                 </Flex>
