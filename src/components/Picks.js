@@ -51,7 +51,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
                         i={i}
                       />
                     ) : (
-                      <PickPlaceHolder />
+                      <PickPlaceHolder i={i} />
                     )}
                   </Box>
                 </Flex>

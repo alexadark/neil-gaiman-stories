@@ -9,6 +9,7 @@
     "@emotion/styled": "^10.0.17",
     "@mdx-js/react": "^1.4.0",
     "@theme-ui/presets": "^0.2.34",
+    "antonio": "^1.0.0",
     "apollo-boost": "^0.4.4",
     "emotion": "^10.0.17",
     "gatsby": "^2.13.73",
@@ -35,7 +36,9 @@
     "rebass": "^4.0.5",
     "styled-components": "^4.3.2",
     "theme-ui": "^0.2.38",
-    "typeface-antonio-complete": "^1.0.2",
+    "typeface": "^0.0.0",
+    "typeface-antonio": "^1.0.1",
+    "typeface-antonio-complete": "^1.0.4",
     "typeface-roboto": "^0.0.75"
   },
   "devDependencies": {

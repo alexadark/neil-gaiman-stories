@@ -1630,6 +1630,10 @@ ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   dependencies:
     color-convert "^1.9.0"
 
+antonio@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/antonio/-/antonio-1.0.0.tgz#f02fdd1ce695fb98096e2656f9c14ae0b2194552"
+
 any-base@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/any-base/-/any-base-1.1.0.tgz#ae101a62bc08a597b4c9ab5b7089d456630549fe"
@@ -6518,6 +6522,10 @@ jsx-ast-utils@^2.1.0, jsx-ast-utils@^2.2.1:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+keypress@~0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/keypress/-/keypress-0.1.0.tgz#4a3188d4291b66b4f65edb99f806aa9ae293592a"
+
 keyv@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/keyv/-/keyv-3.0.0.tgz#44923ba39e68b12a7cec7df6c3268c031f2ef373"
@@ -10282,13 +10290,23 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeface-antonio-complete@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/typeface-antonio-complete/-/typeface-antonio-complete-1.0.2.tgz#8847d8576bc5ed59188cbbde57c8da6b1550f069"
+typeface-antonio-complete@^1.0.3:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/typeface-antonio-complete/-/typeface-antonio-complete-1.0.4.tgz#a991ab67efb80b2626c37f454f9c307bd8200e1d"
+
+typeface-antonio@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/typeface-antonio/-/typeface-antonio-1.0.1.tgz#7da4e2c6eff8936f95934ea67fb1d3049ee11111"
 
 typeface-roboto@^0.0.75:
   version "0.0.75"
   resolved "https://registry.yarnpkg.com/typeface-roboto/-/typeface-roboto-0.0.75.tgz#98d5ba35ec234bbc7172374c8297277099cc712b"
+
+typeface@^0.0.0:
+  version "0.0.0"
+  resolved "https://registry.yarnpkg.com/typeface/-/typeface-0.0.0.tgz#9fe6c23c4eb4b86d3eba31994fd378f20cd03b8d"
+  dependencies:
+    keypress "~0.1.0"
 
 ua-parser-js@^0.7.18:
   version "0.7.20"
