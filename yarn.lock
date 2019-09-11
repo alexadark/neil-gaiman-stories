@@ -10290,7 +10290,7 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typeface-antonio-complete@^1.0.3:
+typeface-antonio-complete@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/typeface-antonio-complete/-/typeface-antonio-complete-1.0.4.tgz#a991ab67efb80b2626c37f454f9c307bd8200e1d"
 
