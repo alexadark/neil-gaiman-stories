@@ -51,7 +51,7 @@ export const GlobalStyles = css`
   body {
     margin: 0;
     /* Avoid horizontal scroll */
-    position: absolute;
+    position: relative;
     width: 100%;
     height: 100%;
     overflow-y: scroll;

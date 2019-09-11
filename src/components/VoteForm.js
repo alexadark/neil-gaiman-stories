@@ -1,8 +1,10 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
 import React, { useContext } from "react"
+import { navigate } from "gatsby"
 import { Mutation } from "react-apollo"
 import { gql } from "apollo-boost"
+import { Input, Textarea, Label } from "@rebass/forms"
 import { VoteContext } from "../pages"
 
 const SUBMIT_VOTE_MUTATION = gql`
@@ -28,7 +30,7 @@ const VoteForm = ({ setVote }) => {
                   variables: {
                     input: vote,
                   },
-                })
+                }).then(data && navigate("/thank-you/"))
               }}
             >
               <Box
@@ -42,14 +44,14 @@ const VoteForm = ({ setVote }) => {
                 Make it official!
               </Box>
               <Box>Lock in your vote</Box>
-              <input
+              <Input
                 type="text"
                 placeholder="e-mail address*"
                 value={vote.emailInput}
                 onChange={e => setVote({ ...vote, emailInput: e.target.value })}
               />
               <Styled.p>Tell us the reason for your #1 Pick:</Styled.p>
-              <textarea
+              <Textarea
                 cols="30"
                 rows="10"
                 placeholder="enter your answer"
