@@ -54,16 +54,18 @@ const Story = ({ story, onClickPicture, className }) => {
         >
           Choose me
         </div>
-        <Img
-          fixed={story.featuredImage.imageFile.childImageSharp.fixed}
-          alt={story.altText}
-          sx={{
-            cursor: `pointer`,
-            transition: `all .4s ease-in-out`,
-            borderRadius: `20px`,
-            m: `0 auto`,
-          }}
-        />
+        {story.featuredImage && (
+          <Img
+            fixed={story.featuredImage.imageFile.childImageSharp.fixed}
+            alt={story.altText}
+            sx={{
+              cursor: `pointer`,
+              transition: `all .4s ease-in-out`,
+              borderRadius: `20px`,
+              m: `0 auto`,
+            }}
+          />
+        )}
         <Styled.h4
           dangerouslySetInnerHTML={{ __html: story.title }}
           sx={{ position: `absolute`, top: 3, left: `20px`, right: `20px` }}

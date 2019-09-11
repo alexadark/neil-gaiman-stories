@@ -23,18 +23,20 @@ const Pick = ({ story, setPicks, picks, i }) => {
             alignItems: `center`,
           }}
         >
-          <Img
-            fixed={story.featuredImage.imageFile.childImageSharp.fixed}
-            alt={story.altText}
-            sx={{ cursor: `pointer` }}
-            sx={{
-              cursor: `pointer`,
-              borderRadius: `20px`,
-              m: `0 auto`,
-              width: `102px !important`,
-              height: `151px !important`,
-            }}
-          />
+          {story.featuredImage && (
+            <Img
+              fixed={story.featuredImage.imageFile.childImageSharp.fixed}
+              alt={story.altText}
+              sx={{ cursor: `pointer` }}
+              sx={{
+                cursor: `pointer`,
+                borderRadius: `20px`,
+                m: `0 auto`,
+                width: `102px !important`,
+                height: `151px !important`,
+              }}
+            />
+          )}
 
           <Styled.h5
             dangerouslySetInnerHTML={{ __html: story.title }}
@@ -51,7 +53,10 @@ const Pick = ({ story, setPicks, picks, i }) => {
           <PickNumber i={i} />
 
           <Box>
-            <Box className="pickTitle" sx={{ fontSize: 1, lineHeight: `18px` }}>
+            <Box
+              className="pickTitle"
+              sx={{ fontSize: 1, lineHeight: `18px`, maxWidth: `115px` }}
+            >
               <div dangerouslySetInnerHTML={{ __html: story.title }} />
               from
               <Styled.a href={story.StoriesFields.originalBookLink}>

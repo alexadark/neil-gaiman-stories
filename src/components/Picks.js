@@ -9,13 +9,10 @@ import Pick from "./Pick"
 import PicksBar from "./PicksBar"
 import VoteButton from "./VoteButton"
 import VoteForm from "./VoteForm"
-import ReactDOM from "react-dom"
-// import useModal from "react-hooks-use-modal"
+
 import Modal from "react-responsive-modal"
 
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
-  // const [Modal, open, close] = useModal()
-
   const [isModalOpen, openModal] = useState(false)
   const picksStyle = arePicksOpen && {
     transform: `translateY(-400px)`,
@@ -72,12 +69,13 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
           })}
         </Flex>
       </Container>
-      {/* <VoteButton picks={picks} /> */}
+      <VoteButton picks={picks} handleClick={openModal} />
 
-      <div className={className} onClick={() => openModal(true)}>
-        Vote Now
-      </div>
-      <Modal open={isModalOpen} onClose={() => openModal(false)}>
+      <Modal
+        sx={{ "svg.styles_closeIcon__1QwbI": { fill: `white !important` } }}
+        open={isModalOpen}
+        onClose={() => openModal(false)}
+      >
         <VoteForm setVote={setVote} />
       </Modal>
     </Box>
