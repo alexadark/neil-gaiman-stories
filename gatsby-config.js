@@ -7,6 +7,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-theme-ui`,
+    `gatsby-theme-style-guide`,
     {
       resolve: `gatsby-source-graphql`,
       options: {

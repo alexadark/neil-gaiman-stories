@@ -6,7 +6,6 @@ import { Link, graphql } from "gatsby"
 import Search from "../components/Search"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import VoteForm from "../components/VoteForm"
 
 import CategoryFilter from "../components/CategoryFilter"
 
@@ -97,8 +96,8 @@ const IndexPage = ({ data }) => {
           setPicks={setPicks}
           arePicksOpen={arePicksOpen}
           togglePicks={togglePicks}
+          setVote={setVote}
         />
-        <VoteForm setVote={setVote} />
       </Layout>
     </VoteContext.Provider>
   )

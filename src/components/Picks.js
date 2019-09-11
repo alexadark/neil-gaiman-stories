@@ -1,13 +1,22 @@
 /** @jsx jsx */
-import React from "react"
+import React, { useState } from "react"
+
 import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import Img from "gatsby-image"
 
 import PickPlaceHolder from "./PickPlaceHolder"
 import Pick from "./Pick"
 import PicksBar from "./PicksBar"
+import VoteButton from "./VoteButton"
+import VoteForm from "./VoteForm"
+import ReactDOM from "react-dom"
+// import useModal from "react-hooks-use-modal"
+import Modal from "react-responsive-modal"
 
-const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
+const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
+  // const [Modal, open, close] = useModal()
+
+  const [isModalOpen, openModal] = useState(false)
   const picksStyle = arePicksOpen && {
     transform: `translateY(-400px)`,
     transition: `all .4s ease-in-out`,
@@ -15,6 +24,8 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
 
     position: `relative`,
   }
+
+  const className = picks.length === 3 ? "active" : ""
 
   return (
     <Box
@@ -61,6 +72,14 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks }) => {
           })}
         </Flex>
       </Container>
+      {/* <VoteButton picks={picks} /> */}
+
+      <div className={className} onClick={() => openModal(true)}>
+        Vote Now
+      </div>
+      <Modal open={isModalOpen} onClose={() => openModal(false)}>
+        <VoteForm setVote={setVote} />
+      </Modal>
     </Box>
   )
 }
