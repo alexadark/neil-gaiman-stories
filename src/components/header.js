@@ -1,33 +1,43 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
-import React from "react"
+/** @jsx jsx */
+import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import headerBg from "../images/header-bg.png"
 
-const Header = ({ siteTitle }) => (
+const Header = ({ siteTitle, description }) => (
   <header
-    style={{
-      background: `rebeccapurple`,
-      marginBottom: `1.45rem`,
+    sx={{
+      p: `90px 30px 50px `,
+      background: `black url(${headerBg}) no-repeat 33% top`,
+      backgroundSize: `fit`,
     }}
   >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
+    <Container>
+      <Styled.h1 style={{ margin: 0 }}>
         <Link
           to="/"
-          style={{
+          sx={{
             color: `white`,
             textDecoration: `none`,
+            fontSize: [`40px`, `72px`],
+            fontWeight: 300,
+            span: {
+              color: `primary`,
+            },
           }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
+          dangerouslySetInnerHTML={{ __html: siteTitle }}
+        />
+      </Styled.h1>
+      <box
+        sx={{
+          color: `white`,
+          fontSize: `1.6rem`,
+          fontWeight: 300,
+          lineHeight: `2.4rem`,
+        }}
+        dangerouslySetInnerHTML={{ __html: description }}
+      />
+    </Container>
   </header>
 )
 

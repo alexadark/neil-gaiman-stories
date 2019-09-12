@@ -16,15 +16,17 @@ const Layout = ({ children }) => {
       site {
         siteMetadata {
           title
+          description
         }
       }
     }
   `)
+  const { title, description } = data.site.siteMetadata
 
   return (
     <StyledLayout>
       <Global styles={GlobalStyles} />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      <Header siteTitle={title} description={description} />
       <Box>{children}</Box>
     </StyledLayout>
   )
