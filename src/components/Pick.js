@@ -14,8 +14,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
         className="pick"
         sx={{
           position: `relative`,
-          // width: [`100%`, `50%`, `33%`],
-          mb: [60, 60, 0],
+          mb: [50, 60, 0],
         }}
       >
         <Flex

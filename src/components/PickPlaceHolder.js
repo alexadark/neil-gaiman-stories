@@ -8,7 +8,7 @@ const PickPlaceHolder = ({ i, togglePicks }) => {
   const closePicks = () => togglePicks(false)
   return (
     <Flex sx={{ alignItems: `center` }}>
-      <Box>
+      <Box sx={{ mb: [50, 60, 0] }}>
         <Flex
           sx={{
             justifyContent: `center`,

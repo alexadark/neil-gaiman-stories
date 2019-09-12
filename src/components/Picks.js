@@ -18,7 +18,6 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
     bottom: 0,
-
     zIndex: 200,
   }
 
@@ -28,9 +27,10 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
       sx={{
         bg: `black`,
         transition: `all .4s ease-in-out`,
-        position: `fixed`,
-        bottom: -427,
-        height: 500,
+        position: [`absolute`, `absolute`, `fixed`],
+        // top: [`50%`, `50%`, `auto`],
+        bottom: [`auto`, `auto`, -427],
+        height: [`auto`, `auto`, 500],
         left: 0,
         width: `100%`,
         zIndex: 100,
