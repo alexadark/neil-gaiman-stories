@@ -31,7 +31,7 @@ const VoteForm = ({ setVote }) => {
                   variables: {
                     input: vote,
                   },
-                }).then(data && navigate("/thank-you/"))
+                }).then(navigate("/thank-you/"))
               }}
             >
               <Box

@@ -11,7 +11,6 @@ const sharedFormStyles = {
 export default {
   input: {
     ...sharedFormStyles,
-    textTransform: `capitalize`,
   },
   textarea: {
     ...sharedFormStyles,
