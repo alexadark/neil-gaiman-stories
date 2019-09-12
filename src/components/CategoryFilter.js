@@ -23,6 +23,15 @@ const CategoryFilter = ({
     const classes = e.target.classList
     cat.slug === activeCat ? classes.add("active") : classes.remove("active")
   }
+  const catsStyles = {
+    color: `primary`,
+    transition: `all .4s ease-in-out`,
+    cursor: `pointer`,
+    mt: 0,
+    mb: 20,
+
+    ":hover": { color: `white` },
+  }
 
   // const catsArray = Array.of(document.querySelectorAll(".cat"))
   // catsArray.map(catItem => console.log("classes", catItem.className))
@@ -36,9 +45,9 @@ const CategoryFilter = ({
     <Flex
       sx={{
         flexWrap: `wrap`,
-        mt: 2,
+        mt: [30, 50],
         div: {
-          pr: 5,
+          pr: 25,
           pl: 2,
           fontSize: 2,
           cursor: `pointer`,
@@ -54,7 +63,9 @@ const CategoryFilter = ({
           setActiveCat("all")
         }}
       >
-        <Styled.h5 data-category="all">All</Styled.h5>
+        <Styled.h5 sx={catsStyles} data-category="all">
+          All
+        </Styled.h5>
       </Box>
       {categories.nodes.map(cat => (
         <Box
@@ -69,7 +80,9 @@ const CategoryFilter = ({
             e.target.classList.add("active")
           }}
         >
-          <Styled.h5 data-category={cat.slug}>{cat.name}</Styled.h5>
+          <Styled.h5 sx={catsStyles} data-category={cat.slug}>
+            {cat.name}
+          </Styled.h5>
         </Box>
       ))}
     </Flex>
