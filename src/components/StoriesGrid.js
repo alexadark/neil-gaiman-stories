@@ -6,7 +6,7 @@ import Story from "./Story"
 const StoriesGrid = ({ results, addPick, picks }) => {
   // TODO: make disable work after reload from localStorage
   return (
-    <Flex className="gridContainer" sx={{ flexWrap: `wrap`, mt: 40 }}>
+    <Flex className="gridContainer" sx={{ flexWrap: `wrap`, mt: 40, mb: 60 }}>
       {results !== [] &&
         results.map(story => {
           console.log("picks", picks, "story", story)
