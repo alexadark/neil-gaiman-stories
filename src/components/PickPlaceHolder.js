@@ -35,6 +35,7 @@ const PickPlaceHolder = ({ i, togglePicks }) => {
             className="chooseLink"
             sx={{
               variant: `links.underlined`,
+              width: 115,
             }}
             onClick={closePicks}
           >

@@ -15,7 +15,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
         sx={{
           position: `relative`,
           // width: [`100%`, `50%`, `33%`],
-          mb: [`40px`, `40px`, 0],
+          mb: [60, 60, 0],
         }}
       >
         <Flex
@@ -55,7 +55,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
           <Box>
             <Box
               className="pickTitle"
-              sx={{ fontSize: 1, lineHeight: `18px`, maxWidth: `115px` }}
+              sx={{ fontSize: 1, lineHeight: `18px`, width: 115 }}
             >
               <div dangerouslySetInnerHTML={{ __html: story.title }} />
               from

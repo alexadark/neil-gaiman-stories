@@ -44,11 +44,11 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
         togglePicks={togglePicks}
         picks={picks}
       />
-      <Container>
+      <Container sx={{ maxWidth: 860 }}>
         <Flex
           sx={{
             justifyContent: `space-around`,
-            mt: 5,
+            mt: 20,
             flexWrap: `wrap`,
           }}
         >
