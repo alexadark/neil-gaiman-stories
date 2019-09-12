@@ -16,27 +16,25 @@ import modalStyles from "../styles/styles.module.scss"
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const [isModalOpen, openModal] = useState(false)
   const picksStyle = arePicksOpen && {
-    transform: `translateY(-400px)`,
     transition: `all .4s ease-in-out`,
+    bottom: 0,
+
     zIndex: 200,
-
-    position: `relative`,
-  }
-
-  const className = picks.length === 3 ? "active" : ""
-  const bg = {
-    overlay: {
-      background: "rgba(0,0,0,.3)",
-    },
   }
 
   return (
     <Box
+      className="picksContainer"
       sx={{
-        ...picksStyle,
         bg: `black`,
         transition: `all .4s ease-in-out`,
-        height: `500px`,
+        position: `fixed`,
+        bottom: -427,
+        height: 500,
+        left: 0,
+        width: `100%`,
+        zIndex: 100,
+        ...picksStyle,
       }}
     >
       <PicksBar
