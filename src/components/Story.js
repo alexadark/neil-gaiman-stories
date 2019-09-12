@@ -4,10 +4,12 @@ import Img from "gatsby-image"
 
 const Story = ({ story, onClickPicture, className }) => {
   return (
-    <Box
+    <Flex
+      className="story"
       sx={{
         width: [`50%`, `33%`, `20%`],
-        my: 5,
+        mb: [40, 50, 60],
+        justifyContent: [`center`, `center`, `start`],
       }}
     >
       <Flex
@@ -98,7 +100,7 @@ const Story = ({ story, onClickPicture, className }) => {
           Vote For Me!
         </button>
       </Flex>
-    </Box>
+    </Flex>
   )
 }
 
