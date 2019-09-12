@@ -17,4 +17,13 @@ export default {
     ...sharedFormStyles,
     height: `176px`,
   },
+  searchInput: {
+    bg: `black`,
+    border: `1px solid #90a890`,
+    borderRadius: `5px`,
+    color: `white`,
+    fontSize: `1.6rem`,
+    fontWeight: 300,
+    p: `13px 18px`,
+  },
 }
