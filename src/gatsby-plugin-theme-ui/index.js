@@ -1,5 +1,7 @@
 import colors from "./colors"
 import buttons from "./buttons"
+import forms from "./forms"
+import links from "./links"
 import { fonts, fontSizes, fontWeights, lineHeights, base } from "./typo"
 
 export default {
@@ -58,21 +60,8 @@ export default {
     root: base,
   },
   buttons,
-  links: {
-    underlined: {
-      cursor: `pointer`,
-      position: `relative`,
-
-      fontSize: 0,
-      fontWeight: 300,
-      color: `primary`,
-      textDecoration: `underline`,
-      transition: `all .4s ease-in-out`,
-      ":hover": {
-        color: `white`,
-      },
-    },
-  },
+  forms,
+  links,
   //grommet
   accordion: {
     heading: {

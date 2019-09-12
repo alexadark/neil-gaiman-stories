@@ -11,7 +11,7 @@ import VoteButton from "./VoteButton"
 import VoteForm from "./VoteForm"
 
 import Modal from "react-responsive-modal"
-import ModalStyles from "../styles/styles.module.css"
+import modalStyles from "../styles/styles.module.scss"
 
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const [isModalOpen, openModal] = useState(false)
@@ -78,9 +78,13 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
       <VoteButton picks={picks} handleClick={openModal} />
 
       <Modal
-        overlayId="modalOverlay"
         open={isModalOpen}
         onClose={() => openModal(false)}
+        classNames={{
+          modal: modalStyles.modal,
+          closeButton: modalStyles.closeButton,
+          closeIcon: modalStyles.closeIcon,
+        }}
       >
         <VoteForm setVote={setVote} />
       </Modal>

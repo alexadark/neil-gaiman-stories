@@ -1,3 +1,5 @@
+import { darken } from "polished"
+
 const sharedButtonStyles = {
   border: `none`,
   color: `primary`,
@@ -39,5 +41,24 @@ export default {
     cursor: `auto`,
     px: `5px`,
     py: 1,
+  },
+  submit: {
+    ...sharedButtonStyles,
+    color: `white`,
+    bg: `#996500`,
+    textTransform: `uppercase`,
+    display: `block`,
+    borderRadius: `5px`,
+    // fontFamily: `heading`,
+    fontSize: 3,
+    border: `none`,
+    width: `100%`,
+    p: `16px`,
+    // cursor: `pointer`,
+    fontWeight: 700,
+
+    "&:hover": {
+      bg: darken(0.05, `#996500`),
+    },
   },
 }
