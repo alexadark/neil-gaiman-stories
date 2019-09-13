@@ -26,7 +26,7 @@ const VoteForm = ({ setVote }) => {
           <Box
             sx={{
               bg: `primary`,
-              p: `60px 50px`,
+              p: [`60px 30px`, `60px 50px`],
               fontSize: [2, 3],
               fontFamily: `body`,
             }}
@@ -38,7 +38,7 @@ const VoteForm = ({ setVote }) => {
                   variables: {
                     input: vote,
                   },
-                }).then(navigate("/thank-you/"))
+                }).then(data && navigate("/thank-you/"))
               }}
             >
               <Box
