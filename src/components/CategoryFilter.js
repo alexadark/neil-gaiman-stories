@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import { useState, useEffect, useRef, creatRef } from "react"
+import { useState, useEffect, useRef } from "react"
 
 const CategoryFilter = ({
   stories,
@@ -10,19 +10,8 @@ const CategoryFilter = ({
 }) => {
   const [activeCat, setActiveCat] = useState("all")
 
-  const [cats, setCats] = useState(["all"])
-
-  useEffect(
-    () => setCats(cats.concat(categories.nodes.map(cat => cat.slug))),
-    []
-  )
-
   const ref = useRef()
 
-  const assignActiveClass = (e, cat) => {
-    const classes = e.target.classList
-    cat.slug === activeCat ? classes.add("active") : classes.remove("active")
-  }
   const catsStyles = {
     color: `primary`,
     transition: `all .4s ease-in-out`,
@@ -30,16 +19,19 @@ const CategoryFilter = ({
     mt: 0,
     mb: 20,
 
-    ":hover": { color: `white` },
+    ":hover, &.active": { color: `white` },
   }
 
-  // const catsArray = Array.of(document.querySelectorAll(".cat"))
-  // catsArray.map(catItem => console.log("classes", catItem.className))
-  // // console.log(catsArray)
+  const catsArray = Array.from(document.querySelectorAll(".cat h5"))
 
-  // useEffect(cat => setActiveCat(cat), [])
+  useEffect(() => {
+    catsArray.map(cat => {
+      cat.dataset.category === activeCat
+        ? cat.classList.add("active")
+        : cat.classList.remove("active")
+    })
+  }, [activeCat])
 
-  // console.log(document.querySelectorAll(".cat"))
   return (
     <Flex
       sx={{
@@ -55,14 +47,13 @@ const CategoryFilter = ({
     >
       <Box
         key="all"
-        ref={ref}
         className="cat"
         onClick={e => {
           setStories(stories.nodes)
           setActiveCat("all")
         }}
       >
-        <Styled.h5 sx={catsStyles} data-category="all">
+        <Styled.h5 sx={catsStyles} data-category="all" className="active">
           All
         </Styled.h5>
       </Box>
@@ -74,9 +65,6 @@ const CategoryFilter = ({
           onClick={e => {
             filterCategories(e, stories, setActiveCat)
             setActiveCat(cat.slug)
-            // assignActiveClass(e, cat)
-            // console.log(cat.slug, activeCat)
-            e.target.classList.add("active")
           }}
         >
           <Styled.h5 sx={catsStyles} data-category={cat.slug}>
