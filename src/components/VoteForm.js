@@ -39,8 +39,8 @@ const VoteForm = ({ setVote }) => {
                     input: vote,
                   },
                 })
-                  .then(console.log("data", data))
-                  .then(data && navigate("/thank-you/"))
+                console.log("data", data)
+                data && navigate("/thank-you/")
               }}
             >
               <Box

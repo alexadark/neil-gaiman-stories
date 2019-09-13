@@ -8,7 +8,7 @@ const Story = ({ story, onClickPicture, className }) => {
       className="story"
       sx={{
         width: [`50%`, `33%`, `20%`],
-        mb: [40, 50, 60],
+        mb: [10, 20, 30],
         justifyContent: [`center`, `center`, `start`],
       }}
     >
@@ -87,16 +87,10 @@ const Story = ({ story, onClickPicture, className }) => {
             lineHeight: `18px`,
           }}
         >
-          from
-          <span sx={{ display: `block`, fontWeight: 900 }}>
-            <Styled.a
-              href={story.StoriesFields.originalBookLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {story.StoriesFields.originalBookTitle}
-            </Styled.a>
-          </span>
+          <Box
+            sx={{ fontWeight: 900, mt: `5px`, height: 75 }}
+            dangerouslySetInnerHTML={{ __html: story.title }}
+          />
         </Box>
 
         <button
