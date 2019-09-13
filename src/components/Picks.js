@@ -25,7 +25,11 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
     zIndex: 200,
   }
 
-  useEffect(() => picksRef.current.scrollIntoViewIfNeeded(), [arePicksOpen])
+  useEffect(
+    () =>
+      picksRef.current.scrollIntoView({ behavior: "smooth", inline: "start" }),
+    [arePicksOpen]
+  )
 
   return (
     <Box
