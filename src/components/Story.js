@@ -70,7 +70,13 @@ const Story = ({ story, onClickPicture, className }) => {
         )}
         <Styled.h4
           dangerouslySetInnerHTML={{ __html: story.title }}
-          sx={{ position: `absolute`, top: 25, left: 20, right: 20 }}
+          sx={{
+            position: `absolute`,
+            top: 25,
+            left: 20,
+            right: 20,
+            cursor: `pointer`,
+          }}
         />
         <Box
           sx={{

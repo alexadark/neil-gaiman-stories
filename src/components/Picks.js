@@ -17,7 +17,9 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const [isModalOpen, openModal] = useState(false)
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
-    bottom: 0,
+    position: [`absolute`, `absolute`, `fixed`],
+    height: [`auto`, `auto`, 500],
+    bottom: [`1%`, `1%`, 0],
     zIndex: 200,
   }
 
@@ -27,9 +29,9 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
       sx={{
         bg: `black`,
         transition: `all .4s ease-in-out`,
-        position: [`absolute`, `absolute`, `fixed`],
-        // top: [`50%`, `50%`, `auto`],
-        bottom: [`auto`, `auto`, -427],
+        position: [`fixed`, `fixed`, `fixed`],
+
+        bottom: [-755, -575, -427],
         height: [`auto`, `auto`, 500],
         left: 0,
         width: `100%`,
