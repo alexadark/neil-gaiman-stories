@@ -7,6 +7,7 @@ import { PicksContext } from "../pages"
 
 const ThankYou = () => {
   const picks = useContext(PicksContext)
+  console.log("picks", picks)
   return (
     <Layout>
       <SEO title="Thank You" />
@@ -19,7 +20,7 @@ const ThankYou = () => {
         </Box>
         <Box>
           <a
-            href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=This is my vote for #NeilAnthology #1:${picks &&
+            href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=Calling all Neil Gaiman readers! Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And we’d like you to help us – and Neil – choose the stories that will be included. ${picks &&
               picks[0].title}`}
             target="_blank"
           >

@@ -23,9 +23,18 @@ const IndexPage = ({ data }) => {
   // https://github.com/gatsbyjs/gatsby/issues/309
   const windowGlobal = typeof window !== "undefined" && window
   const ls = windowGlobal.localStorage
+  const alphaStories = stories.nodes.sort((a, b) => {
+    if (a.title < b.title) {
+      return -1
+    }
+    if (a.title > b.title) {
+      return 1
+    }
+    return 0
+  })
 
   //Initial storiesgrid = all the stories
-  const [results, setStories] = useState(stories.nodes)
+  const [results, setStories] = useState(alphaStories)
 
   //Initial picks: taking them from localstorage
   // const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
