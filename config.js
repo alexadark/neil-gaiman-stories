@@ -2,7 +2,7 @@
  * @type {{wordPressUrl: string}}
  */
 const config = {
-  wordPressUrl: `http://gaimanfavoritescom.kinsta.cloud`,
+  wordPressUrl: `https://www.gaimanfavorites-cms.com`,
 }
 
 module.exports = config

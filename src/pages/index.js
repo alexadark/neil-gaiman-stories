@@ -15,6 +15,7 @@ import Overlay from "../components/Overlay"
 import { flatString } from "../utils"
 
 export const VoteContext = createContext()
+export const PicksContext = createContext()
 
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
@@ -76,29 +77,31 @@ const IndexPage = ({ data }) => {
 
   return (
     <VoteContext.Provider value={vote}>
-      <Overlay arePicksOpen={arePicksOpen} />
-      <Layout>
-        <Container>
-          <SEO title="Home" />
-          <Search onSearchStories={findStories} stories={stories} />
-          <CategoryFilter
-            stories={stories}
-            setStories={setStories}
-            filterCategories={filterCategories}
-            categories={categories}
-          />
-          {/* TODO:  add active class */}
+      <PicksContext.Provider value={picks}>
+        <Overlay arePicksOpen={arePicksOpen} />
+        <Layout>
+          <Container>
+            <SEO title="Home" />
+            <Search onSearchStories={findStories} stories={stories} />
+            <CategoryFilter
+              stories={stories}
+              setStories={setStories}
+              filterCategories={filterCategories}
+              categories={categories}
+            />
+            {/* TODO:  add active class */}
 
-          <StoriesGrid results={results} addPick={addPick} picks={picks} />
-        </Container>
-        <Picks
-          picks={picks}
-          setPicks={setPicks}
-          arePicksOpen={arePicksOpen}
-          togglePicks={togglePicks}
-          setVote={setVote}
-        />
-      </Layout>
+            <StoriesGrid results={results} addPick={addPick} picks={picks} />
+          </Container>
+          <Picks
+            picks={picks}
+            setPicks={setPicks}
+            arePicksOpen={arePicksOpen}
+            togglePicks={togglePicks}
+            setVote={setVote}
+          />
+        </Layout>
+      </PicksContext.Provider>
     </VoteContext.Provider>
   )
 }
