@@ -54,18 +54,9 @@ const Pick = ({ story, setPicks, picks, i }) => {
           <Box>
             <Box
               className="pickTitle"
-              sx={{ fontSize: 1, lineHeight: `18px`, width: 115 }}
+              sx={{ fontSize: 1, lineHeight: `18px`, width: 115, mt: `15px` }}
             >
               <div dangerouslySetInnerHTML={{ __html: story.title }} />
-              from
-              <Styled.a href={story.StoriesFields.originalBookLink}>
-                <div
-                  sx={{ fontWeight: 700 }}
-                  dangerouslySetInnerHTML={{
-                    __html: story.StoriesFields.originalBookTitle,
-                  }}
-                />
-              </Styled.a>
             </Box>
             <div
               className="removePick"
