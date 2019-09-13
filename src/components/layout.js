@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from "gatsby"
 
 import Header from "./header"
 
-import Footer from "./footer"
+import Footer from "./Footer"
 
 import { Global } from "@emotion/core"
 import { GlobalStyles } from "../styles/GlobalStyles"
