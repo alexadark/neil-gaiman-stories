@@ -38,7 +38,9 @@ const PicksBar = ({ arePicksOpen, togglePicks, picks }) => {
                 cursor: `pointer`,
                 transition: `all .4s ease-in-out`,
               }}
-              onClick={() => togglePicks(!arePicksOpen)}
+              onClick={() => {
+                togglePicks(!arePicksOpen)
+              }}
             />
           </Box>
         </Flex>

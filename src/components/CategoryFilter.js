@@ -38,8 +38,7 @@ const CategoryFilter = ({
   // // console.log(catsArray)
 
   // useEffect(cat => setActiveCat(cat), [])
-  console.log(activeCat)
-  console.log(ref.current)
+
   // console.log(document.querySelectorAll(".cat"))
   return (
     <Flex

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import React, { useState } from "react"
+import React, { useState, useRef, useEffect } from "react"
 
 import { jsx, Styled, Flex, Box, Container } from "theme-ui"
 import Img from "gatsby-image"
@@ -15,17 +15,22 @@ import modalStyles from "../styles/styles.module.scss"
 
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const [isModalOpen, openModal] = useState(false)
+  const picksRef = useRef()
+
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
     position: [`absolute`, `absolute`, `fixed`],
-    height: [`auto`, `auto`, 500],
-    bottom: [`1%`, `1%`, 0],
-    zIndex: 200,
+    height: [`100%`, `100%`, 500],
+    bottom: [`auto`, `auto`, 0],
+    top: [0, 300, `auto`],
   }
+
+  // useEffect(() => picksRef.current.scrollIntoViewIfNeeded(), [arePicksOpen])
 
   return (
     <Box
       className="picksContainer"
+      ref={picksRef}
       sx={{
         bg: `black`,
         transition: `all .4s ease-in-out`,
@@ -44,7 +49,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
         togglePicks={togglePicks}
         picks={picks}
       />
-      <Container sx={{ maxWidth: 860 }}>
+      <Container sx={{ maxWidth: 860 }} ref={picksRef}>
         <Flex
           sx={{
             justifyContent: `space-around`,

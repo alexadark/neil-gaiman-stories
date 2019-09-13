@@ -9,7 +9,6 @@ const StoriesGrid = ({ results, addPick, picks }) => {
     <Flex className="gridContainer" sx={{ flexWrap: `wrap`, mt: 40, mb: 60 }}>
       {results !== [] &&
         results.map(story => {
-          console.log("picks", picks, "story", story)
           //if the story is includes in pick, add a disabled class and  disable the add Pick function on click
           const className =
             picks.length > 0 ? (picks.includes(story) ? "disabled" : "") : ""
