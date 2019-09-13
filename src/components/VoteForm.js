@@ -23,7 +23,14 @@ const VoteForm = ({ setVote }) => {
       {(voteMutation, { data, errors, loading }) => {
         console.log("data", data, "errors", errors)
         return (
-          <Box sx={{ bg: `primary`, p: `60px 50px`, fontSize: [2, 3] }}>
+          <Box
+            sx={{
+              bg: `primary`,
+              p: `60px 50px`,
+              fontSize: [2, 3],
+              fontFamily: `body`,
+            }}
+          >
             <form
               onSubmit={e => {
                 e.preventDefault()
