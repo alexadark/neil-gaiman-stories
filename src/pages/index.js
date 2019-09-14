@@ -64,11 +64,11 @@ const IndexPage = ({ data }) => {
       const flatQueryArray = Array.from(flatString(query))
 
       //we only keep the stories where all the letters from the query are included
-      flatQueryArray.every(letter => flatStoryArray.indexOf(letter) >= 0)
+      return flatQueryArray.every(letter => flatStoryArray.indexOf(letter) >= 0)
     })
     console.log(results)
 
-    // setStories(results)
+    setStories(results)
   }
 
   //add the clicked story from the grid to the picks
