@@ -20,9 +20,9 @@ export const PicksContext = createContext()
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
 
-  // https://github.com/gatsbyjs/gatsby/issues/309
-  const windowGlobal = typeof window !== "undefined" && window
-  const ls = windowGlobal.localStorage
+  // // https://github.com/gatsbyjs/gatsby/issues/309
+  // const windowGlobal = typeof window !== "undefined" && window
+  // const ls = windowGlobal.localStorage
   const alphaStories = stories.nodes.sort((a, b) => {
     if (a.title < b.title) {
       return -1
