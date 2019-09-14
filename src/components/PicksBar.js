@@ -38,6 +38,7 @@ const PicksBar = ({ arePicksOpen, togglePicks, picks }) => {
                 cursor: `pointer`,
                 transition: `all .4s ease-in-out`,
               }}
+              alt="open icon"
               onClick={() => {
                 togglePicks(!arePicksOpen)
               }}

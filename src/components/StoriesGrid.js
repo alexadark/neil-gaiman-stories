@@ -21,6 +21,7 @@ const StoriesGrid = ({ results, addPick, picks }) => {
 
           return (
             <Story
+              key={story.storyId}
               story={story}
               location="stories"
               className={className}

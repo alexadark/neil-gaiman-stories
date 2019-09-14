@@ -1,6 +1,5 @@
 /** @jsx jsx */
-
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import { jsx, Flex, Box } from "theme-ui"
 import AddIcon from "../images/add-icon.png"
 import PickNumber from "./PickNumber"
 
@@ -24,6 +23,7 @@ const PickPlaceHolder = ({ i, togglePicks }) => {
               src={AddIcon}
               sx={{ cursor: `pointer` }}
               onClick={closePicks}
+              alt="placeholder"
             />
           </Box>
         </Flex>

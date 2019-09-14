@@ -1,9 +1,9 @@
 /** @jsx jsx */
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
-import React, { useContext } from "react"
+import { jsx, Styled, Box, Container } from "theme-ui"
+import { useContext } from "react"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import { PicksContext } from "../pages"
+import { PicksContext } from "./index"
 
 const ThankYou = () => {
   const picks = useContext(PicksContext)

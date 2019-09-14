@@ -1,6 +1,5 @@
 /** @jsx jsx */
-
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import { jsx } from "theme-ui"
 
 const VoteButton = ({ picks, handleClick }) => {
   const variant = picks.length === 3 ? "voteActive" : "voteDisabled"

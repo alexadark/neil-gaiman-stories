@@ -1,10 +1,10 @@
 /** @jsx jsx */
-import { jsx, Styled, Flex, Box } from "theme-ui"
-import React, { useContext } from "react"
+import { jsx, Box } from "theme-ui"
+import { useContext } from "react"
 import { navigate, Link } from "gatsby"
 import { Mutation } from "react-apollo"
 import { gql } from "apollo-boost"
-import { Input, Textarea, Label } from "@rebass/forms"
+import { Input, Textarea } from "@rebass/forms"
 import { VoteContext } from "../pages"
 import { lighten } from "polished"
 
@@ -18,17 +18,6 @@ const SUBMIT_VOTE_MUTATION = gql`
 
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
-
-  const submitVote = (e, voteMutation, data, errors) => {
-    e.preventDefault()
-    voteMutation({
-      variables: {
-        input: vote,
-      },
-    })
-    console.log("data", data, "errors", errors)
-    data && navigate("/thank-you/")
-  }
 
   return (
     <Mutation mutation={SUBMIT_VOTE_MUTATION}>

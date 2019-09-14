@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Container, Styled, Box } from "theme-ui"
+import { jsx, Container, Styled } from "theme-ui"
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 

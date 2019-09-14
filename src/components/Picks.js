@@ -1,9 +1,6 @@
 /** @jsx jsx */
-import React, { useState, useRef, useEffect } from "react"
-
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
-import Img from "gatsby-image"
-
+import { useState, useRef, useEffect } from "react"
+import { jsx, Flex, Box, Container } from "theme-ui"
 import PickPlaceHolder from "./PickPlaceHolder"
 import Pick from "./Pick"
 import PicksBar from "./PicksBar"
@@ -69,6 +66,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
                   <Box sx={{ mr: `10px` }}>
                     {picks[i] ? (
                       <Pick
+                        key={picks[i].storyId}
                         story={picks[i]}
                         setPicks={setPicks}
                         picks={picks}

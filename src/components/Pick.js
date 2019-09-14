@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import { jsx, Styled, Flex, Box } from "theme-ui"
 import Img from "gatsby-image"
 import PickNumber from "./PickNumber"
 
@@ -26,7 +26,6 @@ const Pick = ({ story, setPicks, picks, i }) => {
             <Img
               fixed={story.featuredImage.imageFile.childImageSharp.fixed}
               alt={story.altText}
-              sx={{ cursor: `pointer` }}
               sx={{
                 cursor: `pointer`,
                 borderRadius: `20px`,

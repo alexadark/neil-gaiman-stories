@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
-import React from "react"
 import { Input } from "@rebass/forms"
 import searchIcon from "../images/search-icon.png"
 

@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled, Flex, Box, Main, Layout as StyledLayout } from "theme-ui"
+import { jsx, Box, Layout as StyledLayout } from "theme-ui"
 
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"

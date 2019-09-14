@@ -1,8 +1,8 @@
 /** @jsx jsx */
-import React, { createContext } from "react"
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import { createContext } from "react"
+import { jsx, Container } from "theme-ui"
 import { useState, useEffect } from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Search from "../components/Search"
 import Layout from "../components/layout"
 import SEO from "../components/seo"

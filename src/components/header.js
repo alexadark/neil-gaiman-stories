@@ -1,7 +1,7 @@
 import { Link, useStaticQuery, graphql } from "gatsby"
 import PropTypes from "prop-types"
 /** @jsx jsx */
-import { jsx, Styled, Container } from "theme-ui"
+import { jsx, Styled, Container, Box } from "theme-ui"
 
 import BgImage from "gatsby-background-image"
 
@@ -44,7 +44,7 @@ const Header = ({ siteTitle, description }) => {
               dangerouslySetInnerHTML={{ __html: siteTitle }}
             />
           </Styled.h1>
-          <box
+          <Box
             sx={{
               color: `white`,
               fontSize: `1.6rem`,
