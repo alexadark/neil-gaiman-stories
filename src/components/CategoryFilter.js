@@ -10,13 +10,6 @@ const CategoryFilter = ({
 }) => {
   const [activeCat, setActiveCat] = useState("all")
 
-  const [cats, setCats] = useState(["all"])
-
-  useEffect(
-    () => setCats(cats.concat(categories.nodes.map(cat => cat.slug))),
-    []
-  )
-
   const catsStyles = {
     color: `primary`,
     transition: `all .4s ease-in-out`,
