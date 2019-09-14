@@ -20,9 +20,7 @@ export const PicksContext = createContext()
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
 
-  // https://github.com/gatsbyjs/gatsby/issues/309
-  const windowGlobal = typeof window !== "undefined" && window
-  const ls = windowGlobal.localStorage
+  const ls = window.localStorage
   const alphaStories = stories.nodes.sort((a, b) => {
     if (a.title < b.title) {
       return -1
@@ -37,8 +35,8 @@ const IndexPage = ({ data }) => {
   const [results, setStories] = useState(alphaStories)
 
   //Initial picks: taking them from localstorage
-  // const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
-  const [picks, setPicks] = useState([])
+  const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
+  // const [picks, setPicks] = useState([])
 
   const [vote, setVote] = useState({
     clientMutationId: "submitVote",
@@ -53,7 +51,7 @@ const IndexPage = ({ data }) => {
   useEffect(() => {
     //getting the votesInput from the picks storyId
     setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) })
-    // ls.setItem("picks", JSON.stringify(picks))
+    ls.setItem("picks", JSON.stringify(picks))
   }, [picks])
 
   //Filter stories grid on real time from title
