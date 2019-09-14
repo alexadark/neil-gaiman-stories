@@ -18,10 +18,21 @@ const SUBMIT_VOTE_MUTATION = gql`
 
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
+
+  const submitVote = (e, voteMutation, data, errors) => {
+    e.preventDefault()
+    voteMutation({
+      variables: {
+        input: vote,
+      },
+    })
+    console.log("data", data, "errors", errors)
+    data && navigate("/thank-you/")
+  }
+
   return (
     <Mutation mutation={SUBMIT_VOTE_MUTATION}>
       {(voteMutation, { data, errors, loading }) => {
-        console.log("data", data, "errors", errors)
         return (
           <Box
             sx={{
@@ -38,9 +49,7 @@ const VoteForm = ({ setVote }) => {
                   variables: {
                     input: vote,
                   },
-                })
-                console.log("data", data)
-                data && navigate("/thank-you/")
+                }).then(data ? navigate("/thank-you/") : console.log(errors))
               }}
             >
               <Box
