@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import { useState, useEffect, useRef, creatRef } from "react"
+import { useState, useEffect } from "react"
 
 const CategoryFilter = ({
   stories,
@@ -17,12 +17,6 @@ const CategoryFilter = ({
     []
   )
 
-  const ref = useRef()
-
-  const assignActiveClass = (e, cat) => {
-    const classes = e.target.classList
-    cat.slug === activeCat ? classes.add("active") : classes.remove("active")
-  }
   const catsStyles = {
     color: `primary`,
     transition: `all .4s ease-in-out`,
@@ -30,16 +24,9 @@ const CategoryFilter = ({
     mt: 0,
     mb: 20,
 
-    ":hover": { color: `white` },
+    ":hover, &.active": { color: `white` },
   }
 
-  // const catsArray = Array.of(document.querySelectorAll(".cat"))
-  // catsArray.map(catItem => console.log("classes", catItem.className))
-  // // console.log(catsArray)
-
-  // useEffect(cat => setActiveCat(cat), [])
-
-  // console.log(document.querySelectorAll(".cat"))
   return (
     <Flex
       sx={{
@@ -55,31 +42,34 @@ const CategoryFilter = ({
     >
       <Box
         key="all"
-        ref={ref}
         className="cat"
         onClick={e => {
           setStories(stories.nodes)
           setActiveCat("all")
         }}
       >
-        <Styled.h5 sx={catsStyles} data-category="all">
+        <Styled.h5
+          sx={catsStyles}
+          data-category="all"
+          className={"all" === activeCat ? "active" : ""}
+        >
           All
         </Styled.h5>
       </Box>
       {categories.nodes.map(cat => (
         <Box
           key={cat.slug}
-          ref={ref}
           className="cat"
           onClick={e => {
             filterCategories(e, stories, setActiveCat)
             setActiveCat(cat.slug)
-            // assignActiveClass(e, cat)
-            // console.log(cat.slug, activeCat)
-            e.target.classList.add("active")
           }}
         >
-          <Styled.h5 sx={catsStyles} data-category={cat.slug}>
+          <Styled.h5
+            sx={catsStyles}
+            data-category={cat.slug}
+            className={cat.slug === activeCat ? "active" : ""}
+          >
             {cat.name}
           </Styled.h5>
         </Box>
