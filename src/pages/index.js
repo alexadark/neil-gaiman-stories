@@ -36,6 +36,8 @@ const IndexPage = ({ data }) => {
   //Initial storiesgrid = all the stories
   const [results, setStories] = useState(alphaStories)
 
+  const [storageLoaded, setStorageLoaded] = useState(false)
+
   //Initial picks: taking them from localstorage
   // const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
   const [picks, setPicks] = useState([])
@@ -48,6 +50,18 @@ const IndexPage = ({ data }) => {
   })
 
   const [arePicksOpen, togglePicks] = useState(false)
+
+  useEffect(() => {
+    if (window) {
+      let ls = window.localStorage
+      if (!storageLoaded) {
+        setStorageLoaded(true)
+        setPicks(JSON.parse(ls.getItem("picks")))
+      } else {
+        ls.setItem("picks", JSON.stringify(picks))
+      }
+    }
+  })
 
   //setVotesInput and add picks to localStorage whenever picks are changing
   useEffect(() => {
@@ -98,7 +112,6 @@ const IndexPage = ({ data }) => {
               filterCategories={filterCategories}
               categories={categories}
             />
-            {/* TODO:  add active class */}
 
             <StoriesGrid results={results} addPick={addPick} picks={picks} />
           </Container>
