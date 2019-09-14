@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 
 const CategoryFilter = ({
   stories,
