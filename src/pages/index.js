@@ -21,8 +21,8 @@ const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
 
   // https://github.com/gatsbyjs/gatsby/issues/309
-  const windowGlobal = typeof window !== "undefined" && window
-  const ls = windowGlobal.localStorage
+  // const windowGlobal = typeof window !== "undefined" && window
+  // const ls = windowGlobal.localStorage
   const alphaStories = stories.nodes.sort((a, b) => {
     if (a.title < b.title) {
       return -1
@@ -58,11 +58,14 @@ const IndexPage = ({ data }) => {
 
   //Filter stories grid on real time from title
   const findStories = (query, stories) => {
-    const flatQuery = flatString(query)
     //keep only stories where the title includes the query after converting to a flat string without spaces
-    const results = stories.nodes.filter(story =>
-      flatString(story.title).includes(flatQuery)
-    )
+    const results = stories.nodes.filter(story => {
+      const flatStoryArray = Array.from(flatString(story.title))
+      const flatQueryArray = Array.from(flatString(query))
+
+      //we only keep the stories where all the letters from the query are included
+      return flatQueryArray.every(letter => flatStoryArray.indexOf(letter) >= 0)
+    })
 
     setStories(results)
   }
