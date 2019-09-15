@@ -15,7 +15,6 @@ import Overlay from "../components/Overlay"
 import { flatString } from "../utils"
 
 export const VoteContext = createContext()
-export const PicksContext = createContext()
 
 const IndexPage = ({ data }) => {
   const { stories, categories } = data.wpgraphql
@@ -36,8 +35,6 @@ const IndexPage = ({ data }) => {
   //Initial storiesgrid = all the stories
   const [results, setStories] = useState(alphaStories)
 
-  const [storageLoaded, setStorageLoaded] = useState(false)
-
   //Initial picks: taking them from localstorage
   // const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
   const [picks, setPicks] = useState([])
@@ -51,23 +48,28 @@ const IndexPage = ({ data }) => {
 
   const [arePicksOpen, togglePicks] = useState(false)
 
+  let [rehydrated, setRehydrated] = useState(false)
+
   useEffect(() => {
-    if (window) {
+    // Check if the code is running in a browser, and if so load the saved state.
+    if (!rehydrated && window) {
+      console.log(rehydrated)
       let ls = window.localStorage
-      if (!storageLoaded) {
-        setStorageLoaded(true)
-        setPicks(JSON.parse(ls.getItem("picks")))
-      } else {
-        ls.setItem("picks", JSON.stringify(picks))
-      }
+      let data = ls.getItem("picks")
+      if (data) setPicks(JSON.parse(data))
+      setRehydrated(true) //Make sure this only loads once.
     }
   })
 
-  //setVotesInput and add picks to localStorage whenever picks are changing
   useEffect(() => {
-    //getting the votesInput from the picks storyId
-    setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) })
-    // ls.setItem("picks", JSON.stringify(picks))
+    // This function serializes picks to localStorage when they change.
+    // If the page successfully rehydrated there is definitely localStorge.
+    if (rehydrated) {
+      let ls = window.localStorage
+      ls.setItem("picks", JSON.stringify(picks))
+      let lsPicks = JSON.parse(ls.getItem("picks"))
+      setVote({ ...vote, votesInput: lsPicks.map(pick => pick.storyId) })
+    }
   }, [picks])
 
   //Filter stories grid on real time from title
@@ -100,30 +102,28 @@ const IndexPage = ({ data }) => {
 
   return (
     <VoteContext.Provider value={vote}>
-      <PicksContext.Provider value={picks}>
-        <Overlay arePicksOpen={arePicksOpen} />
-        <Layout>
-          <Container>
-            <SEO title="Home" />
-            <Search onSearchStories={findStories} stories={stories} />
-            <CategoryFilter
-              stories={stories}
-              setStories={setStories}
-              filterCategories={filterCategories}
-              categories={categories}
-            />
-
-            <StoriesGrid results={results} addPick={addPick} picks={picks} />
-          </Container>
-          <Picks
-            picks={picks}
-            setPicks={setPicks}
-            arePicksOpen={arePicksOpen}
-            togglePicks={togglePicks}
-            setVote={setVote}
+      <Overlay arePicksOpen={arePicksOpen} />
+      <Layout>
+        <Container>
+          <SEO title="Home" />
+          <Search onSearchStories={findStories} stories={stories} />
+          <CategoryFilter
+            stories={stories}
+            setStories={setStories}
+            filterCategories={filterCategories}
+            categories={categories}
           />
-        </Layout>
-      </PicksContext.Provider>
+
+          <StoriesGrid results={results} addPick={addPick} picks={picks} />
+        </Container>
+        <Picks
+          picks={picks}
+          setPicks={setPicks}
+          arePicksOpen={arePicksOpen}
+          togglePicks={togglePicks}
+          setVote={setVote}
+        />
+      </Layout>
     </VoteContext.Provider>
   )
 }
