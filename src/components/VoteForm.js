@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
-import { useContext } from "react"
-import { navigate, Link } from "gatsby"
+import { useContext, useState } from "react"
+import { navigate, Link, useStaticQuery, graphql } from "gatsby"
 import { Mutation } from "react-apollo"
 import { gql } from "apollo-boost"
 import { Input, Textarea } from "@rebass/forms"
@@ -18,6 +18,22 @@ const SUBMIT_VOTE_MUTATION = gql`
 
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
+  const [displayError, setDisplayError] = useState(false)
+  const data = useStaticQuery(graphql`
+    query votesQuery {
+      wpgraphql {
+        votes(first: 1000000000) {
+          nodes {
+            title
+          }
+        }
+      }
+    }
+  `)
+
+  const existingVotesMails = data.wpgraphql.votes.nodes.map(item => item.title)
+
+  console.log(existingVotesMails, vote)
 
   return (
     <Mutation mutation={SUBMIT_VOTE_MUTATION}>
@@ -38,7 +54,12 @@ const VoteForm = ({ setVote }) => {
                   variables: {
                     input: vote,
                   },
-                }).then(data ? navigate("/thank-you/") : console.log(errors))
+                })
+                existingVotesMails.includes(vote.emailInput)
+                  ? setDisplayError(
+                      "you cannot submit several votes from this email"
+                    )
+                  : navigate("/thank-you/")
               }}
             >
               <Box
@@ -82,6 +103,18 @@ const VoteForm = ({ setVote }) => {
                   setVote({ ...vote, messageInput: e.target.value })
                 }
               />
+              {displayError && (
+                <Box
+                  sx={{
+                    textAlign: `center`,
+                    color: `#bb0909`,
+                    fontSize: 1,
+                    mb: `15px`,
+                  }}
+                >
+                  {displayError}
+                </Box>
+              )}
               <input
                 type="submit"
                 value="Vote Now"
