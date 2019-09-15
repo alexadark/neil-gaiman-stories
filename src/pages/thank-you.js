@@ -17,7 +17,6 @@ const ThankYou = () => {
     }
   })
 
-  console.log(picks)
   return (
     <Layout>
       <SEO title="Thank You" />

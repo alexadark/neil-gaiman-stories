@@ -20,7 +20,7 @@ const SUBMIT_VOTE_MUTATION = gql`
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
   const [displayError, setDisplayError] = useState(false)
-  const data = useStaticQuery(graphql`
+  const votesData = useStaticQuery(graphql`
     query votesQuery {
       wpgraphql {
         votes(first: 1000000000) {
@@ -32,9 +32,15 @@ const VoteForm = ({ setVote }) => {
     }
   `)
 
-  const existingVotesMails = data.wpgraphql.votes.nodes.map(item => item.title)
+  const existingVotesMails = votesData.wpgraphql.votes.nodes.map(
+    item => item.title
+  )
 
-  const [voteMutation, { data }] = useMutation(SUBMIT_VOTE_MUTATION)
+  const [voteMutation, { data, error }] = useMutation(SUBMIT_VOTE_MUTATION, {
+    variables: {
+      input: vote,
+    },
+  })
 
   return (
     <Box
@@ -48,11 +54,8 @@ const VoteForm = ({ setVote }) => {
       <form
         onSubmit={e => {
           e.preventDefault()
-          voteMutation({
-            variables: {
-              input: vote,
-            },
-          })
+          voteMutation()
+          console.log("mails", existingVotesMails, "data", data, "error", error)
           existingVotesMails.includes(vote.emailInput)
             ? setDisplayError("you cannot submit several votes from this email")
             : navigate("/thank-you/")
