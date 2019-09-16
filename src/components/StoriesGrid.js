@@ -13,10 +13,14 @@ const StoriesGrid = ({ results, addPick, picks }) => {
           //if the story is includes in pick, add a disabled class and  disable the add Pick function on click
 
           const className =
-            picks.length > 0 ? (picks.includes(story) ? "disabled" : "") : ""
+            picks.length > 0
+              ? picks.map(pick => pick.title).includes(story.title)
+                ? "disabled"
+                : ""
+              : ""
           const onClickPicture =
             picks.length > 0
-              ? picks.includes(story)
+              ? picks.map(pick => pick.title).includes(story.title)
                 ? () => ""
                 : addPick
               : addPick
