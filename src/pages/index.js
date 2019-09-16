@@ -47,16 +47,16 @@ const IndexPage = ({ data }) => {
 
   let [rehydrated, setRehydrated] = useState(false)
 
-  // useEffect(() => {
-  //   // Check if the code is running in a browser, and if so load the saved state.
-  //   if (!rehydrated && window) {
-  //     console.log(rehydrated)
-  //     let ls = window.localStorage
-  //     let data = ls.getItem("picks")
-  //     if (data) setPicks(JSON.parse(data))
-  //     setRehydrated(true) //Make sure this only loads once.
-  //   }
-  // })
+  useEffect(() => {
+    // Check if the code is running in a browser, and if so load the saved state.
+    if (!rehydrated && window) {
+      console.log(rehydrated)
+      let ls = window.localStorage
+      let data = ls.getItem("picks")
+      if (data) setPicks(JSON.parse(data))
+      setRehydrated(true) //Make sure this only loads once.
+    }
+  })
 
   useEffect(() => {
     // This function serializes picks to localStorage when they change.
@@ -64,8 +64,8 @@ const IndexPage = ({ data }) => {
     if (rehydrated) {
       let ls = window.localStorage
       ls.setItem("picks", JSON.stringify(picks))
-      // let lsPicks = JSON.parse(ls.getItem("picks"))
-      setVote({ ...vote, votesInput: picks.map(pick => pick.storyId) })
+      let lsPicks = JSON.parse(ls.getItem("picks"))
+      setVote({ ...vote, votesInput: lsPicks.map(pick => pick.storyId) })
     }
   }, [picks])
 
