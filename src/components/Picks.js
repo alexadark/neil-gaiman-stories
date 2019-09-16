@@ -17,16 +17,13 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
     position: [`absolute`, `absolute`, `fixed`],
-    height: [`auto`, `auto`, 500],
-    bottom: [`1%`, `1%`, 0],
+    height: [`100%`, `100%`, 500],
+    bottom: [`auto`, `auto`, 0],
+    top: [0, `1%`, `auto`],
     zIndex: 200,
   }
 
-  useEffect(
-    () =>
-      picksRef.current.scrollIntoView({ behavior: "smooth", inline: "start" }),
-    [arePicksOpen]
-  )
+  useEffect(() => picksRef.current.scrollIntoView(), [arePicksOpen])
 
   return (
     <Box

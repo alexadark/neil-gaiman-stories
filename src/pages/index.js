@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { createContext } from "react"
-import { jsx, Container } from "theme-ui"
+import { jsx, Container, Box } from "theme-ui"
 import { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Search from "../components/Search"
@@ -123,6 +123,17 @@ const IndexPage = ({ data }) => {
           togglePicks={togglePicks}
           setVote={setVote}
         />
+        <Container>
+          {/* <Box sx={{ display: [`block`, `none`, `none`], mb: `20px` }}>
+            <Search onSearchStories={findStories} stories={stories} />
+            <CategoryFilter
+              stories={stories}
+              setStories={setStories}
+              filterCategories={filterCategories}
+              categories={categories}
+            />
+          </Box> */}
+        </Container>
       </Layout>
     </VoteContext.Provider>
   )
