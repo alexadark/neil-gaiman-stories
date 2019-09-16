@@ -14,6 +14,7 @@ const StoriesGrid = ({ results, addPick, picks }) => {
 
           const className =
             picks.length > 0 ? (picks.includes(story) ? "disabled" : "") : ""
+
           const onClickPicture =
             picks.length > 0
               ? picks.includes(story)
