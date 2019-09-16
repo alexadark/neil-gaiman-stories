@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { navigate, Link, useStaticQuery, graphql } from "gatsby"
 import { Mutation } from "react-apollo"
 import { useApolloClient, useMutation } from "@apollo/react-hooks"
@@ -20,6 +20,8 @@ const SUBMIT_VOTE_MUTATION = gql`
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
   const [displayError, setDisplayError] = useState(false)
+  const [existingVotesMails, setExistingVotesMails] = useState("")
+
   const votesData = useStaticQuery(graphql`
     query votesQuery {
       wpgraphql {
@@ -31,9 +33,12 @@ const VoteForm = ({ setVote }) => {
       }
     }
   `)
-
-  const existingVotesMails = votesData.wpgraphql.votes.nodes.map(
-    item => item.title
+  useEffect(
+    () =>
+      setExistingVotesMails(
+        votesData.wpgraphql.votes.nodes.map(item => item.title)
+      ),
+    []
   )
 
   const [voteMutation, { data, error }] = useMutation(SUBMIT_VOTE_MUTATION, {
