@@ -13,7 +13,6 @@ const SUBMIT_VOTE_MUTATION = gql`
   mutation voteMutation($input: VoteMutationInput!) {
     voteMutation(input: $input) {
       voteSubmitted
-      errors
     }
   }
 `
@@ -37,11 +36,10 @@ const VoteForm = ({ setVote }) => {
     item => item.title
   )
 
-  const [voteMutation, { data }] = useMutation(SUBMIT_VOTE_MUTATION, {
+  const [voteMutation, { data, error }] = useMutation(SUBMIT_VOTE_MUTATION, {
     variables: {
       input: vote,
     },
-    onCompleted: data => console.log(data),
   })
 
   return (
@@ -57,9 +55,9 @@ const VoteForm = ({ setVote }) => {
         onSubmit={e => {
           e.preventDefault()
           voteMutation()
-
-          data.voteMutation.errors
-            ? setDisplayError(data.voteMutation.errors)
+          console.log("mails", existingVotesMails, "data", data, "error", error)
+          existingVotesMails.includes(vote.emailInput)
+            ? setDisplayError("you cannot submit several votes from this email")
             : navigate("/thank-you/")
         }}
       >
