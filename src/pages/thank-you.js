@@ -11,6 +11,7 @@ import { GlobalStyles } from "../styles/GlobalStyles"
 import fbIcon from "../images/fb-icon.png"
 import twitterIcon from "../images/twitter-icon.png"
 import Footer from "../components/Footer"
+import Carousel from "nuka-carousel"
 
 const ThankYou = () => {
   let [rehydrated, setRehydrated] = useState(false)
@@ -118,8 +119,37 @@ const ThankYou = () => {
               </a>
             </Box>
           </Flex>
+
+          <Box
+            sx={{
+              fontFamily: `heading`,
+              color: `white`,
+              fontSize: `3.6rem`,
+              fontWeight: 300,
+              mt: `100px`,
+            }}
+          >
+            Check out these books by{" "}
+            <span sx={{ color: `primary` }}>Neil Gaimain</span>
+          </Box>
+          <Box>
+            <Carousel
+              slidesToShow={5}
+              cellSpacing={20}
+              autoplay={true}
+              infiniteLoop={true}
+              sx={{ mt: 50 }}
+            >
+              <img src="http://lorempixel.com/170/250" alt="" />
+              <img src="http://lorempixel.com/170/250" alt="" />
+              <img src="http://lorempixel.com/170/250" alt="" />
+              <img src="http://lorempixel.com/170/250" alt="" />
+              <img src="http://lorempixel.com/170/250" alt="" />
+              <img src="http://lorempixel.com/170/200" alt="" />
+            </Carousel>
+          </Box>
         </Container>
-        <Box sx={{ position: `absolute`, bottom: `50px`, width: `100%` }}>
+        <Box sx={{ mt: 100 }}>
           <Footer />
         </Box>
       </Box>
