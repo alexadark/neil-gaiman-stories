@@ -3,11 +3,21 @@ import { jsx, Flex } from "theme-ui"
 
 import Story from "./Story"
 
-const StoriesGrid = ({ results, addPick, picks }) => {
+const StoriesGrid = ({
+  results,
+  addPick,
+  picks,
+  arePicksOpen,
+  togglePicks,
+}) => {
   // TODO: make disable work after reload from localStorage
 
   return (
-    <Flex className="gridContainer" sx={{ flexWrap: `wrap`, mt: 40, mb: 60 }}>
+    <Flex
+      className="gridContainer"
+      sx={{ flexWrap: `wrap`, mt: 40, mb: 60 }}
+      onClcik={() => !arePicksOpen && togglePicks(true)}
+    >
       {results !== [] &&
         results.map(story => {
           //if the story is includes in pick, add a disabled class and  disable the add Pick function on click

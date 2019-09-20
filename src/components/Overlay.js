@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from "theme-ui"
 
-const Overlay = ({ arePicksOpen }) => {
+const Overlay = ({ arePicksOpen, togglePicks }) => {
   const style = arePicksOpen
     ? {
         position: `fixed`,
@@ -13,7 +13,9 @@ const Overlay = ({ arePicksOpen }) => {
         zIndex: 100,
       }
     : { display: `none` }
-  return <div sx={style}></div>
+  return (
+    <div sx={style} onClick={() => arePicksOpen && togglePicks(false)}></div>
+  )
 }
 
 export default Overlay

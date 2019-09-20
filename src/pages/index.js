@@ -88,7 +88,9 @@ const IndexPage = ({ data }) => {
     //maximun 3 votes
     picks.length < 3
       ? (setPicks(picks.concat([story])), togglePicks(true))
-      : alert("You cannot have more than 3 votes")
+      : alert(
+          "You can vote for up to 3 picks. Remove a pick to choose another."
+        )
 
   //filter grid stories by category
   const filterCategories = (e, stories) => {
@@ -102,7 +104,7 @@ const IndexPage = ({ data }) => {
 
   return (
     <VoteContext.Provider value={vote}>
-      <Overlay arePicksOpen={arePicksOpen} />
+      <Overlay arePicksOpen={arePicksOpen} togglePicks={togglePicks} />
       <Layout>
         <Container>
           <SEO title="Home" />
