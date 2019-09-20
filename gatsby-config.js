@@ -1,8 +1,13 @@
 const config = require("./config")
 module.exports = {
   siteMetadata: {
-    title: `The <span>Neil Gaiman </span>Collection`,
-    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`,
+    siteTitle: `The <span>Neil Gaiman </span>Collection`,
+    title: `The Neil Gaiman Collection`,
+    description: `<p>Calling all Neil Gaiman readers!</p>
+    <p>Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And we’d like you to help us – and Neil – choose the stories that will be included.</p>
+    <p>Please vote for your TOP THREE FAVORITE Neil Gaiman stories from the selection below. And, if you have a moment, please share with us what it is about your #1 Neil Gaiman story that makes it your top choice.</p>
+    <p>Cast your votes no later than October 31, 2019 – the winning stories will be announced on April 27, 2020.</p>
+    `,
     author: `Alexandra Spalato`,
   },
   plugins: [

@@ -5,7 +5,7 @@ import { jsx, Styled, Container, Box } from "theme-ui"
 
 import BgImage from "gatsby-background-image"
 
-const Header = ({ siteTitle, description }) => {
+const Header = ({ siteTitle, description, location }) => {
   const data = useStaticQuery(graphql`
     query bgImageQuery {
       file(relativePath: { eq: "header-bg.png" }) {
@@ -17,6 +17,7 @@ const Header = ({ siteTitle, description }) => {
       }
     }
   `)
+
   return (
     <BgImage
       fluid={data.file.childImageSharp.fluid}
@@ -24,6 +25,7 @@ const Header = ({ siteTitle, description }) => {
       style={{ backgroundSize: `fit`, backgroundPosition: `40% top` }}
     >
       <header
+        className="siteHeader"
         sx={{
           p: `90px 30px 50px `,
         }}

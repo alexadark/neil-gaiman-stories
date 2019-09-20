@@ -33,7 +33,7 @@ const IndexPage = ({ data }) => {
   const [results, setStories] = useState(alphaStories)
 
   //Initial picks: taking them from localstorage
-  // const [picks, setPicks] = useState(() => JSON.parse(ls.getItem("picks")))
+
   const [picks, setPicks] = useState([])
 
   const [vote, setVote] = useState({
@@ -125,17 +125,6 @@ const IndexPage = ({ data }) => {
           togglePicks={togglePicks}
           setVote={setVote}
         />
-        <Container>
-          {/* <Box sx={{ display: [`block`, `none`, `none`], mb: `20px` }}>
-            <Search onSearchStories={findStories} stories={stories} />
-            <CategoryFilter
-              stories={stories}
-              setStories={setStories}
-              filterCategories={filterCategories}
-              categories={categories}
-            />
-          </Box> */}
-        </Container>
       </Layout>
     </VoteContext.Provider>
   )

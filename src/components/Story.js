@@ -29,6 +29,9 @@ const Story = ({ story, onClickPicture, className }) => {
             ".gatsby-image-wrapper": {
               boxShadow: ` 0 0 55px rgba(255, 255, 255, 0.55)`,
             },
+            ".chooseMe": {
+              color: `white`,
+            },
           },
           "&.disabled": {
             opacity: 0.4,
@@ -45,13 +48,14 @@ const Story = ({ story, onClickPicture, className }) => {
         }}
       >
         <div
+          className="chooseMe"
           sx={{
             color: `black`,
             fontFamily: `heading`,
             fontSize: `1.8rem`,
             fontWeight: `bold`,
-            display: [`none`, `block`],
             zIndex: 10,
+            transition: `color .4s ease-in-out`,
           }}
         >
           Choose me
@@ -92,13 +96,6 @@ const Story = ({ story, onClickPicture, className }) => {
             dangerouslySetInnerHTML={{ __html: story.title }}
           />
         </Box>
-
-        <button
-          onClick={() => onClickPicture(story)}
-          sx={{ display: [`block`, `none`] }}
-        >
-          Vote For Me!
-        </button>
       </Flex>
     </Flex>
   )

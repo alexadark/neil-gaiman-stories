@@ -65,8 +65,18 @@ const Pick = ({ story, setPicks, picks, i }) => {
               }}
               onClick={() => setPicks(picks.filter(pick => pick !== story))}
             >
-              Remove
+              remove
             </div>
+            {/* <div
+              className="reordePick"
+              sx={{
+                variant: `links.underlined`,
+                top: `30px`,
+              }}
+
+            >
+              choose as number 1
+            </div> */}
           </Box>
         </Flex>
       </Box>

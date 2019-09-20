@@ -17,18 +17,26 @@ const Layout = ({ children }) => {
     query SiteTitleQuery {
       site {
         siteMetadata {
+          siteTitle
+          title
+          description
+        }
+      }
+      wpgraphql {
+        generalSettings {
           title
           description
         }
       }
     }
   `)
-  const { title, description } = data.site.siteMetadata
+  const { siteTitle, description } = data.site.siteMetadata
 
   return (
     <StyledLayout>
       <Global styles={GlobalStyles} />
-      <Header siteTitle={title} description={description} />
+      <Header siteTitle={siteTitle} description={description} />
+
       <Box>{children}</Box>
       <Footer />
     </StyledLayout>

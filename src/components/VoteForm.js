@@ -57,7 +57,9 @@ const VoteForm = ({ setVote }) => {
           voteMutation()
           console.log("mails", existingVotesMails, "data", data, "error", error)
           existingVotesMails.includes(vote.emailInput)
-            ? setDisplayError("you cannot submit several votes from this email")
+            ? setDisplayError(
+                "It looks like you've voted already! Thanks for participating."
+              )
             : navigate("/thank-you/")
         }}
       >
