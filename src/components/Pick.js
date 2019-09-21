@@ -2,8 +2,19 @@
 import { jsx, Styled, Flex, Box } from "theme-ui"
 import Img from "gatsby-image"
 import PickNumber from "./PickNumber"
+import move from "lodash-move"
 
 const Pick = ({ story, setPicks, picks, i }) => {
+  const removePick = () => setPicks(picks.filter(pick => pick !== story))
+  const setNumberOne = () => {
+    const storyIndex = picks
+      .map((pick, index) => pick === story && index)
+      .filter(index => index)
+      .join()
+
+    return setPicks(move(picks, parseInt(storyIndex), 0))
+  }
+
   return (
     <Flex
       sx={{
@@ -63,20 +74,20 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 variant: `links.underlined`,
                 top: `30px`,
               }}
-              onClick={() => setPicks(picks.filter(pick => pick !== story))}
+              onClick={removePick}
             >
               remove
             </div>
-            {/* <div
+            <div
               className="reordePick"
               sx={{
                 variant: `links.underlined`,
                 top: `30px`,
               }}
-
+              onClick={setNumberOne}
             >
               choose as number 1
-            </div> */}
+            </div>
           </Box>
         </Flex>
       </Box>
