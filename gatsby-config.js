@@ -1,8 +1,8 @@
 const config = require("./config")
 module.exports = {
   siteMetadata: {
-    siteTitle: `The <span>Neil Gaiman </span>Collection`,
-    title: `The Neil Gaiman Collection`,
+    siteTitle: `A <span>Neil Gaiman </span>Reader: Fiction`,
+    title: `The Neil Gaiman Reader: Fiction`,
     description: `<p>Calling all Neil Gaiman readers!</p>
     <p>Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And we’d like you to help us – and Neil – choose the stories that will be included.</p>
     <p>Please vote for your TOP THREE FAVORITE Neil Gaiman stories from the selection below. And, if you have a moment, please share with us what it is about your #1 Neil Gaiman story that makes it your top choice.</p>

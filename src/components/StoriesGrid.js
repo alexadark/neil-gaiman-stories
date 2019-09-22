@@ -15,7 +15,7 @@ const StoriesGrid = ({
   return (
     <Flex
       className="gridContainer"
-      sx={{ flexWrap: `wrap`, mt: 40, mb: 60 }}
+      sx={{ flexWrap: `wrap`, mt: 40 }}
       onClcik={() => !arePicksOpen && togglePicks(true)}
     >
       {results !== [] &&

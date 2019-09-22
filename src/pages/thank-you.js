@@ -1,9 +1,8 @@
 /** @jsx jsx */
 
 import { jsx, Styled, Flex, Box, Container } from "theme-ui"
-import React, { useState, useEffect } from "react"
-import { Link, useStaticQuery, graphql } from "gatsby"
-import Layout from "../components/layout"
+import { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo"
 import BgImage from "gatsby-background-image"
 import { Global } from "@emotion/core"
@@ -12,8 +11,10 @@ import fbIcon from "../images/fb-icon.png"
 import twitterIcon from "../images/twitter-icon.png"
 import Footer from "../components/Footer"
 import Carousel from "nuka-carousel"
+import Img from "gatsby-image"
 
-const ThankYou = () => {
+const ThankYou = props => {
+  // const { books } = data.wpgraphql
   let [rehydrated, setRehydrated] = useState(false)
   const [picks, setPicks] = useState([])
   useEffect(() => {
@@ -26,7 +27,7 @@ const ThankYou = () => {
   })
 
   const data = useStaticQuery(graphql`
-    query tyImageQuery {
+    query tyQuery {
       file(relativePath: { eq: "TY-bg.jpg" }) {
         childImageSharp {
           fluid(quality: 90, maxWidth: 1920) {
@@ -34,8 +35,30 @@ const ThankYou = () => {
           }
         }
       }
+      wpgraphql {
+        books(first: 1000) {
+          nodes {
+            bookFields {
+              isbn
+            }
+            featuredImage {
+              altText
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  fluid(maxWidth: 300, quality: 90) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
+
+  const { books } = data.wpgraphql
 
   return (
     <BgImage
@@ -140,12 +163,20 @@ const ThankYou = () => {
               infiniteLoop={true}
               sx={{ mt: 50 }}
             >
-              <img src="http://lorempixel.com/170/250" alt="" />
-              <img src="http://lorempixel.com/170/250" alt="" />
-              <img src="http://lorempixel.com/170/250" alt="" />
-              <img src="http://lorempixel.com/170/250" alt="" />
-              <img src="http://lorempixel.com/170/250" alt="" />
-              <img src="http://lorempixel.com/170/200" alt="" />
+              {books.nodes.map(book => (
+                <Box>
+                  <a
+                    href={`https://www.harpercollins.com/${book.bookFields.isbn}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Img
+                      fluid={book.featuredImage.imageFile.childImageSharp.fluid}
+                      alt={book.altText}
+                    />
+                  </a>
+                </Box>
+              ))}
             </Carousel>
           </Box>
         </Container>

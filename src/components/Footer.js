@@ -12,6 +12,7 @@ const Footer = () => {
         fontSize: 1,
         color: `white`,
         textAlign: `center`,
+        pb: 120,
       }}
     >
       Copyright © {d.getFullYear()} HarperCollins Publishers. All rights
