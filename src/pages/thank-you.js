@@ -210,7 +210,7 @@ const ThankYou = props => {
               }}
             >
               {books.nodes.map(book => (
-                <Box sx={{ px: `10px`, display: `flex`, alignItems: `end` }}>
+                <Box sx={{ px: `10px` }}>
                   <a
                     href={`https://www.harpercollins.com/${book.bookFields.isbn}`}
                     target="_blank"
