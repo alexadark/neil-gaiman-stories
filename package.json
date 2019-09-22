@@ -44,6 +44,7 @@
     "react-helmet": "^5.2.1",
     "react-hooks-use-modal": "^1.0.5",
     "react-responsive-modal": "^4.0.1",
+    "react-slick": "^0.25.2",
     "rebass": "^4.0.5",
     "styled-components": "^4.3.2",
     "theme-ui": "^0.2.38",

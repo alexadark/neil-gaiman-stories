@@ -12,9 +12,14 @@ import twitterIcon from "../images/twitter-icon.png"
 import Footer from "../components/Footer"
 import Carousel from "nuka-carousel"
 import Img from "gatsby-image"
+import Slider from "react-slick"
+import Prev from "../images/prev-icon.svg"
+import Next from "../images/next-icon.svg"
+
+import "../styles/slick.css"
+import "../styles/slick-theme.css"
 
 const ThankYou = props => {
-  // const { books } = data.wpgraphql
   let [rehydrated, setRehydrated] = useState(false)
   const [picks, setPicks] = useState([])
   useEffect(() => {
@@ -57,6 +62,31 @@ const ThankYou = props => {
       }
     }
   `)
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
+  }
 
   const { books } = data.wpgraphql
 
@@ -150,21 +180,38 @@ const ThankYou = props => {
               fontSize: `3.6rem`,
               fontWeight: 300,
               mt: `100px`,
+              mb: `20px`,
             }}
           >
             Check out these books by{" "}
             <span sx={{ color: `primary` }}>Neil Gaimain</span>
           </Box>
           <Box>
-            <Carousel
-              slidesToShow={5}
-              cellSpacing={20}
-              autoplay={true}
-              infiniteLoop={true}
-              sx={{ mt: 50 }}
+            <Slider
+              {...settings}
+              sx={{
+                ".slick-prev:before, .slick-next:before": {
+                  fontSize: `0 !important`,
+                  content: "",
+
+                  width: `50px`,
+                  height: `81px`,
+                  position: `absolute !important`,
+                  top: 0,
+                  display: [`none`, `none`, `block`],
+                },
+                ".slick-prev:before": {
+                  background: `url(${Prev}) no-repeat`,
+                  left: `-30px`,
+                },
+                ".slick-next:before": {
+                  background: `url(${Next}) no-repeat`,
+                  right: `-30px`,
+                },
+              }}
             >
               {books.nodes.map(book => (
-                <Box>
+                <Box sx={{ px: `10px`, display: `flex`, alignItems: `end` }}>
                   <a
                     href={`https://www.harpercollins.com/${book.bookFields.isbn}`}
                     target="_blank"
@@ -177,7 +224,7 @@ const ThankYou = props => {
                   </a>
                 </Box>
               ))}
-            </Carousel>
+            </Slider>
           </Box>
         </Container>
         <Box sx={{ mt: 100 }}>
