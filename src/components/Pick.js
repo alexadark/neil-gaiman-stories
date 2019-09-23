@@ -11,7 +11,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
   const charLimit = pickChar ? pickChar : 40
   const title = truncateString(story.title, charLimit)
   const removePick = () => setPicks(picks.filter(pick => pick !== story))
-  const setNumberOne = () => {
+  const setPosition = () => {
     const storyIndex = picks
       .map((pick, index) => pick === story && index)
       .filter(index => index)
@@ -91,16 +91,27 @@ const Pick = ({ story, setPicks, picks, i }) => {
               >
                 remove
               </Box>
-              <Box
-                className="reorderPick"
-                sx={{
-                  variant: `links.underlined`,
-                  top: `30px`,
-                }}
-                onClick={setNumberOne}
-              >
-                choose as number 1
-              </Box>
+              {i !== 0 && (
+                <Box
+                  className="reorderPick"
+                  sx={{
+                    variant: `links.underlined`,
+                    top: `30px`,
+                  }}
+                  onClick={() => {
+                    const storyIndex = picks
+                      .map((pick, index) => pick === story && index)
+                      .filter(index => index)
+                      .join()
+                    console.log("index", i)
+                    const position = i - 1
+
+                    return setPicks(move(picks, parseInt(storyIndex), position))
+                  }}
+                >
+                  choose as number {i}
+                </Box>
+              )}
             </Box>
           </Flex>
         </Flex>
