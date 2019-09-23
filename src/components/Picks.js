@@ -34,7 +34,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
         transition: `all .4s ease-in-out`,
         position: [`fixed`, `fixed`, `fixed`],
 
-        bottom: [-755, -575, -427],
+        bottom: [-902, -671, -427],
         height: [`auto`, `auto`, 500],
         left: 0,
         width: `100%`,
