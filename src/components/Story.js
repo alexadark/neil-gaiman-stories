@@ -1,14 +1,17 @@
 /** @jsx jsx */
 import { jsx, Styled, Box, Flex } from "theme-ui"
 import Img from "gatsby-image"
+import { truncateString } from "../utils"
 
 const Story = ({ story, onClickPicture, className }) => {
+  const title = truncateString(story.title, 70)
+
   return (
     <Flex
       className="story"
       sx={{
         width: [`50%`, `33%`, `20%`],
-        mb: [10, 20, 30],
+        // mb: 30,
         justifyContent: [`center`, `center`, `start`],
       }}
     >
@@ -19,7 +22,7 @@ const Story = ({ story, onClickPicture, className }) => {
         data-category={story.categories.nodes[0].slug}
         className={className}
         sx={{
-          justifyContent: `center`,
+          justifyContent: `end`,
           flexDirection: `column`,
           alignItems: `center`,
           width: `145px`,
@@ -73,13 +76,14 @@ const Story = ({ story, onClickPicture, className }) => {
           />
         )}
         <Styled.h4
-          dangerouslySetInnerHTML={{ __html: story.title }}
+          dangerouslySetInnerHTML={{ __html: title }}
           sx={{
             position: `absolute`,
             top: 25,
             left: 20,
             right: 20,
             cursor: `pointer`,
+            fontSize: [`1.8rem`, `1.8rem`],
           }}
         />
         <Box
@@ -92,7 +96,7 @@ const Story = ({ story, onClickPicture, className }) => {
           }}
         >
           <Box
-            sx={{ fontWeight: 900, mt: `5px`, height: 75 }}
+            sx={{ fontWeight: 900, mt: `5px`, mb: `20px` }}
             dangerouslySetInnerHTML={{ __html: story.title }}
           />
         </Box>

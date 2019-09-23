@@ -29,18 +29,20 @@ const PickPlaceHolder = ({ i, togglePicks }) => {
         </Flex>
       </Box>
       <Box>
-        <Flex sx={{ alignItems: `center` }}>
-          <PickNumber i={i} />
-          <div
-            className="chooseLink"
-            sx={{
-              variant: `links.underlined`,
-              width: 115,
-            }}
-            onClick={closePicks}
-          >
-            Choose Now
-          </div>
+        <Flex sx={{ height: 200 }}>
+          <Flex sx={{ alignItems: `center` }}>
+            <PickNumber i={i} />
+            <div
+              className="chooseLink"
+              sx={{
+                variant: `links.underlined`,
+                width: 115,
+              }}
+              onClick={closePicks}
+            >
+              Choose Now
+            </div>
+          </Flex>
         </Flex>
       </Box>
     </Flex>
