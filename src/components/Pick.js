@@ -64,9 +64,10 @@ const Pick = ({ story, setPicks, picks, i }) => {
           </Box>
 
           <PickNumber i={i} />
-
-          <Flex sx={{ flexDirection: `column`, justifyContent: `center` }}>
-            <Box sx={{ height: 200 }}>
+          <Flex
+            sx={{ height: 200, alignItems: `center`, justifyContent: `center` }}
+          >
+            <Box>
               <Box
                 className="pickTitle"
                 sx={{
@@ -76,9 +77,9 @@ const Pick = ({ story, setPicks, picks, i }) => {
                   mt: `15px`,
                 }}
               >
-                <div dangerouslySetInnerHTML={{ __html: story.title }} />
+                <Box dangerouslySetInnerHTML={{ __html: story.title }} />
               </Box>
-              <div
+              <Box
                 className="removePick"
                 sx={{
                   variant: `links.underlined`,
@@ -87,9 +88,9 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 onClick={removePick}
               >
                 remove
-              </div>
-              <div
-                className="reordePick"
+              </Box>
+              <Box
+                className="reorderPick"
                 sx={{
                   variant: `links.underlined`,
                   top: `30px`,
@@ -97,7 +98,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 onClick={setNumberOne}
               >
                 choose as number 1
-              </div>
+              </Box>
             </Box>
           </Flex>
         </Flex>
