@@ -7,7 +7,9 @@ import move from "lodash-move"
 import { truncateString } from "../utils"
 
 const Pick = ({ story, setPicks, picks, i }) => {
-  const title = truncateString(story.title, 40)
+  const { pickChar } = story.StoriesFields
+  const charLimit = pickChar ? pickChar : 40
+  const title = truncateString(story.title, charLimit)
   const removePick = () => setPicks(picks.filter(pick => pick !== story))
   const setNumberOne = () => {
     const storyIndex = picks

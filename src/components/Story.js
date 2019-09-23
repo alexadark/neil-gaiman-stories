@@ -4,7 +4,9 @@ import Img from "gatsby-image"
 import { truncateString } from "../utils"
 
 const Story = ({ story, onClickPicture, className }) => {
-  const title = truncateString(story.title, 70)
+  const { storyChar } = story.StoriesFields
+  const charLimit = storyChar ? storyChar : 70
+  const title = truncateString(story.title, charLimit)
 
   return (
     <Flex

@@ -151,8 +151,8 @@ export const pageQuery = graphql`
             }
           }
           StoriesFields {
-            originalBookLink
-            originalBookTitle
+            pickChar
+            storyChar
           }
           categories {
             nodes {
