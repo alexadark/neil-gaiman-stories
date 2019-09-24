@@ -27,11 +27,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
   }
 
   return (
-    <Flex
-      sx={{
-        justifyContent: `space-between`,
-      }}
-    >
+    <Flex>
       <Box
         className="pick"
         sx={{
@@ -41,6 +37,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
         <Flex
           sx={{
             alignItems: `center`,
+            justifyContent: `center`,
           }}
         >
           <Box sx={{ position: `relative` }}>
@@ -51,7 +48,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 sx={{
                   cursor: `pointer`,
                   borderRadius: `20px`,
-                  m: `0 auto 10px`,
+                  m: `0 auto`,
                   width: `102px !important`,
                   height: `151px !important`,
                 }}
@@ -69,55 +66,6 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 lineHeight: `21px`,
               }}
             />
-            <Box
-              sx={{
-                textAlign: `center`,
-                fontSize: 1,
-                color: `primary`,
-                mb: `10px`,
-              }}
-            >
-              reorder
-            </Box>
-            <Flex sx={{ justifyContent: `center` }}>
-              {i > 0 && (
-                <Box
-                  className="plus"
-                  onClick={() => {
-                    const storyIndex = picks
-                      .map((pick, index) => pick === story && index)
-                      .filter(index => index)
-                      .join()
-
-                    return setPicks(move(picks, parseInt(storyIndex), i - 1))
-                  }}
-                >
-                  <CaretPrevious
-                    color="#90a890"
-                    sx={{ cursor: `pointer`, color: `primary` }}
-                  />
-                </Box>
-              )}
-              {i < 2 && (
-                <Box
-                  className="less"
-                  onClick={() => {
-                    const storyIndex = picks
-                      .map((pick, index) => pick === story && index)
-                      .filter(index => index)
-                      .join()
-                    return setPicks(
-                      move(picks, storyIndex ? parseInt(storyIndex) : 0, i + 1)
-                    )
-                  }}
-                >
-                  <CaretNext
-                    color="#90a890"
-                    sx={{ cursor: `pointer`, ml: `15px` }}
-                  />
-                </Box>
-              )}
-            </Flex>
           </Box>
 
           <PickNumber i={i} />
@@ -147,6 +95,60 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 remove
               </Box>
             </Box>
+          </Flex>
+        </Flex>
+        <Flex
+          sx={{ alignItems: `center`, flexDirection: `column`, width: 100 }}
+        >
+          <Box
+            sx={{
+              textAlign: `center`,
+              fontSize: 1,
+              color: `primary`,
+              mb: `10px`,
+              mt: `-10px`,
+            }}
+          >
+            reorder
+          </Box>
+          <Flex sx={{ justifyContent: `center` }}>
+            {i > 0 && (
+              <Box
+                className="plus"
+                onClick={() => {
+                  const storyIndex = picks
+                    .map((pick, index) => pick === story && index)
+                    .filter(index => index)
+                    .join()
+
+                  return setPicks(move(picks, parseInt(storyIndex), i - 1))
+                }}
+              >
+                <CaretPrevious
+                  color="#90a890"
+                  sx={{ cursor: `pointer`, color: `primary` }}
+                />
+              </Box>
+            )}
+            {i < 2 && (
+              <Box
+                className="less"
+                onClick={() => {
+                  const storyIndex = picks
+                    .map((pick, index) => pick === story && index)
+                    .filter(index => index)
+                    .join()
+                  return setPicks(
+                    move(picks, storyIndex ? parseInt(storyIndex) : 0, i + 1)
+                  )
+                }}
+              >
+                <CaretNext
+                  color="#90a890"
+                  sx={{ cursor: `pointer`, ml: `15px` }}
+                />
+              </Box>
+            )}
           </Flex>
         </Flex>
       </Box>
