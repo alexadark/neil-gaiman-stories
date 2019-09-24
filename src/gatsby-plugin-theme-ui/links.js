@@ -1,15 +1,31 @@
+const commonStyles = {
+  cursor: `pointer`,
+  position: `relative`,
+  fontSize: 0,
+  transition: `all .4s ease-in-out`,
+}
 export default {
   underlined: {
-    cursor: `pointer`,
-    position: `relative`,
+    ...commonStyles,
 
-    fontSize: 0,
     fontWeight: 300,
     color: `primary`,
     textDecoration: `underline`,
-    transition: `all .4s ease-in-out`,
+
     ":hover": {
       color: `white`,
+    },
+  },
+  button: {
+    ...commonStyles,
+    bg: `secondary`,
+    p: `5px`,
+    color: `white`,
+    textAlign: `center`,
+    borderRadius: `5px`,
+    // fontWeight: `bold`,
+    ":hover": {
+      bg: `primary`,
     },
   },
 }

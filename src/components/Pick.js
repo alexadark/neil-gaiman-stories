@@ -17,7 +17,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
       .filter(index => index)
       .join()
 
-    return setPicks(move(picks, parseInt(storyIndex), 0))
+    return setPicks(move(picks, parseInt(storyIndex), i - 1))
   }
 
   return (
@@ -45,7 +45,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 sx={{
                   cursor: `pointer`,
                   borderRadius: `20px`,
-                  m: `0 auto`,
+                  m: `0 auto 10px`,
                   width: `102px !important`,
                   height: `151px !important`,
                 }}
@@ -63,6 +63,17 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 lineHeight: `21px`,
               }}
             />
+            {i !== 0 && (
+              <Box
+                className="reorderPick"
+                sx={{
+                  variant: `links.button`,
+                }}
+                onClick={setPosition}
+              >
+                set as number {i}
+              </Box>
+            )}
           </Box>
 
           <PickNumber i={i} />
@@ -91,27 +102,6 @@ const Pick = ({ story, setPicks, picks, i }) => {
               >
                 remove
               </Box>
-              {i !== 0 && (
-                <Box
-                  className="reorderPick"
-                  sx={{
-                    variant: `links.underlined`,
-                    top: `30px`,
-                  }}
-                  onClick={() => {
-                    const storyIndex = picks
-                      .map((pick, index) => pick === story && index)
-                      .filter(index => index)
-                      .join()
-                    console.log("index", i)
-                    const position = i - 1
-
-                    return setPicks(move(picks, parseInt(storyIndex), position))
-                  }}
-                >
-                  choose as number {i}
-                </Box>
-              )}
             </Box>
           </Flex>
         </Flex>
