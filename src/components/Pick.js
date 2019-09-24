@@ -102,17 +102,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
         >
           <Flex sx={{ justifyContent: `center` }}>
             {i > 0 && (
-              <Box
-                className="plus"
-                onClick={() => {
-                  const storyIndex = picks
-                    .map((pick, index) => pick === story && index)
-                    .filter(index => index)
-                    .join()
-
-                  return setPicks(move(picks, parseInt(storyIndex), i - 1))
-                }}
-              >
+              <Box className="plus" onClick={() => setPosition(true)}>
                 <CaretPrevious
                   color="#90a890"
                   sx={{ cursor: `pointer`, color: `primary` }}
@@ -120,18 +110,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
               </Box>
             )}
             {i < 2 && (
-              <Box
-                className="less"
-                onClick={() => {
-                  const storyIndex = picks
-                    .map((pick, index) => pick === story && index)
-                    .filter(index => index)
-                    .join()
-                  return setPicks(
-                    move(picks, storyIndex ? parseInt(storyIndex) : 0, i + 1)
-                  )
-                }}
-              >
+              <Box className="less" onClick={() => setPosition(false)}>
                 <CaretNext
                   color="#90a890"
                   sx={{ cursor: `pointer`, ml: `15px` }}
