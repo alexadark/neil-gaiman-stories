@@ -5,19 +5,25 @@ import Img from "gatsby-image"
 import PickNumber from "./PickNumber"
 import move from "lodash-move"
 import { truncateString } from "../utils"
+import { CaretNext, CaretPrevious } from "grommet-icons"
 
 const Pick = ({ story, setPicks, picks, i }) => {
   const { pickChar } = story.StoriesFields
   const charLimit = pickChar ? pickChar : 40
   const title = truncateString(story.title, charLimit)
   const removePick = () => setPicks(picks.filter(pick => pick !== story))
-  const setPosition = () => {
+  const setPosition = operator => {
     const storyIndex = picks
       .map((pick, index) => pick === story && index)
       .filter(index => index)
       .join()
-
-    return setPicks(move(picks, parseInt(storyIndex), i - 1))
+    return setPicks(
+      move(
+        picks,
+        storyIndex ? parseInt(storyIndex) : 0,
+        operator ? i - 1 : i + 1
+      )
+    )
   }
 
   return (
@@ -63,17 +69,52 @@ const Pick = ({ story, setPicks, picks, i }) => {
                 lineHeight: `21px`,
               }}
             />
-            {i !== 0 && (
-              <Box
-                className="reorderPick"
-                sx={{
-                  variant: `links.button`,
-                }}
-                onClick={setPosition}
-              >
-                set as number {i}
-              </Box>
-            )}
+            <Box
+              sx={{
+                textAlign: `center`,
+                fontSize: 1,
+                color: `primary`,
+                mb: `10px`,
+              }}
+            >
+              reorder
+            </Box>
+            <Flex sx={{ justifyContent: `center` }}>
+              {i > 0 && (
+                <Box
+                  className="plus"
+                  onClick={() => {
+                    const storyIndex = picks
+                      .map((pick, index) => pick === story && index)
+                      .filter(index => index)
+                      .join()
+
+                    return setPicks(move(picks, parseInt(storyIndex), i - 1))
+                  }}
+                >
+                  <CaretPrevious color="white" sx={{ cursor: `pointer` }} />
+                </Box>
+              )}
+              {i < 2 && (
+                <Box
+                  className="less"
+                  onClick={() => {
+                    const storyIndex = picks
+                      .map((pick, index) => pick === story && index)
+                      .filter(index => index)
+                      .join()
+                    return setPicks(
+                      move(picks, storyIndex ? parseInt(storyIndex) : 0, i + 1)
+                    )
+                  }}
+                >
+                  <CaretNext
+                    color="white"
+                    sx={{ cursor: `pointer`, ml: `15px` }}
+                  />
+                </Box>
+              )}
+            </Flex>
           </Box>
 
           <PickNumber i={i} />
