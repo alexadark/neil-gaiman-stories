@@ -15,6 +15,7 @@ const Story = ({ story, onClickPicture, className }) => {
         width: [`50%`, `33%`, `20%`],
         // mb: 30,
         justifyContent: [`center`, `center`, `start`],
+        alignItems: `start`,
       }}
     >
       <Flex
