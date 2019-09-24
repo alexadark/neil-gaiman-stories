@@ -107,7 +107,7 @@ const IndexPage = ({ data }) => {
       <Overlay arePicksOpen={arePicksOpen} togglePicks={togglePicks} />
       <Layout>
         <Container>
-          <SEO title="" />
+          <SEO title="home" />
           <Search onSearchStories={findStories} stories={stories} />
           <CategoryFilter
             stories={stories}

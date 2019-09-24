@@ -1,9 +1,9 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
 import { useContext, useState } from "react"
-import { navigate, Link, useStaticQuery, graphql } from "gatsby"
-import { Mutation } from "react-apollo"
-import { useApolloClient, useMutation } from "@apollo/react-hooks"
+import { navigate, useStaticQuery, graphql } from "gatsby"
+
+import { useMutation } from "@apollo/react-hooks"
 import { gql } from "apollo-boost"
 import { Input, Textarea } from "@rebass/forms"
 import { VoteContext } from "../pages"
