@@ -100,17 +100,6 @@ const Pick = ({ story, setPicks, picks, i }) => {
         <Flex
           sx={{ alignItems: `center`, flexDirection: `column`, width: 100 }}
         >
-          <Box
-            sx={{
-              textAlign: `center`,
-              fontSize: 1,
-              color: `primary`,
-              mb: `10px`,
-              mt: `-10px`,
-            }}
-          >
-            reorder
-          </Box>
           <Flex sx={{ justifyContent: `center` }}>
             {i > 0 && (
               <Box

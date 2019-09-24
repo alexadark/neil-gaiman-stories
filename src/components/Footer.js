@@ -1,6 +1,5 @@
 /** @jsx jsx */
-import { jsx } from "theme-ui"
-import { Link } from "gatsby"
+import { jsx, Box } from "theme-ui"
 
 const Footer = () => {
   const d = new Date()
@@ -16,13 +15,41 @@ const Footer = () => {
       }}
     >
       Copyright © {d.getFullYear()} HarperCollins Publishers. All rights
-      reserved.{" "}
-      <Link
-        sx={{ color: `primary`, ":hover": { color: `white` } }}
-        to="/terms-and-conditions"
+      reserved.
+      <Box
+        sx={{
+          my: `10px`,
+          a: {
+            color: `primary`,
+            ":hover": { color: `white` },
+            textAlign: `center`,
+          },
+        }}
       >
-        Terms & Conditions.
-      </Link>
+        <a
+          href="https://www.harpercollins.com/corporate/terms-of-use/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Terms of Use
+        </a>{" "}
+        <span sx={{ color: `#999`, mx: `5px` }}>|</span>
+        <a
+          href="https://www.harpercollins.com/terms-of-sale/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Terms of Sale
+        </a>{" "}
+        <span sx={{ color: `#999`, mx: `5px` }}>|</span>
+        <a
+          href="https://www.harpercollins.com/corporate/privacy-policy/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy policy
+        </a>
+      </Box>
     </footer>
   )
 }
