@@ -92,7 +92,10 @@ const Pick = ({ story, setPicks, picks, i }) => {
                     return setPicks(move(picks, parseInt(storyIndex), i - 1))
                   }}
                 >
-                  <CaretPrevious color="white" sx={{ cursor: `pointer` }} />
+                  <CaretPrevious
+                    color="#90a890"
+                    sx={{ cursor: `pointer`, color: `primary` }}
+                  />
                 </Box>
               )}
               {i < 2 && (
@@ -109,7 +112,7 @@ const Pick = ({ story, setPicks, picks, i }) => {
                   }}
                 >
                   <CaretNext
-                    color="white"
+                    color="#90a890"
                     sx={{ cursor: `pointer`, ml: `15px` }}
                   />
                 </Box>
