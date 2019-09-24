@@ -226,6 +226,17 @@ const ThankYou = props => {
             </Slider>
           </Box>
         </Container>
+
+        <Flex sx={{ justifyContent: `center`, mt: 50 }}>
+          <a
+            href="https://www.harpercollins.com/authors/neilgaiman/ "
+            target="_blank"
+            rel="noopener noreferrer"
+            sx={{ variant: `buttons.voteActive` }}
+          >
+            MORE
+          </a>
+        </Flex>
         <Box sx={{ mt: 100 }}>
           <Footer />
         </Box>
