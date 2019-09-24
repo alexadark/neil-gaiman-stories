@@ -131,8 +131,22 @@ const VoteForm = ({ setVote }) => {
       >
         *Required
       </Box>
-      <Link
-        to="./terms-and-conditions"
+      <Box sx={{ fontSize: 0, my: `10px`, textAlign: `center`, color: `#444` }}>
+        {" "}
+        Gaimanfavorites.com is a promotional service of HarperCollins
+        Publishers, 195 Broadway, New York, NY 10007, providing information
+        about the products of HarperCollins and its affiliates. By submitting
+        your email address, you understand that you will receive email
+        communications from Bookperk and other HarperCollins’ services. You may
+        unsubscribe from these email communications at any time. If you have any
+        questions, please review our privacy policy or email us at
+        privacypolicy@harpercollins.com
+      </Box>
+
+      <a
+        href="https://www.harpercollins.com/corporate/terms-of-use/"
+        target="_blank"
+        rel="noopener noreferrer"
         sx={{
           color: `#382500`,
           fontWeight: 900,
@@ -147,8 +161,8 @@ const VoteForm = ({ setVote }) => {
           },
         }}
       >
-        Terms and Conditions
-      </Link>
+        Terms of Use
+      </a>
     </Box>
   )
 }
