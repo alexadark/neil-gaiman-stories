@@ -121,16 +121,34 @@ const ThankYou = props => {
               fontFamily: `body`,
             }}
           >
-            Follow Neil Gaiman on Facebook to find out which stories make it.
+            Follow Neil Gaiman to find out which stories make it.
           </Box>
-          <Flex sx={{ justifyContent: `center`, mt: `15px`, mb: `30px` }}>
-            <a
-              href="https://www.facebook.com/neilgaiman/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={fbIcon} alt="facebook" />
-            </a>
+          <Flex
+            sx={{
+              justifyContent: `center`,
+              mt: `15px`,
+              mb: `30px`,
+              ">div": { mx: `10px` },
+            }}
+          >
+            <Box>
+              <a
+                href="https://www.facebook.com/neilgaiman/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={fbIcon} alt="facebook" />
+              </a>
+            </Box>
+            <Box>
+              <a
+                href="https://twitter.com/neilhimself"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={twitterIcon} alt="twitter" />
+              </a>
+            </Box>
           </Flex>
           <Box
             sx={{
