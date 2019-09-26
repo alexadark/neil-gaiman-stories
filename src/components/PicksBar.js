@@ -11,6 +11,10 @@ const PicksBar = ({ arePicksOpen, togglePicks, picks }) => {
       sx={{
         bg: `primary`,
         py: `15px`,
+        cursor: `pointer`,
+      }}
+      onClick={() => {
+        togglePicks(!arePicksOpen)
       }}
     >
       <Container>
@@ -39,9 +43,6 @@ const PicksBar = ({ arePicksOpen, togglePicks, picks }) => {
                 transition: `all .4s ease-in-out`,
               }}
               alt="open icon"
-              onClick={() => {
-                togglePicks(!arePicksOpen)
-              }}
             />
           </Box>
         </Flex>
