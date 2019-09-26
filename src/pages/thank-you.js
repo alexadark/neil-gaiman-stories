@@ -154,8 +154,10 @@ const ThankYou = props => {
           >
             <Box>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=Calling all Neil Gaiman readers! Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And we’d like you to help us – and Neil – choose the stories that will be included. ${picks.length >
-                  0 && picks[0].title} `}
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=Calling My favorite Neil Gaiman story is "${picks.length >
+                  0 &&
+                  picks[0]
+                    .title}".What's yours? Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And your vote will help Neil choose the stories that will be included. Vote now at https://www.gaimanfavorites.com #VoteNeilCollection  `}
                 target="_blank"
               >
                 <img src={fbIcon} alt="facebook" />
@@ -163,8 +165,7 @@ const ThankYou = props => {
             </Box>
             <Box>
               <a
-                href={`https://twitter.com/intent/tweet?text=all Neil Gaiman readers! Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And we’d like you to help us – and Neil – choose the stories that will be included. ${picks.length >
-                  0 && picks[0].title} &url=https://www.gaimanfavorites.com`}
+                href={`https://twitter.com/intent/tweet?text=Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And your vote will help @neilhimself choose the stories that will be included. https://www.gaimanfavorites.com #VoteNeilCollection`}
                 target="_blank"
               >
                 <img src={twitterIcon} alt="twitter" />
