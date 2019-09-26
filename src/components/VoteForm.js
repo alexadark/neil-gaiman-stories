@@ -52,6 +52,7 @@ const VoteForm = ({ setVote }) => {
       }}
     >
       <form
+        id="voteform"
         onSubmit={e => {
           e.preventDefault()
           voteMutation()

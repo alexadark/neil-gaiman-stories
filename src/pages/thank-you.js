@@ -235,7 +235,7 @@ const ThankYou = props => {
             rel="noopener noreferrer"
             sx={{ variant: `buttons.voteActive` }}
           >
-            MORE
+            VIEW MORE
           </a>
         </Flex>
         <Box sx={{ mt: 100 }}>
