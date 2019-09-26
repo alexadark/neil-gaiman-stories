@@ -2,12 +2,13 @@
 import { jsx, Flex, Box } from "theme-ui"
 import AddIcon from "../images/add-icon.png"
 import PickNumber from "./PickNumber"
+import { CaretNext, CaretPrevious } from "grommet-icons"
 
 const PickPlaceHolder = ({ i, togglePicks }) => {
   const closePicks = () => togglePicks(false)
   return (
     <Flex sx={{ alignItems: `center` }}>
-      <Box sx={{ mb: [50, 60, 0] }}>
+      <Box sx={{ pb: [120, 120, 0] }}>
         <Flex
           sx={{
             justifyContent: `center`,
@@ -30,7 +31,7 @@ const PickPlaceHolder = ({ i, togglePicks }) => {
       </Box>
       <Box>
         <Flex sx={{ height: 200 }}>
-          <Flex sx={{ alignItems: `center` }}>
+          <Flex sx={{ alignItems: `center`, mt: [`-120px`, `-120px`, 0] }}>
             <PickNumber i={i} />
             <div
               className="chooseLink"
