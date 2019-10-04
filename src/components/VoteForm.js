@@ -17,6 +17,21 @@ const SUBMIT_VOTE_MUTATION = gql`
   }
 `
 
+const http = new XMLHttpRequest()
+const url = "https://www.pages02.net/harpercollins/201910-gaimanfavorites/gfsub"
+
+http.open("POST", url, true)
+
+//Send the proper header information along with the request
+http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
+
+http.onreadystatechange = function() {
+  //Call a function when the state changes.
+  if (http.readyState == 4 && http.status == 200) {
+    alert(http.responseText)
+  }
+}
+
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
   // const [displayError, setDisplayError] = useState(false)
@@ -32,9 +47,9 @@ const VoteForm = ({ setVote }) => {
     }
   `)
 
-  const existingVotesMails = votesData.wpgraphql.votes.nodes.map(
-    item => item.title
-  )
+  // const existingVotesMails = votesData.wpgraphql.votes.nodes.map(
+  //   item => item.title
+  // )
 
   const [voteMutation, { data, error }] = useMutation(SUBMIT_VOTE_MUTATION, {
     variables: {
@@ -56,6 +71,9 @@ const VoteForm = ({ setVote }) => {
         onSubmit={e => {
           e.preventDefault()
           voteMutation()
+          http.send(
+            `formSourceName=StandardForm&sp_exp=yes&BookperkOptIn_lastmod=01/01/1950&BookperkStatus=Yes&Bookperk_marketingcode=Gaiman Favorites 201910&Marketing Code=Gaiman Favorites 201910&MarketingCode_Last=Gaiman Favorites 201910&Email=${vote.emailInput}`
+          )
           navigate("/thank-you/")
         }}
       >
