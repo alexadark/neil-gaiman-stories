@@ -19,7 +19,7 @@ const SUBMIT_VOTE_MUTATION = gql`
 
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
-  const [displayError, setDisplayError] = useState(false)
+  // const [displayError, setDisplayError] = useState(false)
   const votesData = useStaticQuery(graphql`
     query votesQuery {
       wpgraphql {
@@ -56,11 +56,7 @@ const VoteForm = ({ setVote }) => {
         onSubmit={e => {
           e.preventDefault()
           voteMutation()
-          existingVotesMails.includes(vote.emailInput)
-            ? setDisplayError(
-                "It looks like you've voted already! Thanks for participating."
-              )
-            : navigate("/thank-you/")
+          navigate("/thank-you/")
         }}
       >
         <Box
@@ -102,7 +98,7 @@ const VoteForm = ({ setVote }) => {
           value={vote.messageInput}
           onChange={e => setVote({ ...vote, messageInput: e.target.value })}
         />
-        {displayError && (
+        {/* {displayError && (
           <Box
             sx={{
               textAlign: `center`,
@@ -113,7 +109,7 @@ const VoteForm = ({ setVote }) => {
           >
             {displayError}
           </Box>
-        )}
+        )} */}
         <input
           type="submit"
           value="Vote Now"
