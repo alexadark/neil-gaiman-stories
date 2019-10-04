@@ -2,7 +2,6 @@
 import { jsx, Flex, Box } from "theme-ui"
 import AddIcon from "../images/add-icon.png"
 import PickNumber from "./PickNumber"
-import { CaretNext, CaretPrevious } from "grommet-icons"
 
 const PickPlaceHolder = ({ i, togglePicks }) => {
   const closePicks = () => togglePicks(false)
