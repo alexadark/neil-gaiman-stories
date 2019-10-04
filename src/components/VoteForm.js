@@ -56,7 +56,6 @@ const VoteForm = ({ setVote }) => {
         onSubmit={e => {
           e.preventDefault()
           voteMutation()
-          console.log("mails", existingVotesMails, "data", data, "error", error)
           existingVotesMails.includes(vote.emailInput)
             ? setDisplayError(
                 "It looks like you've voted already! Thanks for participating."
