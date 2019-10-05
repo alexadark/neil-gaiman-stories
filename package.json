@@ -52,7 +52,9 @@
     "typeface": "^0.0.0",
     "typeface-antonio": "^1.0.1",
     "typeface-antonio-complete": "^1.0.4",
-    "typeface-roboto": "^0.0.75"
+    "typeface-roboto": "^0.0.75",
+    "xhr2": "^0.2.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "devDependencies": {
     "prettier": "^1.18.2"

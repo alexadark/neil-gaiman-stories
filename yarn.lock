@@ -11326,6 +11326,10 @@ xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
 
+xhr2@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/xhr2/-/xhr2-0.2.0.tgz#eddeff782f3b7551061b8d75645085269396e521"
+
 xhr@^2.0.1:
   version "2.5.0"
   resolved "https://registry.yarnpkg.com/xhr/-/xhr-2.5.0.tgz#bed8d1676d5ca36108667692b74b316c496e49dd"
@@ -11353,6 +11357,10 @@ xmlbuilder@~9.0.1:
 xmlhttprequest-ssl@~1.5.4:
   version "1.5.5"
   resolved "https://registry.yarnpkg.com/xmlhttprequest-ssl/-/xmlhttprequest-ssl-1.5.5.tgz#c2876b06168aadc40e57d97e81191ac8f4398b3e"
+
+xmlhttprequest@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/xmlhttprequest/-/xmlhttprequest-1.8.0.tgz#67fe075c5c24fef39f9d65f5f7b7fe75171968fc"
 
 xstate@^3.1.0:
   version "3.3.3"

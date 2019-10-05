@@ -8,6 +8,7 @@ import { gql } from "apollo-boost"
 import { Input, Textarea } from "@rebass/forms"
 import { VoteContext } from "../pages"
 import { lighten } from "polished"
+const XMLHttpRequest = require("xhr2")
 
 const SUBMIT_VOTE_MUTATION = gql`
   mutation voteMutation($input: VoteMutationInput!) {
