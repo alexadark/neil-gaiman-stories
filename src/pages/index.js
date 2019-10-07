@@ -1,6 +1,6 @@
 /** @jsx jsx */
 import { createContext } from "react"
-import { jsx, Container, Box } from "theme-ui"
+import { jsx, Container } from "theme-ui"
 import { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Search from "../components/Search"
@@ -50,7 +50,7 @@ const IndexPage = ({ data }) => {
   useEffect(() => {
     // Check if the code is running in a browser, and if so load the saved state.
     if (!rehydrated && window) {
-      console.log(rehydrated)
+      // console.log(rehydrated)
       let ls = window.localStorage
       let data = ls.getItem("picks")
       if (data) setPicks(JSON.parse(data))

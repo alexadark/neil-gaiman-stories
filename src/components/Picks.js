@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { useState, useRef, useEffect } from "react"
+import { useState } from "react"
 import { jsx, Flex, Box, Container } from "theme-ui"
 import PickPlaceHolder from "./PickPlaceHolder"
 import Pick from "./Pick"
@@ -12,7 +12,7 @@ import modalStyles from "../styles/styles.module.scss"
 
 const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const [isModalOpen, openModal] = useState(false)
-  const picksRef = useRef()
+  // const picksRef = useRef()
 
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
@@ -23,12 +23,12 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
     zIndex: 200,
   }
 
-  useEffect(() => picksRef.current.scrollIntoView(), [arePicksOpen])
+  // useEffect(() => picksRef.current.scrollIntoView(), [arePicksOpen])
 
   return (
     <Box
       className="picksContainer"
-      ref={picksRef}
+      // ref={picksRef}
       sx={{
         bg: `black`,
         transition: `all .4s ease-in-out`,
@@ -47,7 +47,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
         togglePicks={togglePicks}
         picks={picks}
       />
-      <Container sx={{ maxWidth: 860 }} ref={picksRef}>
+      <Container sx={{ maxWidth: 860 }}>
         <Flex
           sx={{
             justifyContent: `space-around`,
@@ -58,7 +58,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
           {/* mapping around an array of length 3, and depending on if the pick exist on the interation index having the pick or the placeholder */}
           {Array.from({ length: 3 }).map((_, i) => {
             return (
-              <Box>
+              <Box key={i}>
                 <Flex sx={{ alignItems: `center` }}>
                   <Box sx={{ mr: `10px` }}>
                     {picks[i] ? (

@@ -1,13 +1,13 @@
 /** @jsx jsx */
 import { jsx, Box } from "theme-ui"
-import { useContext, useState } from "react"
-import { navigate, useStaticQuery, graphql } from "gatsby"
+import { useContext } from "react"
+import { navigate } from "gatsby"
 
 import { useMutation } from "@apollo/react-hooks"
 import { gql } from "apollo-boost"
 import { Input, Textarea } from "@rebass/forms"
 import { VoteContext } from "../pages"
-import { lighten } from "polished"
+
 const XMLHttpRequest = require("xhr2")
 
 const SUBMIT_VOTE_MUTATION = gql`
@@ -28,7 +28,7 @@ http.setRequestHeader("Content-type", "application/x-www-form-urlencoded")
 
 http.onreadystatechange = function() {
   //Call a function when the state changes.
-  if (http.readyState == 4 && http.status == 200) {
+  if (http.readyState === 4 && http.status === 200) {
     alert(http.responseText)
   }
 }

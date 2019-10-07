@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, Styled, Flex, Box } from "theme-ui"
-import React from "react"
 import Img from "gatsby-image"
 import PickNumber from "./PickNumber"
 import move from "lodash-move"

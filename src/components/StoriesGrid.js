@@ -10,13 +10,11 @@ const StoriesGrid = ({
   arePicksOpen,
   togglePicks,
 }) => {
-  // TODO: make disable work after reload from localStorage
-
   return (
     <Flex
       className="gridContainer"
       sx={{ flexWrap: `wrap`, mt: 40 }}
-      onClcik={() => !arePicksOpen && togglePicks(true)}
+      onClick={() => !arePicksOpen && togglePicks(true)}
     >
       {results !== [] &&
         results.map(story => {

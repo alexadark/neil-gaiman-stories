@@ -1,6 +1,6 @@
 /** @jsx jsx */
 
-import { jsx, Styled, Flex, Box, Container } from "theme-ui"
+import { jsx, Flex, Box, Container } from "theme-ui"
 import { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo"
@@ -187,6 +187,7 @@ const ThankYou = props => {
                   picks[0]
                     .title}".What's yours? Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include. Vote now at https://www.gaimanfavorites.com. `}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={fbIcon} alt="facebook" />
               </a>
@@ -195,6 +196,7 @@ const ThankYou = props => {
               <a
                 href={`https://twitter.com/intent/tweet?text=Next year, @wmmorrowbooks will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help @neilhimself choose the stories to include. https://www.gaimanfavorites.com  %23VoteNeilCollection`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <img src={twitterIcon} alt="twitter" />
               </a>
