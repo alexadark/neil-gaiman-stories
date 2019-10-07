@@ -11,11 +11,7 @@ const StoriesGrid = ({
   togglePicks,
 }) => {
   return (
-    <Flex
-      className="gridContainer"
-      sx={{ flexWrap: `wrap`, mt: 40 }}
-      onClick={() => !arePicksOpen && togglePicks(true)}
-    >
+    <Flex className="gridContainer" sx={{ flexWrap: `wrap`, mt: 40 }}>
       {results !== [] &&
         results.map(story => {
           //if the story is includes in pick, add a disabled class and  disable the add Pick function on click
