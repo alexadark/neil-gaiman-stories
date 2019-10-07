@@ -35,23 +35,6 @@ http.onreadystatechange = function() {
 
 const VoteForm = ({ setVote }) => {
   const vote = useContext(VoteContext)
-  // const [displayError, setDisplayError] = useState(false)
-  const votesData = useStaticQuery(graphql`
-    query votesQuery {
-      wpgraphql {
-        votes(first: 1000000000) {
-          nodes {
-            title
-          }
-        }
-      }
-    }
-  `)
-
-  // const existingVotesMails = votesData.wpgraphql.votes.nodes.map(
-  //   item => item.title
-  // )
-
   const [voteMutation, { data, error }] = useMutation(SUBMIT_VOTE_MUTATION, {
     variables: {
       input: vote,
