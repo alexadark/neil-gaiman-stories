@@ -138,29 +138,8 @@ const VoteForm = ({ setVote }) => {
         communications from Bookperk and other HarperCollins’ services. You may
         unsubscribe from these email communications at any time. If you have any
         questions, please review our privacy policy or email us at
-        privacypolicy@harpercollins.com
+        privacypolicy@harpercollins.com.
       </Box>
-
-      <a
-        href="https://www.harpercollins.com/corporate/terms-of-use/"
-        target="_blank"
-        rel="noopener noreferrer"
-        sx={{
-          color: `#382500`,
-          fontWeight: 900,
-          textAlign: `center`,
-          textDecoration: `underline`,
-          fontSize: 1,
-          display: `block`,
-          mt: `5px`,
-          cursor: `pointer`,
-          "&:hover": {
-            color: lighten(0.1, `#382500`),
-          },
-        }}
-      >
-        Terms of Use
-      </a>
     </Box>
   )
 }

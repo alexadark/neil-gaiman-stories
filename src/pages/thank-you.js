@@ -9,6 +9,7 @@ import { Global } from "@emotion/core"
 import { GlobalStyles } from "../styles/GlobalStyles"
 import fbIcon from "../images/fb-icon.png"
 import twitterIcon from "../images/twitter-icon.png"
+import instaIcon from "../images/insta-icon.svg"
 import Footer from "../components/Footer"
 import Img from "gatsby-image"
 import Slider from "react-slick"
@@ -149,6 +150,15 @@ const ThankYou = props => {
                 <img src={twitterIcon} alt="twitter" />
               </a>
             </Box>
+            <Box>
+              <a
+                href="https://www.instagram.com/neilhimself/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={instaIcon} alt="instagram" />
+              </a>
+            </Box>
           </Flex>
           <Box
             sx={{
@@ -172,10 +182,10 @@ const ThankYou = props => {
           >
             <Box>
               <a
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=Calling My favorite Neil Gaiman story is "${picks.length >
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=My favorite Neil Gaiman story is "${picks.length >
                   0 &&
                   picks[0]
-                    .title}".What's yours? Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And your vote will help Neil choose the stories that will be included. Vote now at https://www.gaimanfavorites.com #VoteNeilCollection  `}
+                    .title}".What's yours? Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include. Vote now at https://www.gaimanfavorites.com. `}
                 target="_blank"
               >
                 <img src={fbIcon} alt="facebook" />
@@ -183,7 +193,7 @@ const ThankYou = props => {
             </Box>
             <Box>
               <a
-                href={`https://twitter.com/intent/tweet?text=Next year, William Morrow will publish the ultimate collection of fiction by Neil Gaiman – a must-have for fans and new readers alike. And your vote will help @neilhimself choose the stories that will be included. https://www.gaimanfavorites.com #VoteNeilCollection`}
+                href={`https://twitter.com/intent/tweet?text=Next year, @wmmorrowbooks will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help @neilhimself choose the stories to include. https://www.gaimanfavorites.com  %23VoteNeilCollection`}
                 target="_blank"
               >
                 <img src={twitterIcon} alt="twitter" />
@@ -202,7 +212,7 @@ const ThankYou = props => {
             }}
           >
             Check out these books by{" "}
-            <span sx={{ color: `primary` }}>Neil Gaimain</span>
+            <span sx={{ color: `primary` }}>Neil Gaiman</span>
           </Box>
           <Box>
             <Slider
