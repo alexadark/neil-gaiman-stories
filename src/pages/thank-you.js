@@ -185,7 +185,7 @@ const ThankYou = props => {
                 href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=My favorite Neil Gaiman story is "[[${picks.length >
                   0 &&
                   picks[0]
-                    .title}]]".What's yours? Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories-a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include. Vote now at https://www.gaimanfavorites.com. `}
+                    .title}]]". What's yours? Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories — a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include. Vote now at https://www.gaimanfavorites.com. `}
                 target="_blank"
                 rel="noopener noreferrer"
               >
