@@ -107,7 +107,7 @@ const IndexPage = ({ data }) => {
       <Overlay arePicksOpen={arePicksOpen} togglePicks={togglePicks} />
       <Layout>
         <Container>
-          <SEO title="home" />
+          <SEO title="The Neil Gaiman Reader: Fiction" />
           <Search onSearchStories={findStories} stories={stories} />
           <CategoryFilter
             stories={stories}

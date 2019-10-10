@@ -41,19 +41,35 @@ function SEO({ description, lang, meta, title }) {
       meta={[
         {
           name: `description`,
-          content: metaDescription,
+          content: `Calling all Neil Gaiman fans...
+
+        Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include.
+
+        Vote for your top three favorite stories by clicking on them below. If you have a moment, please share with us why you love your #1 choice.
+
+        Cast your votes no later than October 31st, 2019. The winning stories will be announced on or before April 27th, 2020.`,
         },
         {
           property: `og:title`,
-          content: title,
+          content: `The Neil Gaiman Reader: Fiction`,
         },
         {
           property: `og:description`,
-          content: metaDescription,
+          content: `Calling all Neil Gaiman fans...
+
+        Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include.
+
+        Vote for your top three favorite stories by clicking on them below. If you have a moment, please share with us why you love your #1 choice.
+
+        Cast your votes no later than October 31st, 2019. The winning stories will be announced on or before April 27th, 2020.`,
         },
         {
           property: `og:type`,
           content: `website`,
+        },
+        {
+          property: `og:url`,
+          content: `https://www.gaimanfavorites.com`,
         },
         {
           name: `twitter:card`,
@@ -65,11 +81,17 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: `The Neil Gaiman Reader: Fiction`,
         },
         {
           name: `twitter:description`,
-          content: metaDescription,
+          content: `Calling all Neil Gaiman fans...
+
+        Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include.
+
+        Vote for your top three favorite stories by clicking on them below. If you have a moment, please share with us why you love your #1 choice.
+
+        Cast your votes no later than October 31st, 2019. The winning stories will be announced on or before April 27th, 2020.`,
         },
       ].concat(meta)}
     />
