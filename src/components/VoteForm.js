@@ -55,6 +55,18 @@ const VoteForm = ({ setVote }) => {
         onSubmit={e => {
           e.preventDefault()
           voteMutation()
+
+          var xhr = new XMLHttpRequest()
+          xhr.open('GET', `https://api2.ibmmarketingcloud.com/XMLAPI?xml=%3CEnvelope%3E%3CBody%3E%3CAddRecipient%3E%3CLIST_ID%3E3089299%3C%2FLIST_ID%3E%3CCREATED_FROM%3E2%3C%2FCREATED_FROM%3E%3CUPDATE_IF_FOUND%3Etrue%3C%2FUPDATE_IF_FOUND%3E%3CCONTACT_LISTS%3E%3CCONTACT_LIST_ID%3E4796792%3C%2FCONTACT_LIST_ID%3E%3CCONTACT_LIST_ID%3E10123378%3C%2FCONTACT_LIST_ID%3E%3C%2FCONTACT_LISTS%3E%3CCOLUMN%3E%3CNAME%3EEMAIL%3C%2FNAME%3E%3CVALUE%3E${vote.emailInput}%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3CCOLUMN%3E%3CNAME%3EBookperkStatus%3C%2FNAME%3E%3CVALUE%3EYes%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3CCOLUMN%3E%3CNAME%3EBookperk_marketingcode%3C%2FNAME%3E%3CVALUE%3EGaiman_Favorites_201910%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3CCOLUMN%3E%3CNAME%3EMarketing%20Code%3C%2FNAME%3E%3CVALUE%3EGaiman_Favorites_201910%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3CCOLUMN%3E%3CNAME%3EMarketing%20Code%3C%2FNAME%3E%3CVALUE%3EGaiman_Favorites_201910%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3CCOLUMN%3E%3CNAME%3EMarketingCode_Last%3C%2FNAME%3E%3CVALUE%3EGaiman_Favorites_201910%3C%2FVALUE%3E%3C%2FCOLUMN%3E%3C%2FAddRecipient%3E%3C%2FBody%3E%3C%2FEnvelope%3E%0A`, true);
+          xhr.onreadystatechange = function() {
+            //Call a function when the state changes.
+            if (xhr.readyState === 4 && xhr.status === 200) {
+              alert(xhr.responseText)
+            }
+          }
+
+         xhr.send()
+
           http.send(
             `formSourceName=StandardForm&sp_exp=yes&BookperkOptIn_lastmod=01/01/1950&BookperkStatus=Yes&Bookperk_marketingcode=Gaiman Favorites 201910&Marketing Code=Gaiman Favorites 201910&MarketingCode_Last=Gaiman Favorites 201910&Email=${vote.emailInput}`
           )
