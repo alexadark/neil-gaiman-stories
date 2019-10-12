@@ -116,7 +116,12 @@ const IndexPage = ({ data }) => {
             categories={categories}
           />
 
-          <StoriesGrid results={results} addPick={addPick} picks={picks} />
+          <StoriesGrid
+            results={results}
+            addPick={addPick}
+            picks={picks}
+            arePicksOpen={arePicksOpen}
+          />
         </Container>
         <Picks
           picks={picks}

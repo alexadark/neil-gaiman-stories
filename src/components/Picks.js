@@ -17,7 +17,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
   const picksStyle = arePicksOpen && {
     transition: `all .4s ease-in-out`,
     position: [`absolute`, `absolute`, `fixed`],
-    height: [`100%`, `100%`, 500],
+    height: [`100vh`, `100vh`, 500],
     bottom: [`auto`, `auto`, 0],
     top: [0, `1%`, `auto`],
     zIndex: 200,
@@ -53,6 +53,7 @@ const Picks = ({ picks, setPicks, arePicksOpen, togglePicks, setVote }) => {
             justifyContent: `space-around`,
             mt: 20,
             flexWrap: `wrap`,
+            background: `black`,
           }}
         >
           {/* mapping around an array of length 3, and depending on if the pick exist on the interation index having the pick or the placeholder */}
