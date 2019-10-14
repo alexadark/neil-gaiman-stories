@@ -73,7 +73,7 @@ function SEO({ description, lang, meta, title }) {
           content: `https://www.gaimanfavorites.com`,
         },
         {
-          property: `og:url`,
+          property: `og:image`,
           content: { share },
         },
         {
