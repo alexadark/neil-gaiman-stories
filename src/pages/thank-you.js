@@ -247,7 +247,7 @@ const ThankYou = props => {
                   <a
                     href={`https://www.harpercollins.com/${book.bookFields.isbn}`}
                     target="_blank"
-                    rel="noopener noreferrer"
+                    rel="noopener"
                   >
                     <Img
                       fluid={book.featuredImage.imageFile.childImageSharp.fluid}
