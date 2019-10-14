@@ -264,7 +264,7 @@ const ThankYou = props => {
           <a
             href="https://www.harpercollins.com/authors/neilgaiman/ "
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             sx={{ variant: `buttons.voteActive` }}
           >
             VIEW MORE
