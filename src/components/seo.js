@@ -74,7 +74,15 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          url: { share },
+          content: { share },
+        },
+        {
+          property: `twitter:image`,
+          content: { share },
+        },
+        {
+          property: `image`,
+          content: { share },
         },
         {
           name: `twitter:card`,
