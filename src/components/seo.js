@@ -74,19 +74,19 @@ function SEO({ description, lang, meta, title }) {
         },
         {
           property: `og:image`,
-          content: "../images/share.jpg",
+          content: { share },
           width: `1222px`,
           height: `640px`,
         },
         {
           property: `twitter:image`,
-          content: "../images/share.jpg",
+          content: { share },
           width: `1222px`,
           height: `640px`,
         },
         {
           property: `image`,
-          content: "../images/share.jpg",
+          content: { share },
           width: `1222px`,
           height: `640px`,
         },
