@@ -75,14 +75,20 @@ function SEO({ description, lang, meta, title }) {
         {
           property: `og:image`,
           content: "../images/share.jpg",
+          width: `1222px`,
+          height: `640px`,
         },
         {
           property: `twitter:image`,
           content: "../images/share.jpg",
+          width: `1222px`,
+          height: `640px`,
         },
         {
           property: `image`,
           content: "../images/share.jpg",
+          width: `1222px`,
+          height: `640px`,
         },
         {
           name: `twitter:card`,
