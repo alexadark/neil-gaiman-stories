@@ -11,7 +11,7 @@ const StoriesGrid = ({
   togglePicks,
 }) => {
   const gridStyle = arePicksOpen && {
-    display: [`none`, `none`, `block`],
+    display: [`none`, `none`, `flex`],
   }
   return (
     <Flex
