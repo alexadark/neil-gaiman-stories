@@ -22,7 +22,7 @@ const Header = ({ siteTitle, description, location }) => {
     <BgImage
       fluid={data.file.childImageSharp.fluid}
       backgroundColor="black"
-      style={{ backgroundSize: `fit`, backgroundPosition: `40% top` }}
+      style={{ backgroundSize: `cover`, backgroundPosition: `40% top` }}
     >
       <header
         className="siteHeader"
