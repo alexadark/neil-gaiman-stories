@@ -1,56 +1,29 @@
 /** @jsx jsx */
-import { createContext } from "react"
-import { jsx, Container } from "theme-ui"
+
+import { jsx, Flex, Box, Container, Styled } from "theme-ui"
 import { useState, useEffect } from "react"
-import { graphql } from "gatsby"
-import Search from "../components/Search"
-import Layout from "../components/layout"
+import { useStaticQuery, graphql } from "gatsby"
 import SEO from "../components/seo"
+import BgImage from "gatsby-background-image"
+import { Global } from "@emotion/core"
+import { GlobalStyles } from "../styles/GlobalStyles"
+import fbIcon from "../images/fb-icon.png"
+import twitterIcon from "../images/twitter-icon.png"
+import instaIcon from "../images/insta-icon.svg"
+import Footer from "../components/Footer"
+import Img from "gatsby-image"
+import Slider from "react-slick"
+import Prev from "../images/prev-icon.svg"
+import Next from "../images/next-icon.svg"
 
-import CategoryFilter from "../components/CategoryFilter"
+import "../styles/slick.css"
+import "../styles/slick-theme.css"
 
-import StoriesGrid from "../components/StoriesGrid"
-import Picks from "../components/Picks"
-import Overlay from "../components/Overlay"
-import { flatString } from "../utils"
-
-export const VoteContext = createContext()
-
-const IndexPage = ({ data }) => {
-  const { stories, categories } = data.wpgraphql
-
-  const alphaStories = stories.nodes.sort((a, b) => {
-    if (a.title < b.title) {
-      return -1
-    }
-    if (a.title > b.title) {
-      return 1
-    }
-    return 0
-  })
-
-  //Initial storiesgrid = all the stories
-  const [results, setStories] = useState(alphaStories)
-
-  //Initial picks: taking them from localstorage
-
-  const [picks, setPicks] = useState([])
-
-  const [vote, setVote] = useState({
-    clientMutationId: "submitVote",
-    emailInput: "",
-    messageInput: "",
-    votesInput: [],
-  })
-
-  const [arePicksOpen, togglePicks] = useState(false)
-
+const ThankYou = props => {
   let [rehydrated, setRehydrated] = useState(false)
-
+  const [picks, setPicks] = useState([])
   useEffect(() => {
-    // Check if the code is running in a browser, and if so load the saved state.
     if (!rehydrated && window) {
-      // console.log(rehydrated)
       let ls = window.localStorage
       let data = ls.getItem("picks")
       if (data) setPicks(JSON.parse(data))
@@ -58,121 +31,275 @@ const IndexPage = ({ data }) => {
     }
   })
 
-  useEffect(() => {
-    // This function serializes picks to localStorage when they change.
-    // If the page successfully rehydrated there is definitely localStorge.
-    if (rehydrated) {
-      let ls = window.localStorage
-      ls.setItem("picks", JSON.stringify(picks))
-      let lsPicks = JSON.parse(ls.getItem("picks"))
-      setVote({ ...vote, votesInput: lsPicks.map(pick => pick.storyId) })
-    }
-  }, [picks])
-
-  //Filter stories grid on real time from title
-  const findStories = (query, stories) => {
-    //keep only stories where the title includes the query after converting to a flat string without spaces
-    const results = stories.nodes.filter(story => {
-      const flatStoryArray = Array.from(flatString(story.title))
-      const flatQueryArray = Array.from(flatString(query))
-
-      //we only keep the stories where all the letters from the query are included
-      return flatQueryArray.every(letter => flatStoryArray.indexOf(letter) >= 0)
-    })
-
-    setStories(results)
-  }
-
-  //add the clicked story from the grid to the picks
-  const addPick = story =>
-    //maximun 3 votes
-    picks.length < 3
-      ? (setPicks(picks.concat([story])), togglePicks(true))
-      : alert(
-          "You can vote for up to 3 picks. Remove a pick to choose another."
-        )
-
-  //filter grid stories by category
-  const filterCategories = (e, stories) => {
-    setStories(
-      //keeping only the categories where the slug = the data-category from the clicked category
-      stories.nodes.filter(
-        story => story.categories.nodes[0].slug === e.target.dataset.category
-      )
-    )
-  }
-
-  return (
-    <VoteContext.Provider value={vote}>
-      <Overlay arePicksOpen={arePicksOpen} togglePicks={togglePicks} />
-      <Layout>
-        <Container>
-          <SEO title="The Neil Gaiman Reader: Fiction" />
-          <Search onSearchStories={findStories} stories={stories} />
-          <CategoryFilter
-            stories={stories}
-            setStories={setStories}
-            filterCategories={filterCategories}
-            categories={categories}
-          />
-
-          <StoriesGrid
-            results={results}
-            addPick={addPick}
-            picks={picks}
-            arePicksOpen={arePicksOpen}
-          />
-        </Container>
-        <Picks
-          picks={picks}
-          setPicks={setPicks}
-          arePicksOpen={arePicksOpen}
-          togglePicks={togglePicks}
-          setVote={setVote}
-        />
-      </Layout>
-    </VoteContext.Provider>
-  )
-}
-
-export default IndexPage
-
-export const pageQuery = graphql`
-  query AllStories {
-    wpgraphql {
-      stories(first: 1000) {
-        nodes {
-          storyId
-          title
-          featuredImage {
-            altText
-            sourceUrl
-            imageFile {
-              childImageSharp {
-                fixed(width: 145, quality: 100) {
-                  ...GatsbyImageSharpFixed_noBase64
+  const data = useStaticQuery(graphql`
+    query newTyQuery {
+      file(relativePath: { eq: "TY-bg.jpg" }) {
+        childImageSharp {
+          fluid(quality: 90, maxWidth: 1920) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+      wpgraphql {
+        books(first: 1000) {
+          nodes {
+            bookFields {
+              isbn
+            }
+            featuredImage {
+              altText
+              sourceUrl
+              imageFile {
+                childImageSharp {
+                  fluid(maxWidth: 300, quality: 90) {
+                    ...GatsbyImageSharpFluid_withWebp
+                  }
                 }
               }
             }
           }
-          StoriesFields {
-            pickChar
-            storyChar
-          }
-          categories {
-            nodes {
-              name
-              slug
-            }
-          }
-        }
-      }
-      categories {
-        nodes {
-          name
-          slug
         }
       }
     }
+  `)
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    autoplay: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   }
-`
+
+  const { books } = data.wpgraphql
+
+  return (
+    <BgImage
+      fluid={data.file.childImageSharp.fluid}
+      backgroundColor="black"
+      style={{ backgroundSize: `cover` }}
+    >
+      <Box sx={{ height: `100vh`, pt: `140px` }}>
+        <Global styles={GlobalStyles} />
+
+        <SEO title="The Neil Gaiman Reader: Fiction" />
+        <Container sx={{ textAlign: `center` }}>
+          <Styled.h1
+            sx={{
+              color: `white`,
+              textDecoration: `none`,
+              fontSize: [`40px`, `72px`],
+              fontWeight: 300,
+              span: {
+                color: `primary`,
+              },
+            }}
+          >
+            A <span>Neil Gaiman</span> Reader: Fiction
+          </Styled.h1>
+          <Box
+            sx={{
+              color: `white`,
+              fontSize: `2rem`,
+              fontWeight: 300,
+              lineHeight: `2.4rem`,
+              fontFamily: `body`,
+              mb: 5,
+              maxWidth: 750,
+              mx: `auto`,
+              p: {
+                lineHeight: 1.6,
+              },
+            }}
+          >
+            <p>Voting Has Now Closed</p>
+
+            <p>
+              Next year, William Morrow will publish the ultimate collection of
+              Neil Gaiman stories a must-have for longtime fans and new readers
+              alike. The winning stories will be announced on or before April
+              27th, 2020.
+            </p>
+          </Box>
+          <Box
+            sx={{
+              color: `white`,
+              fontSize: `3rem`,
+              fontWeight: 300,
+              fontFamily: `body`,
+            }}
+          >
+            Follow Neil Gaiman to find out which stories make it.
+          </Box>
+          <Flex
+            sx={{
+              justifyContent: `center`,
+              mt: `15px`,
+              mb: `30px`,
+              ">div": { mx: `10px` },
+            }}
+          >
+            <Box>
+              <a
+                href="https://www.facebook.com/neilgaiman/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={fbIcon} alt="facebook" />
+              </a>
+            </Box>
+            <Box>
+              <a
+                href="https://twitter.com/neilhimself"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={twitterIcon} alt="twitter" />
+              </a>
+            </Box>
+            <Box>
+              <a
+                href="https://www.instagram.com/neilhimself/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={instaIcon} alt="instagram" />
+              </a>
+            </Box>
+          </Flex>
+          <Box
+            sx={{
+              color: `white`,
+              fontSize: `2.4rem`,
+              fontWeight: 300,
+              fontFamily: `body`,
+            }}
+          >
+            Tell your friends and share who you think will win at{" "}
+            <span sx={{ color: `primary`, fontWeight: 500 }}>
+              #VoteNeilCollection
+            </span>
+          </Box>
+          <Flex
+            sx={{
+              justifyContent: `center`,
+              ">div": { mx: `10px` },
+              mt: `15px`,
+            }}
+          >
+            <Box>
+              <a
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://www.gaimanfavorites.com/&quote=My favorite Neil Gaiman story is "${picks.length >
+                  0 &&
+                  picks[0].title.replace(
+                    /<[^>]*>?/gm,
+                    ""
+                  )}". What's yours? Next year, William Morrow will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help Neil choose the stories to include. Vote now at https://www.gaimanfavorites.com. `}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={fbIcon} alt="facebook" />
+              </a>
+            </Box>
+            <Box>
+              <a
+                href={`https://twitter.com/intent/tweet?text=Next year, @wmmorrowbooks will publish the ultimate collection of Neil Gaiman stories—a must-have for longtime fans and new readers alike. Your vote will help @neilhimself choose the stories to include. https://www.gaimanfavorites.com %23VoteNeilCollection`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img src={twitterIcon} alt="twitter" />
+              </a>
+            </Box>
+          </Flex>
+
+          <Box
+            sx={{
+              fontFamily: `heading`,
+              color: `white`,
+              fontSize: `3.6rem`,
+              fontWeight: 300,
+              mt: `100px`,
+              mb: `20px`,
+            }}
+          >
+            Check out these books by{" "}
+            <span sx={{ color: `primary` }}>Neil Gaiman</span>
+          </Box>
+          <Box>
+            <Slider
+              {...settings}
+              sx={{
+                ".slick-prev:before, .slick-next:before": {
+                  fontSize: `0 !important`,
+                  content: "",
+
+                  width: `50px`,
+                  height: `81px`,
+                  position: `absolute !important`,
+                  top: 0,
+                  display: [`none`, `none`, `block`],
+                },
+                ".slick-prev:before": {
+                  background: `url(${Prev}) no-repeat`,
+                  left: `-30px`,
+                },
+                ".slick-next:before": {
+                  background: `url(${Next}) no-repeat`,
+                  right: `-30px`,
+                },
+              }}
+            >
+              {books.nodes.map(book => (
+                <Box sx={{ px: `10px` }}>
+                  <a
+                    href={`https://www.harpercollins.com/${book.bookFields.isbn}`}
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    <Img
+                      fluid={book.featuredImage.imageFile.childImageSharp.fluid}
+                      alt={book.altText}
+                    />
+                  </a>
+                </Box>
+              ))}
+            </Slider>
+          </Box>
+        </Container>
+
+        <Flex sx={{ justifyContent: `center`, mt: 50 }}>
+          <a
+            href="https://www.harpercollins.com/authors/neilgaiman/ "
+            target="_blank"
+            rel="noopener"
+            sx={{ variant: `buttons.voteActive` }}
+          >
+            VIEW MORE
+          </a>
+        </Flex>
+        <Box sx={{ mt: 100 }}>
+          <Footer />
+        </Box>
+      </Box>
+    </BgImage>
+  )
+}
+
+export default ThankYou

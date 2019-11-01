@@ -2,7 +2,7 @@
 
 import { jsx, Flex, Box, Container } from "theme-ui"
 import { useState, useEffect } from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { useStaticQuery, graphql, navigate } from "gatsby"
 import SEO from "../components/seo"
 import BgImage from "gatsby-background-image"
 import { Global } from "@emotion/core"
@@ -23,6 +23,7 @@ const ThankYou = props => {
   let [rehydrated, setRehydrated] = useState(false)
   const [picks, setPicks] = useState([])
   useEffect(() => {
+    navigate("/")
     if (!rehydrated && window) {
       let ls = window.localStorage
       let data = ls.getItem("picks")
